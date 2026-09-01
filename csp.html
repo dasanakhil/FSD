@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Community Complaint Management System</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* NAVBAR */
+
+nav {
+    background: #123c69;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* PAGES */
+
+.page {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* HOME */
+
+.hero {
+    min-height: 430px;
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #123c69;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 700px;
+    line-height: 1.7;
+    margin: auto;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: #123c69;
+    color: white;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #0b2948;
+}
+
+/* SERVICES */
+
+.services {
+    padding: 50px 7%;
+    text-align: center;
+}
+
+.services h2 {
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.service-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background: white;
+    width: 280px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.service-card .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    margin-bottom: 10px;
+}
+
+/* FORM */
+
+.form-box {
+    background: white;
+    width: 420px;
+    max-width: 92%;
+    margin: 50px auto;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.form-box h2 {
+    text-align: center;
+    color: #123c69;
+    margin-bottom: 25px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 12px;
+    background: #123c69;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-box button:hover {
+    background: #0b2948;
+}
+
+.form-box p {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.form-box a {
+    color: #123c69;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    width: 92%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.dashboard h1 {
+    color: #123c69;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    color: #123c69;
+    margin-bottom: 20px;
+}
+
+/* TABLE */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+th {
+    background: #123c69;
+    color: white;
+    padding: 13px;
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+/* STATUS */
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.progress {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* ADMIN */
+
+.admin-btn {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-btn:hover {
+    background: #15803d;
+}
+
+/* MESSAGE */
+
+.message {
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background: #dbeafe;
+    color: #123c69;
+}
+
+/* FOOTER */
+
+footer {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .dashboard {
+        width: 95%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        🏘️ Community Service
+    </div>
+
+    <div id="navigation">
+
+        <button onclick="showPage('home')">
+            Home
+        </button>
+
+        <button onclick="showPage('login')">
+            Login
+        </button>
+
+        <button onclick="showPage('register')">
+            Register
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div>
+
+            <h1>
+                Community Complaint Management System
+            </h1>
+
+            <p>
+                Report community problems and help make
+                your surroundings cleaner, safer and better.
+            </p>
+
+            <button
+                class="btn"
+                onclick="showPage('register')">
+
+                Get Started
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="services">
+
+        <h2>Our Services</h2>
+
+        <div class="service-container">
+
+            <div class="service-card">
+
+                <div class="icon">📝</div>
+
+                <h3>Report Problems</h3>
+
+                <p>
+                    Easily report problems in your
+                    local community.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="icon">📍</div>
+
+                <h3>Location Based</h3>
+
+                <p>
+                    Provide the location where
+                    the problem occurred.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="icon">📊</div>
+
+                <h3>Track Status</h3>
+
+                <p>
+                    Track your complaint from
+                    submission to resolution.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REGISTER ================= -->
+
+<section id="register" class="page">
+
+    <div class="form-box">
+
+        <h2>Create Account</h2>
+
+        <div id="registerMessage"></div>
+
+        <input
+            type="text"
+            id="regName"
+            placeholder="Full Name">
+
+        <input
+            type="email"
+            id="regEmail"
+            placeholder="Email Address">
+
+        <input
+            type="password"
+            id="regPassword"
+            placeholder="Password">
+
+        <input
+            type="password"
+            id="regConfirm"
+            placeholder="Confirm Password">
+
+        <button onclick="registerUser()">
+            Register
+        </button>
+
+        <p>
+            Already have an account?
+            <a onclick="showPage('login')">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="page">
+
+    <div class="form-box">
+
+        <h2>Community Service Portal</h2>
+
+        <div id="loginMessage"></div>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email Address">
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password">
+
+        <button onclick="loginUser()">
+            Login
+        </button>
+
+        <p>
+            Don't have an account?
+            <a onclick="showPage('register')">
+                Register
+            </a>
+        </p>
+
+        <p style="font-size:13px;color:#64748b;">
+            Admin: admin@gmail.com / admin123
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<section id="userDashboard" class="page">
+
+    <div class="dashboard">
+
+        <h1>
+            👤 User Dashboard
+        </h1>
+
+        <div class="card">
+
+            <h2>
+                Submit a Complaint
+            </h2>
+
+            <input
+                type="text"
+                id="complaintTitle"
+                placeholder="Complaint Title">
+
+            <textarea
+                id="complaintDescription"
+                placeholder="Describe the problem">
+            </textarea>
+
+            <input
+                type="text"
+                id="complaintLocation"
+                placeholder="Location">
+
+            <button
+                class="btn"
+                onclick="submitComplaint()">
+
+                Submit Complaint
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                📋 My Complaints
+            </h2>
+
+            <div
+                class="table-container"
+                id="userComplaints">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<section id="adminDashboard" class="page">
+
+    <div class="dashboard">
+
+        <h1>
+            👨‍💼 Admin Dashboard
+        </h1>
+
+        <div class="card">
+
+            <h2>
+                Complaint Management
+            </h2>
+
+            <div
+                class="table-container"
+                id="adminComplaints">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Community Service Project
+
+</footer>
+
+
+<script>
+
+/* ================= DATA ================= */
+
+let users =
+    JSON.parse(localStorage.getItem("users")) || [];
+
+let complaints =
+    JSON.parse(localStorage.getItem("complaints")) || [];
+
+let currentUser =
+    JSON.parse(localStorage.getItem("currentUser")) || null;
+
+
+/* DEFAULT ADMIN */
+
+if (!users.some(user => user.email === "admin@gmail.com")) {
+
+    users.push({
+
+        name: "Admin",
+        email: "admin@gmail.com",
+        password: "admin123",
+        role: "admin"
+
+    });
+
+    saveUsers();
+
+}
+
+
+/* ================= SAVE ================= */
+
+function saveUsers() {
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+}
+
+function saveComplaints() {
+
+    localStorage.setItem(
+        "complaints",
+        JSON.stringify(complaints)
+    );
+
+}
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+    document.getElementById(pageId)
+        .classList.add("active");
+
+}
+
+
+/* ================= REGISTER ================= */
+
+function registerUser() {
+
+    let name =
+        document.getElementById("regName").value.trim();
+
+    let email =
+        document.getElementById("regEmail").value.trim();
+
+    let password =
+        document.getElementById("regPassword").value;
+
+    let confirm =
+        document.getElementById("regConfirm").value;
+
+
+    if (!name || !email || !password || !confirm) {
+
+        showMessage(
+            "registerMessage",
+            "Please fill all fields."
+        );
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        showMessage(
+            "registerMessage",
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    if (password !== confirm) {
+
+        showMessage(
+            "registerMessage",
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+
+    if (users.some(user => user.email === email)) {
+
+        showMessage(
+            "registerMessage",
+            "Email already registered."
+        );
+
+        return;
+    }
+
+
+    users.push({
+
+        name: name,
+        email: email,
+        password: password,
+        role: "user"
+
+    });
+
+
+    saveUsers();
+
+
+    showMessage(
+        "registerMessage",
+        "Registration successful! Please login."
+    );
+
+
+    document.getElementById("regName").value = "";
+    document.getElementById("regEmail").value = "";
+    document.getElementById("regPassword").value = "";
+    document.getElementById("regConfirm").value = "";
+
+}
+
+
+/* ================= LOGIN ================= */
+
+function loginUser() {
+
+    let email =
+        document.getElementById("loginEmail").value.trim();
+
+    let password =
+        document.getElementById("loginPassword").value;
+
+
+    let user = users.find(
+
+        u =>
+        u.email === email &&
+        u.password === password
+
+    );
+
+
+    if (!user) {
+
+        showMessage(
+            "loginMessage",
+            "Invalid email or password."
+        );
+
+        return;
+    }
+
+
+    currentUser = user;
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
+
+
+    if (user.role === "admin") {
+
+        showPage("adminDashboard");
+
+        loadAdminComplaints();
+
+    } else {
+
+        showPage("userDashboard");
+
+        loadUserComplaints();
+
+    }
+
+}
+
+
+/* ================= SUBMIT COMPLAINT ================= */
+
+function submitComplaint() {
+
+    let title =
+        document.getElementById("complaintTitle")
+        .value.trim();
+
+    let description =
+        document.getElementById("complaintDescription")
+        .value.trim();
+
+    let location =
+        document.getElementById("complaintLocation")
+        .value.trim();
+
+
+    if (!title || !description || !location) {
+
+        alert("Please fill all complaint fields.");
+
+        return;
+    }
+
+
+    let complaint = {
+
+        id: Date.now(),
+
+        userEmail: currentUser.email,
+
+        userName: currentUser.name,
+
+        title: title,
+
+        description: description,
+
+        location: location,
+
+        status: "Pending",
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    complaints.push(complaint);
+
+    saveComplaints();
+
+
+    alert(
+        "Complaint submitted successfully!"
+    );
+
+
+    document.getElementById("complaintTitle").value = "";
+
+    document.getElementById("complaintDescription").value = "";
+
+    document.getElementById("complaintLocation").value = "";
+
+
+    loadUserComplaints();
+
+}
+
+
+/* ================= USER COMPLAINTS ================= */
+
+function loadUserComplaints() {
+
+    let myComplaints =
+        complaints.filter(
+
+            complaint =>
+            complaint.userEmail === currentUser.email
+
+        );
+
+
+    let html = "";
+
+
+    if (myComplaints.length === 0) {
+
+        html =
+        "<p>No complaints submitted yet.</p>";
+
+    } else {
+
+        html = `
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Date</th>
+
+            </tr>
+
+        `;
+
+
+        myComplaints.forEach(c => {
+
+            html += `
+
+            <tr>
+
+                <td>${c.id}</td>
+
+                <td>${escapeHTML(c.title)}</td>
+
+                <td>${escapeHTML(c.location)}</td>
+
+                <td>
+                    ${statusBadge(c.status)}
+                </td>
+
+                <td>${c.date}</td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+        html += "</table>";
+
+    }
+
+
+    document.getElementById(
+        "userComplaints"
+    ).innerHTML = html;
+
+}
+
+
+/* ================= ADMIN COMPLAINTS ================= */
+
+function loadAdminComplaints() {
+
+    let html = "";
+
+
+    if (complaints.length === 0) {
+
+        html =
+        "<p>No complaints available.</p>";
+
+    } else {
+
+        html = `
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>User</th>
+                <th>Complaint</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+        `;
+
+
+        complaints.forEach(c => {
+
+            html += `
+
+            <tr>
+
+                <td>${c.id}</td>
+
+                <td>${escapeHTML(c.userName)}</td>
+
+                <td>${escapeHTML(c.title)}</td>
+
+                <td>${escapeHTML(c.description)}</td>
+
+                <td>${escapeHTML(c.location)}</td>
+
+                <td>
+                    ${statusBadge(c.status)}
+                </td>
+
+                <td>
+
+                    <select
+                        id="status-${c.id}">
+
+                        <option
+                            ${c.status === "Pending" ? "selected" : ""}
+                            value="Pending">
+                            Pending
+                        </option>
+
+                        <option
+                            ${c.status === "In Progress" ? "selected" : ""}
+                            value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option
+                            ${c.status === "Resolved" ? "selected" : ""}
+                            value="Resolved">
+                            Resolved
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="admin-btn"
+                        onclick="updateStatus(${c.id})">
+
+                        Update
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+        html += "</table>";
+
+    }
+
+
+    document.getElementById(
+        "adminComplaints"
+    ).innerHTML = html;
+
+}
+
+
+/* ================= UPDATE STATUS ================= */
+
+function updateStatus(id) {
+
+    let newStatus =
+        document.getElementById(
+            "status-" + id
+        ).value;
+
+
+    let complaint =
+        complaints.find(
+            c => c.id === id
+        );
+
+
+    if (complaint) {
+
+        complaint.status = newStatus;
+
+        saveComplaints();
+
+        loadAdminComplaints();
+
+        alert(
+            "Complaint status updated successfully!"
+        );
+
+    }
+
+}
+
+
+/* ================= STATUS BADGE ================= */
+
+function statusBadge(status) {
+
+    let className = "pending";
+
+
+    if (status === "In Progress") {
+
+        className = "progress";
+
+    }
+
+
+    if (status === "Resolved") {
+
+        className = "resolved";
+
+    }
+
+
+    return `
+        <span class="status ${className}">
+            ${status}
+        </span>
+    `;
+
+}
+
+
+/* ================= MESSAGE ================= */
+
+function showMessage(elementId, message) {
+
+    document.getElementById(elementId)
+        .innerHTML =
+        `<div class="message">${message}</div>`;
+
+}
+
+
+/* ================= SECURITY ================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout() {
+
+    currentUser = null;
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    showPage("home");
+
+}
+
+
+/* ================= NAVIGATION LOGIN STATE ================= */
+
+function updateNavigation() {
+
+    let nav =
+        document.getElementById("navigation");
+
+
+    if (currentUser) {
+
+        nav.innerHTML = `
+
+            <button onclick="showDashboard()">
+                Dashboard
+            </button>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        `;
+
+    } else {
+
+        nav.innerHTML = `
+
+            <button onclick="showPage('home')">
+                Home
+            </button>
+
+            <button onclick="showPage('login')">
+                Login
+            </button>
+
+            <button onclick="showPage('register')">
+                Register
+            </button>
+
+        `;
+
+    }
+
+}
+
+
+function showDashboard() {
+
+    if (!currentUser) {
+
+        showPage("login");
+
+        return;
+
+    }
+
+
+    if (currentUser.role === "admin") {
+
+        showPage("adminDashboard");
+
+        loadAdminComplaints();
+
+    } else {
+
+        showPage("userDashboard");
+
+        loadUserComplaints();
+
+    }
+
+}
+
+
+/* Update navigation periodically */
+
+setInterval(
+    updateNavigation,
+    500
+);
+
+</script>
+
+</body>
+</html>
