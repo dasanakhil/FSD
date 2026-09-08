@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Landing Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* ---------- NAVBAR ---------- */
+
+        nav {
+            background: #111;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            color: #00aaff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            color: #00aaff;
+        }
+
+        /* ---------- HERO SECTION ---------- */
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 8%;
+            background: white;
+        }
+
+        .hero-text {
+            width: 50%;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .price {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .buy-btn {
+            background: #00aaff;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background: #0088cc;
+        }
+
+        /* ---------- PRODUCT IMAGE ---------- */
+
+        .product-image {
+            width: 40%;
+            text-align: center;
+        }
+
+        .product-image img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 20px;
+        }
+
+        /* ---------- FEATURES ---------- */
+
+        .features {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        .feature-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            flex: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 768px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 38px;
+            }
+
+            .product-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+
+            .feature-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <h2>TechStore</h2>
+
+        <div>
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>Smart Watch Pro</h1>
+
+            <p>
+                Stay connected, track your activities,
+                and manage your day with our powerful
+                Smart Watch Pro.
+            </p>
+
+            <div class="price">
+                ₹2,999
+            </div>
+
+            <button class="buy-btn" onclick="buyProduct()">
+                Buy Now
+            </button>
+
+        </div>
+
+
+        <div class="product-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                alt="Smart Watch"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features" id="features">
+
+        <h2>Product Features</h2>
+
+        <div class="feature-container">
+
+            <div class="feature">
+                <h3>❤️ Health Tracking</h3>
+                <p>
+                    Monitor your daily activity
+                    and keep track of your fitness.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>🔋 Long Battery</h3>
+                <p>
+                    Enjoy long-lasting battery life
+                    throughout your day.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>📱 Smart Notifications</h3>
+                <p>
+                    Receive important notifications
+                    directly on your smartwatch.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <p>
+            © 2026 TechStore | All Rights Reserved
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function buyProduct() {
+
+            alert("Thank you for your interest! 🛒");
+
+        }
+
+    </script>
+
+</body>
+</html>
