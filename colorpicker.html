@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Color Picker</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            transition: background 0.3s;
+        }
+
+        .container {
+            width: 380px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        #colorPicker {
+            width: 180px;
+            height: 180px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+            background: none;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 80px;
+            margin: 25px 0;
+            border-radius: 12px;
+            background: #3498db;
+            border: 1px solid #ddd;
+        }
+
+        .color-info {
+            text-align: left;
+        }
+
+        .color-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f5;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .color-box span {
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            border: none;
+            background: #222;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #444;
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #27ae60;
+            font-weight: bold;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🎨 Color Picker</h1>
+
+        <p class="subtitle">
+            Choose a color and get its color codes
+        </p>
+
+        <input
+            type="color"
+            id="colorPicker"
+            value="#3498db"
+        >
+
+        <div
+            class="color-preview"
+            id="colorPreview">
+        </div>
+
+        <div class="color-info">
+
+            <div class="color-box">
+                <span>HEX:</span>
+                <span id="hexCode">#3498DB</span>
+                <button class="copy-btn" onclick="copyCode('hex')">
+                    Copy
+                </button>
+            </div>
+
+            <div class="color-box">
+                <span>RGB:</span>
+                <span id="rgbCode">
+                    rgb(52, 152, 219)
+                </span>
+                <button class="copy-btn" onclick="copyCode('rgb')">
+                    Copy
+                </button>
+            </div>
+
+            <div class="color-box">
+                <span>HSL:</span>
+                <span id="hslCode">
+                    hsl(204, 70%, 53%)
+                </span>
+                <button class="copy-btn" onclick="copyCode('hsl')">
+                    Copy
+                </button>
+            </div>
+
+        </div>
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <script>
+
+        const colorPicker =
+            document.getElementById("colorPicker");
+
+        const colorPreview =
+            document.getElementById("colorPreview");
+
+        const hexCode =
+            document.getElementById("hexCode");
+
+        const rgbCode =
+            document.getElementById("rgbCode");
+
+        const hslCode =
+            document.getElementById("hslCode");
+
+        const message =
+            document.getElementById("message");
+
+
+        colorPicker.addEventListener("input", function () {
+
+            const color = colorPicker.value;
+
+            // Change page background
+            document.body.style.background = color;
+
+            // Change preview
+            colorPreview.style.background = color;
+
+            // HEX
+            hexCode.textContent = color.toUpperCase();
+
+            // Convert HEX to RGB
+            const rgb = hexToRgb(color);
+
+            rgbCode.textContent =
+                `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+            // Convert RGB to HSL
+            const hsl =
+                rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+            hslCode.textContent =
+                `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+
+        });
+
+
+        function hexToRgb(hex) {
+
+            hex = hex.replace("#", "");
+
+            const r =
+                parseInt(hex.substring(0, 2), 16);
+
+            const g =
+                parseInt(hex.substring(2, 4), 16);
+
+            const b =
+                parseInt(hex.substring(4, 6), 16);
+
+            return { r, g, b };
+        }
+
+
+        function rgbToHsl(r, g, b) {
+
+            r /= 255;
+            g /= 255;
+            b /= 255;
+
+            const max =
+                Math.max(r, g, b);
+
+            const min =
+                Math.min(r, g, b);
+
+            let h;
+            let s;
+
+            const l = (max + min) / 2;
+
+            if (max === min) {
+
+                h = 0;
+                s = 0;
+
+            } else {
+
+                const d = max - min;
+
+                s = l > 0.5
+                    ? d / (2 - max - min)
+                    : d / (max + min);
+
+                switch (max) {
+
+                    case r:
+                        h = ((g - b) / d)
+                            + (g < b ? 6 : 0);
+                        break;
+
+                    case g:
+                        h = ((b - r) / d) + 2;
+                        break;
+
+                    case b:
+                        h = ((r - g) / d) + 4;
+                        break;
+                }
+
+                h /= 6;
+            }
+
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+
+        function copyCode(type) {
+
+            let text = "";
+
+            if (type === "hex") {
+                text = hexCode.textContent;
+            }
+
+            if (type === "rgb") {
+                text = rgbCode.textContent;
+            }
+
+            if (type === "hsl") {
+                text = hslCode.textContent;
+            }
+
+            navigator.clipboard.writeText(text);
+
+            message.textContent =
+                "✓ Copied to clipboard!";
+
+            setTimeout(() => {
+                message.textContent = "";
+            }, 1500);
+        }
+
+    </script>
+
+</body>
+</html>
