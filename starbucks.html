@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coffee Landing Page</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f8f4;
+            color: #073b32;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 92px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            padding: 0 7%;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #075b46;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #087f4d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #183e38;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00845a;
+        }
+
+        nav a:first-child {
+            color: #00754a;
+            font-weight: 700;
+            position: relative;
+        }
+
+        nav a:first-child::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -28px;
+            width: 45px;
+            height: 3px;
+            background: #00754a;
+            border-radius: 5px;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .icon-btn {
+            border: none;
+            background: transparent;
+            font-size: 25px;
+            cursor: pointer;
+            color: #063f34;
+        }
+
+        .order-btn {
+            padding: 13px 27px;
+            border: 2px solid #063f34;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #063f34;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #063f34;
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 590px;
+            padding-top: 92px;
+            display: grid;
+            grid-template-columns: 42% 58%;
+            position: relative;
+            overflow: hidden;
+            background: #f8f8f4;
+        }
+
+        .hero-left {
+            padding: 60px 40px 50px 7%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            color: #006241;
+            letter-spacing: 4px;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero-left h1 {
+            font-size: clamp(50px, 5vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            color: #082f2b;
+        }
+
+        .hero-left h1 span {
+            color: #00754a;
+        }
+
+        .hero-description {
+            margin-top: 28px;
+            max-width: 500px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #285c55;
+        }
+
+        .hero-btn {
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 235px;
+            padding: 15px 25px;
+            border-radius: 30px;
+            background: #00754a;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-4px);
+            background: #005d3a;
+        }
+
+        /* =========================
+           RIGHT HERO
+        ========================= */
+
+        .hero-right {
+            min-height: 490px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 42% 45%,
+                    #137d5b 0%,
+                    #006241 42%,
+                    #004c39 100%
+                );
+            border-radius: 50% 0 0 0;
+        }
+
+        .hero-right::before {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            left: -150px;
+            top: -260px;
+        }
+
+        .hero-right::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            right: -230px;
+            bottom: -270px;
+        }
+
+        /* =========================
+           DRINKS
+        ========================= */
+
+        .drinks {
+            position: absolute;
+            left: 5%;
+            bottom: 0;
+            width: 90%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            z-index: 5;
+        }
+
+        .drink {
+            width: 180px;
+            height: 390px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .cup {
+            width: 145px;
+            height: 285px;
+            border-radius: 18px 18px 55px 55px;
+            position: relative;
+            box-shadow: 10px 20px 25px rgba(0,0,0,0.28);
+        }
+
+        .cup::before {
+            content: "";
+            position: absolute;
+            width: 155px;
+            height: 28px;
+            left: -5px;
+            top: -10px;
+            border-radius: 50%;
+            background: #eee;
+        }
+
+        .cup::after {
+            content: "☕";
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            left: 35px;
+            top: 105px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+        }
+
+        .cup-one {
+            background: linear-gradient(
+                90deg,
+                #ad632e,
+                #f1a667,
+                #9b4d24
+            );
+        }
+
+        .cup-two {
+            width: 185px;
+            height: 350px;
+            background: linear-gradient(
+                90deg,
+                #a55b2b,
+                #e6b38a,
+                #87441e
+            );
+            z-index: 3;
+        }
+
+        .cup-two::after {
+            top: 135px;
+            left: 55px;
+        }
+
+        .cup-three {
+            background: linear-gradient(
+                90deg,
+                #609b43,
+                #b4d983,
+                #4d8333
+            );
+        }
+
+        .whipped {
+            position: absolute;
+            width: 150px;
+            height: 95px;
+            top: -72px;
+            border-radius: 50%;
+            background:
+                radial-gradient(
+                    circle at 50% 80%,
+                    #fff 0,
+                    #eee 45%,
+                    #ddd 100%
+                );
+            z-index: 10;
+        }
+
+        .chocolate {
+            position: absolute;
+            width: 100px;
+            height: 25px;
+            background: #5a2c17;
+            top: -50px;
+            border-radius: 50%;
+            z-index: 11;
+        }
+
+        .straw {
+            position: absolute;
+            width: 9px;
+            height: 125px;
+            background: #008c65;
+            top: -115px;
+            right: 35px;
+            transform: rotate(12deg);
+            border-radius: 10px;
+            z-index: 12;
+        }
+
+        /* =========================
+           QUALITY BADGE
+        ========================= */
+
+        .quality {
+            position: absolute;
+            right: 13%;
+            top: 60px;
+            width: 115px;
+            height: 115px;
+            border: 1px solid white;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: 2px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 20;
+        }
+
+        .quality span {
+            font-size: 28px;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           CATEGORY BAR
+        ========================= */
+
+        .categories {
+            height: 105px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 70px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 20;
+        }
+
+        .category {
+            height: 80px;
+            min-width: 110px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+            color: #315b54;
+            position: relative;
+        }
+
+        .category span {
+            font-size: 30px;
+        }
+
+        .category.active {
+            color: #00754a;
+            font-weight: 700;
+        }
+
+        .category.active::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 3px;
+            background: #00754a;
+            bottom: 5px;
+            border-radius: 10px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products {
+            background: #f7f7f3;
+            padding: 35px 6%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: #f3f3ee;
+            border: 1px solid #e8e8e2;
+            border-radius: 15px;
+            min-height: 205px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            transition: 0.35s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            width: 150px;
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 110px;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-info h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+            color: #064b40;
+        }
+
+        .product-info p {
+            color: #47736c;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .price {
+            margin-top: 12px;
+            color: #00754a;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .add-btn {
+            margin-top: 12px;
+            border: none;
+            background: #00754a;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #005d3a;
+        }
+
+        /* =========================
+           REWARDS
+        ========================= */
+
+        .rewards {
+            min-height: 130px;
+            padding: 25px 8%;
+            background: #006241;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .rewards h2 {
+            font-size: 30px;
+        }
+
+        .rewards p {
+            margin-top: 8px;
+            color: #d9eee7;
+        }
+
+        .reward-btn {
+            padding: 13px 30px;
+            border: 1px solid white;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .reward-btn:hover {
+            background: white;
+            color: #006241;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #003d2c;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        .hero-left {
+            animation: leftIn 0.9s ease;
+        }
+
+        .drinks {
+            animation: drinksIn 1s ease;
+        }
+
+        .drink:nth-child(1) {
+            animation: floatOne 4s ease-in-out infinite;
+        }
+
+        .drink:nth-child(2) {
+            animation: floatTwo 4s ease-in-out infinite;
+        }
+
+        .drink:nth-child(3) {
+            animation: floatThree 4s ease-in-out infinite;
+        }
+
+        @keyframes leftIn {
+
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+        @keyframes drinksIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(80px) scale(.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        @keyframes floatOne {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-13px) rotate(2deg);
+            }
+
+        }
+
+        @keyframes floatTwo {
+
+            0%, 100% {
+                transform: translateY(-5px);
+            }
+
+            50% {
+                transform: translateY(-22px);
+            }
+
+        }
+
+        @keyframes floatThree {
+
+            0%, 100% {
+                transform: translateY(0) rotate(2deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(-2deg);
+            }
+
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            nav {
+                gap: 20px;
+            }
+
+            .header-buttons {
+                gap: 10px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                max-width: 700px;
+                margin: auto;
+                width: 100%;
+            }
+
+            .categories {
+                gap: 25px;
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            header {
+                height: 75px;
+            }
+
+            nav,
+            .header-buttons {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: 900px;
+                padding-top: 75px;
+            }
+
+            .hero-left {
+                padding: 60px 7% 30px;
+            }
+
+            .hero-left h1 {
+                font-size: 53px;
+            }
+
+            .hero-right {
+                min-height: 480px;
+                border-radius: 0;
+            }
+
+            .quality {
+                right: 8%;
+                top: 25px;
+            }
+
+            .drinks {
+                transform: scale(.8);
+                left: 0;
+                width: 100%;
+            }
+
+            .categories {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 0 20px;
+            }
+
+            .category {
+                flex-shrink: 0;
+            }
+
+            .rewards {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+
+            .hero-left h1 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-right {
+                min-height: 420px;
+            }
+
+            .drinks {
+                transform: scale(.63);
+                transform-origin: bottom center;
+            }
+
+            .quality {
+                transform: scale(.8);
+                right: 5px;
+                top: 15px;
+            }
+
+            .product-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-image {
+                height: 130px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <a href="#home" class="logo">
+
+        <div class="logo-circle">
+            ☕
+        </div>
+
+        <span>COFFEEBLISS</span>
+
+    </a>
+
+
+    <nav id="nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#menu">Menu</a>
+
+        <a href="#about">About</a>
+
+        <a href="#rewards">Rewards</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+
+    <div class="header-buttons">
+
+        <button class="icon-btn">
+            ⌕
+        </button>
+
+        <button class="icon-btn">
+            ♧
+        </button>
+
+        <a href="#menu" class="order-btn">
+            Order Now
+        </a>
+
+    </div>
+
+
+    <button class="menu-btn" id="menuBtn">
+        ☰
+    </button>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+
+    <div class="hero-left">
+
+        <div class="eyebrow">
+            GOOD COFFEE. &nbsp; BETTER DAYS.
+        </div>
+
+
+        <h1>
+
+            More Than
+
+            <br>
+
+            <span>Just Coffee</span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            At CoffeeBliss, we craft the perfect cup
+            for every mood — from rich espresso to
+            creamy lattes, refreshing cold brews and more.
+
+        </p>
+
+
+        <a href="#menu" class="hero-btn">
+
+            Explore Our Menu &nbsp; →
+
+        </a>
+
+    </div>
+
+
+    <div class="hero-right">
+
+
+        <div class="quality">
+
+            PREMIUM
+
+            <br>
+
+            QUALITY
+
+            <span>♧</span>
+
+        </div>
+
+
+        <div class="drinks">
+
+
+            <!-- DRINK 1 -->
+
+            <div class="drink">
+
+                <div class="cup cup-one">
+
+                    <div class="straw"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DRINK 2 -->
+
+            <div class="drink">
+
+                <div class="cup cup-two">
+
+                    <div class="whipped"></div>
+
+                    <div class="chocolate"></div>
+
+                    <div class="straw"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DRINK 3 -->
+
+            <div class="drink">
+
+                <div class="cup cup-three">
+
+                    <div class="whipped"></div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<div class="categories" id="menu">
+
+
+    <button class="category active">
+
+        <span>☕</span>
+
+        Hot Coffee
+
+    </button>
+
+
+    <button class="category">
+
+        <span>🥤</span>
+
+        Iced Coffee
+
+    </button>
+
+
+    <button class="category">
+
+        <span>🥤</span>
+
+        Frappuccino
+
+    </button>
+
+
+    <button class="category">
+
+        <span>🍃</span>
+
+        Tea & More
+
+    </button>
+
+
+    <button class="category">
+
+        <span>🥐</span>
+
+        Food
+
+    </button>
+
+
+</div>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section class="products">
+
+
+    <article class="product-card">
+
+        <div class="product-image">
+            ☕
+        </div>
+
+        <div class="product-info">
+
+            <h3>
+                Caffè Latte
+            </h3>
+
+            <p>
+                Smooth espresso with
+                steamed milk.
+            </p>
+
+            <div class="price">
+                $4.95
+            </div>
+
+            <button class="add-btn">
+                Add to Cart →
+            </button>
+
+        </div>
+
+    </article>
+
+
+    <article class="product-card">
+
+        <div class="product-image">
+            🧊
+        </div>
+
+        <div class="product-info">
+
+            <h3>
+                Iced Americano
+            </h3>
+
+            <p>
+                Bold espresso,
+                refreshing taste.
+            </p>
+
+            <div class="price">
+                $4.45
+            </div>
+
+            <button class="add-btn">
+                Add to Cart →
+            </button>
+
+        </div>
+
+    </article>
+
+
+    <article class="product-card">
+
+        <div class="product-image">
+            🥤
+        </div>
+
+        <div class="product-info">
+
+            <h3>
+                Mocha Frappuccino
+            </h3>
+
+            <p>
+                Chocolate, coffee and
+                creamy goodness.
+            </p>
+
+            <div class="price">
+                $5.45
+            </div>
+
+            <button class="add-btn">
+                Add to Cart →
+            </button>
+
+        </div>
+
+    </article>
+
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    class="other"
+    id="about"
+    style="
+        padding:90px 8%;
+        text-align:center;
+        background:#fff;
+    "
+>
+
+    <h2 style="
+        font-size:42px;
+        color:#006241;
+        margin-bottom:20px;
+    ">
+        Coffee Made For Everyone
+    </h2>
+
+    <p style="
+        max-width:700px;
+        margin:auto;
+        line-height:1.8;
+        color:#54736e;
+    ">
+
+        Every cup is prepared with care,
+        quality ingredients and a passion
+        for great coffee.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     REWARDS
+========================= -->
+
+<section class="rewards" id="rewards">
+
+    <div>
+
+        <h2>
+            Rewards for What You Love
+        </h2>
+
+        <p>
+            Join our rewards program and enjoy
+            exclusive offers and more.
+        </p>
+
+    </div>
+
+
+    <a href="#" class="reward-btn">
+        Join Now →
+    </a>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    id="contact"
+    style="
+        padding:80px 8%;
+        text-align:center;
+        background:#f7f7f3;
+    "
+>
+
+    <h2 style="
+        color:#006241;
+        font-size:40px;
+        margin-bottom:15px;
+    ">
+        Better Together
+    </h2>
+
+    <p style="
+        color:#55756f;
+        margin-bottom:25px;
+    ">
+        Have a question? We'd love to hear from you.
+    </p>
+
+    <a
+        href="mailto:hello@example.com"
+        class="hero-btn"
+        style="margin-top:0;"
+    >
+        Contact Us
+    </a>
+
+</section>
+
+
+<footer>
+
+    © 2026 CoffeeBliss | Frontend Project
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+
+    menuBtn.addEventListener("click", function() {
+
+        nav.classList.toggle("show");
+
+    });
+
+
+    /* =========================
+       CATEGORY BUTTONS
+    ========================= */
+
+    const categories =
+        document.querySelectorAll(".category");
+
+    categories.forEach(function(category) {
+
+        category.addEventListener("click", function() {
+
+            categories.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+            category.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =========================
+       ADD TO CART
+    ========================= */
+
+    const buttons =
+        document.querySelectorAll(".add-btn");
+
+    buttons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            const oldText = button.innerHTML;
+
+            button.innerHTML = "Added ✓";
+
+            button.style.background = "#005d3a";
+
+            setTimeout(function() {
+
+                button.innerHTML = oldText;
+
+                button.style.background = "#00754a";
+
+            }, 1500);
+
+        });
+
+    });
+
+
+    /* =========================
+       CLOSE MOBILE NAV
+    ========================= */
+
+    document
+        .querySelectorAll("#nav a")
+        .forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                nav.classList.remove("show");
+
+            });
+
+        });
+
+</script>
+
+
+</body>
+</html>
