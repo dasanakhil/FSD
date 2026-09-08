@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fitness Tracker</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6f9;
+            color: #222;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        /* Header */
+        header {
+            background: #111827;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #cbd5e1;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-card h3 {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        /* Progress */
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 14px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+        .steps-fill {
+            background: #3b82f6;
+        }
+
+        .water-fill {
+            background: #06b6d4;
+        }
+
+        .calories-fill {
+            background: #f97316;
+        }
+
+        /* Workout Form */
+        .form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #3b82f6;
+        }
+
+        .add-btn {
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #374151;
+        }
+
+        /* Workout List */
+        .workout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .workout-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .workout-info p {
+            color: #64748b;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+        }
+
+        .empty {
+            text-align: center;
+            color: #94a3b8;
+            padding: 20px;
+        }
+
+        /* Mobile */
+        @media (max-width: 750px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .workout {
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>DASAN's 💪 Fitness Tracker</h1>
+            <p>Track your daily fitness and stay consistent.</p>
+        </header>
+
+
+        <!-- Statistics -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <div class="icon">👟</div>
+                <h3>Steps</h3>
+                <div class="number" id="steps">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">🔥</div>
+                <h3>Calories</h3>
+                <div class="number" id="calories">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">💧</div>
+                <h3>Water</h3>
+                <div class="number" id="water">0 L</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">🏋️</div>
+                <h3>Workouts</h3>
+                <div class="number" id="workouts">0</div>
+            </div>
+
+        </div>
+
+
+        <!-- Daily Progress -->
+        <div class="section">
+
+            <h2>📊 Daily Progress</h2>
+
+            <!-- Steps -->
+            <div class="progress-item">
+
+                <div class="progress-header">
+                    <span>👟 Steps</span>
+                    <span>
+                        <b id="stepsProgress">0</b> / 10,000
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill steps-fill"
+                        id="stepsBar">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Water -->
+            <div class="progress-item">
+
+                <div class="progress-header">
+                    <span>💧 Water</span>
+                    <span>
+                        <b id="waterProgress">0</b> / 3 L
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill water-fill"
+                        id="waterBar">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Calories -->
+            <div class="progress-item">
+
+                <div class="progress-header">
+                    <span>🔥 Calories</span>
+                    <span>
+                        <b id="caloriesProgress">0</b> / 2,000
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill calories-fill"
+                        id="caloriesBar">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Update Fitness -->
+        <div class="section">
+
+            <h2>✏️ Update Today's Activity</h2>
+
+            <div class="form">
+
+                <input
+                    type="number"
+                    id="stepsInput"
+                    placeholder="Steps"
+                    min="0">
+
+                <input
+                    type="number"
+                    id="caloriesInput"
+                    placeholder="Calories"
+                    min="0">
+
+                <input
+                    type="number"
+                    id="waterInput"
+                    placeholder="Water (Litres)"
+                    min="0"
+                    step="0.1">
+
+                <button
+                    class="add-btn"
+                    onclick="updateFitness()">
+                    Update Activity
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Add Workout -->
+        <div class="section">
+
+            <h2>🏃 Add Workout</h2>
+
+            <div class="form">
+
+                <input
+                    type="text"
+                    id="workoutName"
+                    placeholder="Workout name">
+
+                <input
+                    type="number"
+                    id="duration"
+                    placeholder="Duration (minutes)"
+                    min="1">
+
+                <select id="workoutType">
+
+                    <option value="Running">
+                        🏃 Running
+                    </option>
+
+                    <option value="Cycling">
+                        🚴 Cycling
+                    </option>
+
+                    <option value="Walking">
+                        🚶 Walking
+                    </option>
+
+                    <option value="Gym">
+                        🏋️ Gym
+                    </option>
+
+                    <option value="Yoga">
+                        🧘 Yoga
+                    </option>
+
+                    <option value="Swimming">
+                        🏊 Swimming
+                    </option>
+
+                </select>
+
+                <button
+                    class="add-btn"
+                    onclick="addWorkout()">
+                    + Add Workout
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Workout History -->
+        <div class="section">
+
+            <h2>📋 Workout History</h2>
+
+            <div id="workoutList"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Fitness data
+        let fitnessData = JSON.parse(
+            localStorage.getItem("fitnessData")
+        ) || {
+            steps: 0,
+            calories: 0,
+            water: 0
+        };
+
+
+        // Workout data
+        let workoutList = JSON.parse(
+            localStorage.getItem("workouts")
+        ) || [];
+
+
+        // Update fitness
+        function updateFitness() {
+
+            const steps =
+                document.getElementById("stepsInput").value;
+
+            const calories =
+                document.getElementById("caloriesInput").value;
+
+            const water =
+                document.getElementById("waterInput").value;
+
+
+            if (steps !== "") {
+                fitnessData.steps = Number(steps);
+            }
+
+            if (calories !== "") {
+                fitnessData.calories = Number(calories);
+            }
+
+            if (water !== "") {
+                fitnessData.water = Number(water);
+            }
+
+
+            saveData();
+
+            updateDisplay();
+
+
+            // Clear inputs
+            document.getElementById("stepsInput").value = "";
+            document.getElementById("caloriesInput").value = "";
+            document.getElementById("waterInput").value = "";
+        }
+
+
+        // Add workout
+        function addWorkout() {
+
+            const name =
+                document.getElementById("workoutName").value;
+
+            const duration =
+                document.getElementById("duration").value;
+
+            const type =
+                document.getElementById("workoutType").value;
+
+
+            if (name === "" || duration === "") {
+
+                alert("Please enter workout name and duration.");
+
+                return;
+            }
+
+
+            const workout = {
+                name: name,
+                duration: duration,
+                type: type,
+                date: new Date().toLocaleDateString()
+            };
+
+
+            workoutList.push(workout);
+
+            saveData();
+
+            updateDisplay();
+
+
+            // Clear inputs
+            document.getElementById("workoutName").value = "";
+            document.getElementById("duration").value = "";
+        }
+
+
+        // Delete workout
+        function deleteWorkout(index) {
+
+            workoutList.splice(index, 1);
+
+            saveData();
+
+            updateDisplay();
+        }
+
+
+        // Save data
+        function saveData() {
+
+            localStorage.setItem(
+                "fitnessData",
+                JSON.stringify(fitnessData)
+            );
+
+            localStorage.setItem(
+                "workouts",
+                JSON.stringify(workoutList)
+            );
+        }
+
+
+        // Update display
+        function updateDisplay() {
+
+            // Statistics
+            document.getElementById("steps").textContent =
+                fitnessData.steps.toLocaleString();
+
+            document.getElementById("calories").textContent =
+                fitnessData.calories;
+
+            document.getElementById("water").textContent =
+                fitnessData.water + " L";
+
+            document.getElementById("workouts").textContent =
+                workoutList.length;
+
+
+            // Progress text
+            document.getElementById("stepsProgress").textContent =
+                fitnessData.steps.toLocaleString();
+
+            document.getElementById("waterProgress").textContent =
+                fitnessData.water;
+
+            document.getElementById("caloriesProgress").textContent =
+                fitnessData.calories;
+
+
+            // Progress percentages
+            let stepsPercent =
+                (fitnessData.steps / 10000) * 100;
+
+            let waterPercent =
+                (fitnessData.water / 3) * 100;
+
+            let caloriesPercent =
+                (fitnessData.calories / 2000) * 100;
+
+
+            // Maximum 100%
+            stepsPercent = Math.min(stepsPercent, 100);
+            waterPercent = Math.min(waterPercent, 100);
+            caloriesPercent = Math.min(caloriesPercent, 100);
+
+
+            document.getElementById("stepsBar").style.width =
+                stepsPercent + "%";
+
+            document.getElementById("waterBar").style.width =
+                waterPercent + "%";
+
+            document.getElementById("caloriesBar").style.width =
+                caloriesPercent + "%";
+
+
+            // Workout list
+            const list =
+                document.getElementById("workoutList");
+
+
+            if (workoutList.length === 0) {
+
+                list.innerHTML =
+                    '<div class="empty">No workouts added yet.</div>';
+
+                return;
+            }
+
+
+            list.innerHTML = "";
+
+
+            workoutList.forEach((workout, index) => {
+
+                const workoutElement =
+                    document.createElement("div");
+
+                workoutElement.className = "workout";
+
+
+                workoutElement.innerHTML = `
+
+                    <div class="workout-info">
+
+                        <h3>
+                            ${getWorkoutEmoji(workout.type)}
+                            ${workout.name}
+                        </h3>
+
+                        <p>
+                            ${workout.type}
+                            • ${workout.duration} minutes
+                            • ${workout.date}
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteWorkout(${index})">
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(workoutElement);
+
+            });
+
+        }
+
+
+        // Workout emoji
+        function getWorkoutEmoji(type) {
+
+            const emojis = {
+
+                "Running": "🏃",
+
+                "Cycling": "🚴",
+
+                "Walking": "🚶",
+
+                "Gym": "🏋️",
+
+                "Yoga": "🧘",
+
+                "Swimming": "🏊"
+
+            };
+
+            return emojis[type] || "🏋️";
+        }
+
+
+        // Load saved data when page opens
+        updateDisplay();
+
+    </script>
+
+</body>
+</html>
