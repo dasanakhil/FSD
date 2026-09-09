@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Pro</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+
+    <main class="app-container">
+
+        <!-- Header -->
+
+        <div class="top-section">
+
+            <div class="brand">
+                <div class="brand-icon">☀️</div>
+
+                <div>
+                    <h1>Weather<span>Pro</span></h1>
+                    <p>Your daily weather companion</p>
+                </div>
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city..."
+                >
+
+                <button onclick="getWeather()" id="searchButton">
+                    🔍
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Loading -->
+
+        <div id="loading">
+            <div class="loader"></div>
+            <span>Getting weather...</span>
+        </div>
+
+
+        <!-- Error -->
+
+        <div id="error"></div>
+
+
+        <!-- Main Weather Card -->
+
+        <section class="weather-card">
+
+            <div class="weather-top">
+
+                <div class="location-info">
+
+                    <p class="location-label">CURRENT LOCATION</p>
+
+                    <h2 id="cityName">
+                        Search a city
+                    </h2>
+
+                    <p id="dateTime">
+                        -- --- ---- | --:--
+                    </p>
+
+                </div>
+
+
+                <div class="weather-main-icon">
+
+                    <div id="weatherIcon">
+                        🌤️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="temperature-section">
+
+                <div class="temperature">
+
+                    <span id="temperature">--</span>
+
+                    <sup>°C</sup>
+
+                </div>
+
+
+                <div class="weather-description">
+
+                    <h3 id="description">
+                        Weather information
+                    </h3>
+
+                    <p id="feelsLike">
+                        Feels like --°C
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Weather Details -->
+
+            <div class="weather-details">
+
+                <div class="detail-card">
+
+                    <div class="detail-icon">💧</div>
+
+                    <div>
+                        <p>Humidity</p>
+                        <h3 id="humidity">--%</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <div class="detail-icon">💨</div>
+
+                    <div>
+                        <p>Wind Speed</p>
+                        <h3 id="wind">-- km/h</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <div class="detail-icon">🌡️</div>
+
+                    <div>
+                        <p>Feels Like</p>
+                        <h3 id="feelsDetail">--°C</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sunrise and Sunset -->
+
+            <div class="sun-section">
+
+                <div class="sun-card">
+
+                    <div class="sun-icon sunrise">🌅</div>
+
+                    <div>
+                        <p>Sunrise</p>
+                        <h3 id="sunrise">--:--</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="sun-divider"></div>
+
+
+                <div class="sun-card">
+
+                    <div class="sun-icon sunset">🌇</div>
+
+                    <div>
+                        <p>Sunset</p>
+                        <h3 id="sunset">--:--</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Forecast -->
+
+        <section class="forecast-section">
+
+            <div class="forecast-header">
+
+                <h2>5-Day Forecast</h2>
+
+                <p>Upcoming weather</p>
+
+            </div>
+
+
+            <div id="forecastContainer" class="forecast-container">
+
+                <div class="forecast-card">
+                    <p>Day</p>
+                    <div>🌤️</div>
+                    <h3>--°</h3>
+                </div>
+
+                <div class="forecast-card">
+                    <p>Day</p>
+                    <div>☀️</div>
+                    <h3>--°</h3>
+                </div>
+
+                <div class="forecast-card">
+                    <p>Day</p>
+                    <div>☁️</div>
+                    <h3>--°</h3>
+                </div>
+
+                <div class="forecast-card">
+                    <p>Day</p>
+                    <div>🌧️</div>
+                    <h3>--°</h3>
+                </div>
+
+                <div class="forecast-card">
+                    <p>Day</p>
+                    <div>🌤️</div>
+                    <h3>--°</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <p class="footer">
+            Powered by Open-Meteo • No API Key Required
+        </p>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
