@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        #4facfe,
+        #00f2fe
+    );
+}
+
+.weather-container {
+    width: 90%;
+    max-width: 430px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #222;
+
+    margin-bottom: 25px;
+}
+
+.search-box {
+    display: flex;
+
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #2196f3;
+}
+
+.search-box button {
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2196f3;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #1976d2;
+}
+
+#loading {
+    display: none;
+
+    margin-top: 20px;
+
+    color: #2196f3;
+
+    font-weight: bold;
+}
+
+#error {
+    color: red;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+}
+
+.weather-result {
+    margin-top: 25px;
+}
+
+#cityName {
+    color: #333;
+
+    margin-bottom: 10px;
+}
+
+#weatherIcon {
+    font-size: 70px;
+
+    margin: 15px;
+}
+
+#temperature {
+    font-size: 50px;
+
+    font-weight: bold;
+
+    color: #2196f3;
+}
+
+#description {
+    color: #666;
+
+    margin-top: 8px;
+
+    text-transform: capitalize;
+}
+
+.details {
+    display: flex;
+
+    justify-content: space-around;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #ddd;
+}
+
+.detail-box {
+    width: 45%;
+}
+
+.detail-box span {
+    font-size: 25px;
+}
+
+.detail-box p {
+    color: #777;
+
+    margin: 5px;
+}
+
+.detail-box strong {
+    color: #333;
+
+    font-size: 16px;
+}
