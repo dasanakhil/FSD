@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NASA Solar System Explorer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #02040a;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/* SPACE BACKGROUND */
+
+.space {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, #101b35 0%, #03050c 45%, #000 100%);
+    overflow: hidden;
+}
+
+/* STARS */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 40%, white, transparent),
+        radial-gradient(2px 2px at 70% 15%, white, transparent),
+        radial-gradient(1px 1px at 90% 70%, white, transparent),
+        radial-gradient(2px 2px at 50% 85%, white, transparent),
+        radial-gradient(1px 1px at 20% 75%, white, transparent),
+        radial-gradient(1px 1px at 80% 45%, white, transparent);
+
+    background-size: 250px 250px;
+    animation: starsMove 40s linear infinite;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(-250px,-250px);
+    }
+}
+
+/* HEADER */
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+
+    border-bottom: 1px solid #008cff88;
+
+    background: rgba(0,10,25,0.75);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 20;
+}
+
+.nasa {
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.title {
+    font-size: 25px;
+    color: #00c8ff;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    font-size: 11px;
+    color: #9fdfff;
+    margin-top: 4px;
+}
+
+/* NAV */
+
+.nav {
+    margin-left: auto;
+    display: flex;
+    gap: 25px;
+}
+
+.nav span {
+    color: #9bdcff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.nav span:hover {
+    color: #00d9ff;
+}
+
+/* PLANET PANEL */
+
+.panel {
+    position: absolute;
+    left: 20px;
+    top: 110px;
+
+    width: 200px;
+
+    background: rgba(0,12,30,0.78);
+
+    border: 1px solid #009dff;
+
+    padding: 15px;
+
+    z-index: 10;
+
+    box-shadow: 0 0 20px #008cff33;
+}
+
+.panel h3 {
+    color: #00c8ff;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.planet-button {
+    padding: 9px;
+    margin: 5px 0;
+
+    border: 1px solid #144a70;
+
+    color: #bdeaff;
+
+    cursor: pointer;
+
+    background: rgba(0,40,70,0.4);
+
+    transition: 0.2s;
+}
+
+.planet-button:hover {
+    background: #006ea8;
+    color: white;
+}
+
+/* SOLAR SYSTEM */
+
+.system {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    width: 850px;
+    height: 850px;
+
+    transform: translate(-50%,-50%);
+}
+
+/* ORBITS */
+
+.orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+
+    border: 1px solid rgba(0,180,255,0.35);
+
+    border-radius: 50%;
+}
+
+.o1 { width: 150px; height: 150px; }
+.o2 { width: 220px; height: 220px; }
+.o3 { width: 300px; height: 300px; }
+.o4 { width: 380px; height: 380px; }
+.o5 { width: 480px; height: 480px; }
+.o6 { width: 580px; height: 580px; }
+.o7 { width: 690px; height: 690px; }
+.o8 { width: 800px; height: 800px; }
+
+/* SUN */
+
+.sun {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100px;
+    height: 100px;
+
+    transform: translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #fff 0%,
+        #ffe66b 20%,
+        #ff9d00 55%,
+        #ff4500 100%
+    );
+
+    box-shadow:
+        0 0 30px #ffcc00,
+        0 0 70px #ff9900,
+        0 0 130px #ff6600;
+
+    animation: sunPulse 2s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+
+    0%,100% {
+        box-shadow:
+            0 0 30px #ffcc00,
+            0 0 70px #ff9900,
+            0 0 130px #ff6600;
+    }
+
+    50% {
+        box-shadow:
+            0 0 50px #ffcc00,
+            0 0 100px #ff9900,
+            0 0 180px #ff6600;
+    }
+}
+
+/* PLANETS */
+
+.planet {
+    position: absolute;
+
+    border-radius: 50%;
+
+    transform: translate(-50%,-50%);
+}
+
+/* Mercury */
+
+.mercury {
+    width: 15px;
+    height: 15px;
+
+    background: #999;
+
+    box-shadow: 0 0 8px #aaa;
+}
+
+/* Venus */
+
+.venus {
+    width: 23px;
+    height: 23px;
+
+    background: #d99b3d;
+
+    box-shadow: 0 0 10px #d99b3d;
+}
+
+/* Earth */
+
+.earth {
+    width: 30px;
+    height: 30px;
+
+    background:
+        radial-gradient(circle at 30% 30%, #65cfff, #0750b8 55%, #021e5c);
+
+    box-shadow:
+        0 0 10px #008cff,
+        0 0 20px #0077ff;
+
+    animation: earthSpin 3s linear infinite;
+}
+
+@keyframes earthSpin {
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* MARS */
+
+.mars {
+    width: 22px;
+    height: 22px;
+
+    background: #c94a2d;
+
+    box-shadow: 0 0 10px #ff4d2d;
+}
+
+/* JUPITER */
+
+.jupiter {
+    width: 58px;
+    height: 58px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #d9a15c,
+            #d9a15c 6px,
+            #a75e30 8px,
+            #f1c27d 12px
+        );
+
+    box-shadow: 0 0 15px #d88a42;
+}
+
+/* SATURN */
+
+.saturn {
+    width: 52px;
+    height: 52px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #d9bd76,
+            #d9bd76 6px,
+            #a78c50 8px
+        );
+
+    box-shadow: 0 0 15px #d4ad55;
+}
+
+.saturn::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 28px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%) rotate(-15deg);
+
+    border: 6px solid rgba(220,190,120,0.7);
+
+    border-radius: 50%;
+}
+
+/* URANUS */
+
+.uranus {
+    width: 35px;
+    height: 35px;
+
+    background: #6ed8df;
+
+    box-shadow: 0 0 12px #4ed5ff;
+}
+
+/* NEPTUNE */
+
+.neptune {
+    width: 34px;
+    height: 34px;
+
+    background: #245bd7;
+
+    box-shadow: 0 0 15px #245bd7;
+}
+
+/* MOON */
+
+.moon {
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    background: #ccc;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 5px white;
+
+}
+
+/* LABEL */
+
+.label {
+    position: absolute;
+
+    color: white;
+
+    font-size: 10px;
+
+    transform: translate(10px,-20px);
+
+    white-space: nowrap;
+
+    text-shadow: 0 0 5px black;
+}
+
+/* SHOOTING STAR */
+
+.shooting-star {
+
+    position: absolute;
+
+    width: 120px;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        white
+    );
+
+    transform: rotate(-25deg);
+
+    animation: shoot 4s linear infinite;
+
+    opacity: 0;
+}
+
+@keyframes shoot {
+
+    0% {
+        left: 100%;
+        top: 10%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    30% {
+        left: 60%;
+        top: 30%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* RIGHT INFORMATION */
+
+.info {
+
+    position: absolute;
+
+    right: 20px;
+    top: 110px;
+
+    width: 240px;
+
+    padding: 18px;
+
+    background: rgba(0,12,30,0.8);
+
+    border: 1px solid #00aaff;
+
+    z-index: 10;
+}
+
+.info h2 {
+
+    color: #00d4ff;
+
+    margin-bottom: 15px;
+}
+
+.data {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 12px 0;
+
+    font-size: 13px;
+
+    color: #bceaff;
+}
+
+.value {
+    color: white;
+}
+
+/* BOTTOM CONTROL */
+
+.controls {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(0,15,35,0.9);
+
+    border: 1px solid #00bfff;
+
+    padding: 12px 20px;
+
+    z-index: 20;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.controls button {
+
+    background: #062c4a;
+
+    color: #bdefff;
+
+    border: 1px solid #008cff;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+}
+
+.controls button:hover {
+
+    background: #008cff;
+
+    color: white;
+}
+
+.speed {
+
+    color: #00d9ff;
+
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+.footer {
+
+    position: absolute;
+
+    bottom: 5px;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #5089aa;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    z-index: 5;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+
+    .panel,
+    .info {
+
+        display: none;
+    }
+
+    .system {
+
+        transform: translate(-50%,-50%) scale(0.7);
+    }
+
+    .nav {
+
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="space">
+
+    <div class="stars"></div>
+
+    <!-- SHOOTING STARS -->
+
+    <div class="shooting-star"></div>
+
+    <div class="shooting-star"
+         style="animation-delay:2s">
+    </div>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="nasa">
+            🚀 NASA
+        </div>
+
+        <div>
+            <div class="title">
+                DASAN's SOLAR SYSTEM EXPLORER
+            </div>
+
+            <div class="subtitle">
+                EXPLORE • LEARN • DISCOVER
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <span>🌌 Solar System</span>
+            <span>🪐 Planets</span>
+            <span>🌙 Moons</span>
+            <span>☄ Asteroids</span>
+            <span>⚙ Settings</span>
+
+        </nav>
+
+    </header>
+
+
+    <!-- PLANET LIST -->
+
+    <div class="panel">
+
+        <h3>◈ PLANETS</h3>
+
+        <div class="planet-button">☀ Sun</div>
+        <div class="planet-button">☿ Mercury</div>
+        <div class="planet-button">♀ Venus</div>
+        <div class="planet-button">🌍 Earth</div>
+        <div class="planet-button">♂ Mars</div>
+        <div class="planet-button">♃ Jupiter</div>
+        <div class="planet-button">♄ Saturn</div>
+        <div class="planet-button">♅ Uranus</div>
+        <div class="planet-button">♆ Neptune</div>
+
+    </div>
+
+
+    <!-- SOLAR SYSTEM -->
+
+    <div class="system">
+
+        <!-- ORBITS -->
+
+        <div class="orbit o1"></div>
+        <div class="orbit o2"></div>
+        <div class="orbit o3"></div>
+        <div class="orbit o4"></div>
+        <div class="orbit o5"></div>
+        <div class="orbit o6"></div>
+        <div class="orbit o7"></div>
+        <div class="orbit o8"></div>
+
+        <!-- SUN -->
+
+        <div class="sun"></div>
+
+        <!-- PLANETS -->
+
+        <div class="planet mercury">
+            <span class="label">Mercury</span>
+        </div>
+
+        <div class="planet venus">
+            <span class="label">Venus</span>
+        </div>
+
+        <div class="planet earth">
+
+            <span class="label">
+                Earth
+            </span>
+
+            <div class="moon"></div>
+
+        </div>
+
+        <div class="planet mars">
+            <span class="label">Mars</span>
+        </div>
+
+        <div class="planet jupiter">
+            <span class="label">Jupiter</span>
+        </div>
+
+        <div class="planet saturn">
+            <span class="label">Saturn</span>
+        </div>
+
+        <div class="planet uranus">
+            <span class="label">Uranus</span>
+        </div>
+
+        <div class="planet neptune">
+            <span class="label">Neptune</span>
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION PANEL -->
+
+    <div class="info">
+
+        <h2>🌍 Earth</h2>
+
+        <div class="data">
+            <span>Type</span>
+            <span class="value">Terrestrial</span>
+        </div>
+
+        <div class="data">
+            <span>Diameter</span>
+            <span class="value">12,742 km</span>
+        </div>
+
+        <div class="data">
+            <span>Distance from Sun</span>
+            <span class="value">149.6M km</span>
+        </div>
+
+        <div class="data">
+            <span>Orbital Period</span>
+            <span class="value">365 days</span>
+        </div>
+
+        <div class="data">
+            <span>Rotation Period</span>
+            <span class="value">24 hours</span>
+        </div>
+
+        <div class="data">
+            <span>Moon</span>
+            <span class="value">1</span>
+        </div>
+
+        <hr>
+
+        <h2 style="margin-top:15px;">
+            🌙 Moon
+        </h2>
+
+        <div class="data">
+            <span>Diameter</span>
+            <span class="value">3,474 km</span>
+        </div>
+
+        <div class="data">
+            <span>Orbit</span>
+            <span class="value">27.3 days</span>
+        </div>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <button onclick="toggleSimulation()">
+            ⏯ Play / Pause
+        </button>
+
+        <button onclick="changeSpeed(0.5)">
+            0.5×
+        </button>
+
+        <button onclick="changeSpeed(1)">
+            1×
+        </button>
+
+        <button onclick="changeSpeed(2)">
+            2×
+        </button>
+
+        <span class="speed">
+            SPEED: <span id="speed">1×</span>
+        </span>
+
+    </div>
+
+
+    <div class="footer">
+        NASA • EXPLORING THE UNIVERSE TOGETHER
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SOLAR SYSTEM ANIMATION
+========================= */
+
+const system = document.querySelector(".system");
+
+const planets = [
+
+    {
+        element: document.querySelector(".mercury"),
+        distance: 75,
+        speed: 0.04
+    },
+
+    {
+        element: document.querySelector(".venus"),
+        distance: 110,
+        speed: 0.03
+    },
+
+    {
+        element: document.querySelector(".earth"),
+        distance: 150,
+        speed: 0.02
+    },
+
+    {
+        element: document.querySelector(".mars"),
+        distance: 190,
+        speed: 0.017
+    },
+
+    {
+        element: document.querySelector(".jupiter"),
+        distance: 240,
+        speed: 0.012
+    },
+
+    {
+        element: document.querySelector(".saturn"),
+        distance: 290,
+        speed: 0.009
+    },
+
+    {
+        element: document.querySelector(".uranus"),
+        distance: 345,
+        speed: 0.006
+    },
+
+    {
+        element: document.querySelector(".neptune"),
+        distance: 400,
+        speed: 0.004
+    }
+
+];
+
+
+/* MOON */
+
+const earth =
+    document.querySelector(".earth");
+
+const moon =
+    document.querySelector(".moon");
+
+
+let angle = 0;
+
+let running = true;
+
+let speedMultiplier = 1;
+
+
+/* ANIMATION */
+
+function animate() {
+
+    if (running) {
+
+        angle +=
+            0.01 * speedMultiplier;
+
+        planets.forEach((planet, index) => {
+
+            const a =
+                angle * planet.speed * 100;
+
+            const x =
+                Math.cos(a) *
+                planet.distance;
+
+            const y =
+                Math.sin(a) *
+                planet.distance;
+
+            planet.element.style.left =
+                `calc(50% + ${x}px)`;
+
+            planet.element.style.top =
+                `calc(50% + ${y}px)`;
+
+        });
+
+
+        /* MOON ORBIT */
+
+        const moonAngle =
+            angle * 5;
+
+        const moonX =
+            Math.cos(moonAngle) * 28;
+
+        const moonY =
+            Math.sin(moonAngle) * 28;
+
+        moon.style.left =
+            `calc(50% + ${moonX}px)`;
+
+        moon.style.top =
+            `calc(50% + ${moonY}px)`;
+
+    }
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+function toggleSimulation() {
+
+    running = !running;
+
+}
+
+
+/* =========================
+   SPEED
+========================= */
+
+function changeSpeed(value) {
+
+    speedMultiplier = value;
+
+    document.getElementById("speed")
+        .textContent = value + "×";
+
+}
+
+
+/* =========================
+   RANDOM SHOOTING STARS
+========================= */
+
+function createShootingStar() {
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "shooting-star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 50 + "%";
+
+    star.style.animationDuration =
+        (2 + Math.random() * 3) + "s";
+
+    document.querySelector(".space")
+        .appendChild(star);
+
+    setTimeout(() => {
+
+        star.remove();
+
+    }, 5000);
+
+}
+
+
+/* CREATE SHOOTING STAR EVERY FEW SECONDS */
+
+setInterval(
+    createShootingStar,
+    3000
+);
+
+</script>
+
+</body>
+</html>
