@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RC 390 | Racing Experience</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-content">
+        <div class="loader-logo">RC<span>390</span></div>
+        <div class="loader-line">
+            <div class="loader-progress"></div>
+        </div>
+        <p>INITIALIZING RACE SYSTEM</p>
+    </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+
+    <div class="brand">
+        <span class="brand-small">RACING</span>
+        <span class="brand-main">RC<span>390</span></span>
+    </div>
+
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="#machine">MACHINE</a>
+        <a href="#performance">PERFORMANCE</a>
+        <a href="#gallery">EXPERIENCE</a>
+    </nav>
+
+    <button class="menu-btn">
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-glow glow-one"></div>
+    <div class="hero-glow glow-two"></div>
+
+    <div class="speed-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            <span></span>
+            RACE INSPIRED
+        </div>
+
+        <h1>
+            UNLEASH
+            <strong>THE BEAST</strong>
+        </h1>
+
+        <p class="hero-description">
+            Precision engineered for riders who don't follow the road.
+            They dominate it.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#machine" class="btn-primary">
+                EXPLORE MACHINE
+                <span>→</span>
+            </a>
+
+            <a href="#performance" class="btn-outline">
+                PERFORMANCE
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- MOTORCYCLE -->
+    <div class="bike-stage">
+
+        <div class="bike-shadow"></div>
+
+        <div class="bike-aura"></div>
+
+        <div class="bike-image-wrap" id="bike">
+
+            <img src="rc390.jpg" alt="RC 390 Motorcycle">
+
+            <div class="headlight-left"></div>
+            <div class="headlight-right"></div>
+
+        </div>
+
+        <div class="bike-label">
+            <span>RC</span> 390
+        </div>
+
+    </div>
+
+
+    <!-- HUD -->
+    <div class="hud hud-top">
+        <span>ENGINE</span>
+        <strong>READY</strong>
+    </div>
+
+    <div class="hud hud-right">
+        <span>MODE</span>
+        <strong>RACE</strong>
+    </div>
+
+    <div class="hud hud-bottom">
+        <span>RPM</span>
+        <strong id="rpm">0000</strong>
+    </div>
+
+
+    <div class="scroll-indicator">
+        <span>SCROLL TO EXPLORE</span>
+        <div class="scroll-line"></div>
+    </div>
+
+</section>
+
+
+<!-- MACHINE -->
+<section id="machine" class="machine section">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">01</div>
+
+        <div>
+            <span class="section-tag">ENGINEERED FOR SPEED</span>
+            <h2>THE <span>MACHINE</span></h2>
+        </div>
+
+    </div>
+
+
+    <div class="machine-layout">
+
+        <div class="machine-visual reveal">
+
+            <div class="visual-frame">
+
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+                <img src="rc390.jpg" alt="RC 390">
+
+                <div class="scan-line"></div>
+
+            </div>
+
+            <div class="visual-caption">
+                RC 390 / TRACK DNA / 001
+            </div>
+
+        </div>
+
+
+        <div class="machine-info reveal">
+
+            <span class="orange-line"></span>
+
+            <h3>
+                BUILT TO
+                <span>ATTACK.</span>
+            </h3>
+
+            <p>
+                Every surface, every angle and every component is designed
+                around one purpose — delivering an aggressive riding
+                experience.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <small>ENGINE</small>
+                    <strong>373<span>cc</span></strong>
+                </div>
+
+                <div class="info-box">
+                    <small>POWER</small>
+                    <strong>43.5<span>PS</span></strong>
+                </div>
+
+                <div class="info-box">
+                    <small>TORQUE</small>
+                    <strong>37<span>Nm</span></strong>
+                </div>
+
+                <div class="info-box">
+                    <small>GEARBOX</small>
+                    <strong>6<span>SPD</span></strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PERFORMANCE -->
+<section id="performance" class="performance section">
+
+    <div class="performance-bg"></div>
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">02</div>
+
+        <div>
+            <span class="section-tag">NUMBERS THAT MATTER</span>
+            <h2>PURE <span>PERFORMANCE</span></h2>
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat reveal">
+
+            <div class="stat-top">
+                <span>01</span>
+                <small>DISPLACEMENT</small>
+            </div>
+
+            <div class="stat-value">
+                <span class="counter" data-target="373">0</span>
+                <i>CC</i>
+            </div>
+
+            <div class="stat-bar">
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+            <div class="stat-top">
+                <span>02</span>
+                <small>MAX POWER</small>
+            </div>
+
+            <div class="stat-value">
+                <span class="counter" data-target="43">0</span>
+                <i>PS</i>
+            </div>
+
+            <div class="stat-bar">
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+            <div class="stat-top">
+                <span>03</span>
+                <small>MAX TORQUE</small>
+            </div>
+
+            <div class="stat-value">
+                <span class="counter" data-target="37">0</span>
+                <i>NM</i>
+            </div>
+
+            <div class="stat-bar">
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+            <div class="stat-top">
+                <span>04</span>
+                <small>TRANSMISSION</small>
+            </div>
+
+            <div class="stat-value">
+                <span class="counter" data-target="6">0</span>
+                <i>SPD</i>
+            </div>
+
+            <div class="stat-bar">
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RPM DISPLAY -->
+
+    <div class="rpm-system reveal">
+
+        <div class="rpm-title">
+            LIVE ENGINE SIMULATION
+        </div>
+
+        <div class="rpm-number">
+            <span id="liveRpm">0000</span>
+            <small>RPM</small>
+        </div>
+
+        <div class="rpm-bar">
+            <div id="rpmFill"></div>
+        </div>
+
+        <div class="rpm-scale">
+            <span>0</span>
+            <span>2K</span>
+            <span>4K</span>
+            <span>6K</span>
+            <span>8K</span>
+            <span>10K+</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="gallery" class="experience section">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">03</div>
+
+        <div>
+            <span class="section-tag">RACING ATTITUDE</span>
+            <h2>OWN THE <span>MOMENT</span></h2>
+        </div>
+
+    </div>
+
+
+    <div class="experience-grid">
+
+        <div class="experience-card card-large reveal">
+
+            <div class="card-image image-one"></div>
+
+            <div class="card-overlay"></div>
+
+            <div class="card-content">
+                <span>01 / AERODYNAMICS</span>
+                <h3>SHARP<br>BY DESIGN</h3>
+                <p>Every line has a purpose.</p>
+            </div>
+
+        </div>
+
+
+        <div class="experience-card reveal">
+
+            <div class="card-image image-two"></div>
+
+            <div class="card-overlay"></div>
+
+            <div class="card-content">
+                <span>02 / CONTROL</span>
+                <h3>RIDER<br>FOCUSED</h3>
+                <p>Confidence at every corner.</p>
+            </div>
+
+        </div>
+
+
+        <div class="experience-card reveal">
+
+            <div class="card-image image-three"></div>
+
+            <div class="card-overlay"></div>
+
+            <div class="card-content">
+                <span>03 / ATTITUDE</span>
+                <h3>RACE<br>DNA</h3>
+                <p>Born from competition.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="final-section">
+
+    <div class="final-glow"></div>
+
+    <div class="final-content reveal">
+
+        <span>THE ROAD IS WAITING</span>
+
+        <h2>
+            READY TO
+            <strong>RIDE?</strong>
+        </h2>
+
+        <button class="launch-btn" id="launchBtn">
+            <span>START EXPERIENCE</span>
+            <b>→</b>
+        </button>
+
+    </div>
+
+    <div class="giant-text">
+        RC390
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-logo">
+        RC<span>390</span>
+    </div>
+
+    <p>
+        PERFORMANCE • PRECISION • ATTITUDE
+    </p>
+
+    <div class="footer-line"></div>
+
+    <small>
+        © 2026 Racing Experience. Concept website.
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
