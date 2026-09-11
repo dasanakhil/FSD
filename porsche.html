@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PORSCHE | PERFORMANCE</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= CINEMATIC INTRO ================= -->
+
+    <div id="intro">
+
+        <div class="intro-logo">
+            PORSCHE
+        </div>
+
+        <div class="intro-line"></div>
+
+        <p>
+            THERE IS NO SUBSTITUTE
+        </p>
+
+    </div>
+
+
+    <!-- ================= PARTICLES ================= -->
+
+    <canvas id="particles"></canvas>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="brand">
+            PORSCHE
+        </div>
+
+        <nav>
+
+            <a href="#home">HOME</a>
+            <a href="#models">MODELS</a>
+            <a href="#performance">PERFORMANCE</a>
+            <a href="#about">ABOUT</a>
+
+        </nav>
+
+        <div class="menu">
+            ☰
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-left">
+
+                <div class="eyebrow">
+                    PORSCHE 911
+                </div>
+
+                <h1>
+                    THE ART OF
+                    <span>PERFORMANCE.</span>
+                </h1>
+
+                <p class="hero-text">
+
+                    Precision engineering.
+                    Timeless design.
+                    Uncompromising performance.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button class="red-btn"
+                        onclick="exploreModels()">
+
+                        EXPLORE 911
+
+                    </button>
+
+                    <button class="outline-btn"
+                        onclick="startExperience()">
+
+                        EXPERIENCE →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CAR ================= -->
+
+            <div class="car-stage">
+
+                <div class="car-shadow"></div>
+
+                <div class="light-beam left-beam"></div>
+                <div class="light-beam right-beam"></div>
+
+                <img
+                    id="heroCar"
+                    class="hero-car"
+                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=90"
+                    alt="Sports car">
+
+                <div class="car-reflection"></div>
+
+            </div>
+
+
+            <!-- ================= ROAD ================= -->
+
+            <div class="road">
+
+                <div class="road-lines"></div>
+
+            </div>
+
+
+            <!-- ================= SCROLL ================= -->
+
+            <div class="scroll">
+
+                <span></span>
+
+                SCROLL TO DISCOVER
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MODELS ================= -->
+
+        <section id="models" class="models">
+
+            <div class="section-title">
+
+                <small>
+                    THE LINEUP
+                </small>
+
+                <h2>
+                    CHOOSE YOUR
+                    <span>ICON.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="model-grid">
+
+
+                <!-- MODEL 1 -->
+
+                <article class="model-card">
+
+                    <div class="model-number">
+                        01
+                    </div>
+
+                    <div class="model-visual red-car">
+
+                        911
+
+                    </div>
+
+                    <div class="model-info">
+
+                        <h3>
+                            911 Carrera
+                        </h3>
+
+                        <p>
+                            Pure sports car performance
+                            for everyday driving.
+                        </p>
+
+                        <button
+                            onclick="selectModel('911 Carrera')">
+
+                            DISCOVER →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MODEL 2 -->
+
+                <article class="model-card">
+
+                    <div class="model-number">
+                        02
+                    </div>
+
+                    <div class="model-visual black-car">
+
+                        TAYCAN
+
+                    </div>
+
+                    <div class="model-info">
+
+                        <h3>
+                            Taycan
+                        </h3>
+
+                        <p>
+                            Electric performance
+                            redefined.
+                        </p>
+
+                        <button
+                            onclick="selectModel('Taycan')">
+
+                            DISCOVER →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MODEL 3 -->
+
+                <article class="model-card">
+
+                    <div class="model-number">
+                        03
+                    </div>
+
+                    <div class="model-visual silver-car">
+
+                        GT3
+
+                    </div>
+
+                    <div class="model-info">
+
+                        <h3>
+                            911 GT3
+                        </h3>
+
+                        <p>
+                            Motorsport technology
+                            for the road.
+                        </p>
+
+                        <button
+                            onclick="selectModel('911 GT3')">
+
+                            DISCOVER →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PERFORMANCE ================= -->
+
+        <section id="performance" class="performance">
+
+            <div class="performance-background"></div>
+
+            <div class="performance-content">
+
+                <small>
+                    ENGINEERED FOR EMOTION
+                </small>
+
+                <h2>
+                    BUILT TO
+                    <span>EXCITE.</span>
+                </h2>
+
+                <p>
+
+                    Every curve, every component and every
+                    millisecond is engineered around one thing:
+                    the ultimate driving experience.
+
+                </p>
+
+                <button
+                    class="red-btn"
+                    onclick="performanceMessage()">
+
+                    DISCOVER PERFORMANCE
+
+                </button>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="3.2">
+
+                        0
+
+                    </strong>
+
+                    <span>
+                        SEC
+                    </span>
+
+                    <p>
+                        0–100 KM/H
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="320">
+
+                        0
+
+                    </strong>
+
+                    <span>
+                        KM/H
+                    </span>
+
+                    <p>
+                        TOP SPEED
+                    </p>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="500">
+
+                        0
+
+                    </strong>
+
+                    <span>
+                        HP
+                    </span>
+
+                    <p>
+                        POWER
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="about">
+
+            <div class="about-circle"></div>
+
+            <small>
+                SINCE 1948
+            </small>
+
+            <h2>
+
+                DREAMS
+                <span>
+                    BECOME REALITY.
+                </span>
+
+            </h2>
+
+            <p>
+
+                A vision of performance, design and innovation
+                that continues to define the sports car.
+
+            </p>
+
+            <button
+                class="outline-btn"
+                onclick="showAbout()">
+
+                DISCOVER THE STORY
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            PORSCHE
+        </div>
+
+        <p>
+            PERFORMANCE • DESIGN • ENGINEERING
+        </p>
+
+        <p>
+            © 2026
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
