@@ -1,0 +1,1270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #030303;
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* ================= INTRO ================= */
+
+#intro {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation: introExit 1s ease 3.2s forwards;
+}
+
+.intro-logo {
+
+    font-size: 55px;
+
+    font-weight: 800;
+
+    letter-spacing: 15px;
+
+    animation: introLogo 2s ease;
+}
+
+.intro-line {
+
+    width: 0;
+
+    height: 1px;
+
+    background: #e00000;
+
+    margin: 25px 0;
+
+    animation: introLine 2s ease forwards;
+}
+
+#intro p {
+
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    opacity: 0;
+
+    animation: introText 1s ease 1.3s forwards;
+}
+
+@keyframes introLogo {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(1.4);
+
+        letter-spacing: 30px;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+        letter-spacing: 15px;
+
+    }
+}
+
+@keyframes introLine {
+
+    to {
+
+        width: 250px;
+
+    }
+}
+
+@keyframes introText {
+
+    to {
+
+        opacity: 1;
+
+    }
+}
+
+@keyframes introExit {
+
+    to {
+
+        opacity: 0;
+
+        visibility: hidden;
+
+    }
+}
+
+
+/* ================= PARTICLES ================= */
+
+#particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: .5;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding: 0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 100;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.8),
+            transparent
+        );
+
+    transition: .4s;
+}
+
+.brand {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+}
+
+.navbar nav {
+
+    display: flex;
+
+    gap: 40px;
+}
+
+.navbar nav a {
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+.navbar nav a:hover {
+
+    color: white;
+}
+
+.menu {
+
+    display: none;
+
+    font-size: 25px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 100px 7%;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(150,0,0,.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            125deg,
+            #030303,
+            #101010
+        );
+}
+
+.hero-left {
+
+    width: 45%;
+
+    position: relative;
+
+    z-index: 10;
+
+    animation: heroText 1.3s ease 3.4s both;
+}
+
+@keyframes heroText {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(50px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+}
+
+.eyebrow {
+
+    color: #e00000;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+
+    font-size: clamp(
+        50px,
+        7vw,
+        100px
+    );
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+
+    font-weight: 800;
+}
+
+.hero h1 span {
+
+    display: block;
+
+    color: #e00000;
+}
+
+.hero-text {
+
+    margin-top: 30px;
+
+    color: #888;
+
+    line-height: 1.8;
+
+    max-width: 450px;
+
+    font-size: 14px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+.red-btn,
+.outline-btn {
+
+    padding: 16px 25px;
+
+    border-radius: 40px;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .35s;
+}
+
+.red-btn {
+
+    border: none;
+
+    color: white;
+
+    background: #d90000;
+
+    box-shadow:
+        0 10px 35px rgba(220,0,0,.2);
+}
+
+.red-btn:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 45px rgba(220,0,0,.5);
+}
+
+.outline-btn {
+
+    background: transparent;
+
+    border: 1px solid #444;
+
+    color: white;
+}
+
+.outline-btn:hover {
+
+    background: white;
+
+    color: black;
+
+    transform: translateY(-5px);
+}
+
+
+/* ================= CAR STAGE ================= */
+
+.car-stage {
+
+    position: absolute;
+
+    width: 65%;
+
+    height: 600px;
+
+    right: -5%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    perspective: 1200px;
+
+    z-index: 5;
+
+    animation: carEnter 2s ease 3.2s both;
+}
+
+@keyframes carEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-50%)
+            translateX(150px)
+            scale(.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(-50%)
+            translateX(0)
+            scale(1);
+
+    }
+}
+
+.hero-car {
+
+    width: 850px;
+
+    max-width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    filter:
+        brightness(.65)
+        contrast(1.25)
+        saturate(1.15);
+
+    mix-blend-mode: screen;
+
+    transform:
+        rotateY(-8deg)
+        rotateX(2deg);
+
+    transition: transform .15s ease;
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            black 20%,
+            black 80%,
+            transparent
+        );
+}
+
+.car-shadow {
+
+    position: absolute;
+
+    width: 600px;
+
+    height: 100px;
+
+    bottom: 120px;
+
+    background: #000;
+
+    filter: blur(50px);
+
+    opacity: .9;
+}
+
+
+/* ================= LIGHT BEAMS ================= */
+
+.light-beam {
+
+    position: absolute;
+
+    width: 250px;
+
+    height: 8px;
+
+    background: white;
+
+    filter: blur(12px);
+
+    opacity: 0;
+
+    z-index: 4;
+
+    animation: headlights 2s infinite;
+}
+
+.left-beam {
+
+    left: 20%;
+
+    top: 52%;
+
+    transform: rotate(7deg);
+}
+
+.right-beam {
+
+    right: 20%;
+
+    top: 52%;
+
+    transform: rotate(-7deg);
+}
+
+@keyframes headlights {
+
+    0%,
+    100% {
+
+        opacity: .05;
+
+        transform: scaleX(.5);
+
+    }
+
+    50% {
+
+        opacity: .8;
+
+        transform: scaleX(1.5);
+
+    }
+}
+
+
+/* ================= ROAD ================= */
+
+.road {
+
+    position: absolute;
+
+    bottom: -100px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 300px;
+
+    transform:
+        perspective(250px)
+        rotateX(65deg);
+
+    transform-origin: bottom;
+
+    background:
+
+        repeating-linear-gradient(
+            to bottom,
+            #151515 0,
+            #151515 30px,
+            #080808 30px,
+            #080808 60px
+        );
+
+    opacity: .7;
+}
+
+.road-lines {
+
+    position: absolute;
+
+    left: 50%;
+
+    width: 8px;
+
+    height: 100%;
+
+    transform: translateX(-50%);
+
+    background:
+
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 40px,
+            white 40px,
+            white 100px
+        );
+
+    animation: roadMove .5s linear infinite;
+}
+
+@keyframes roadMove {
+
+    to {
+
+        background-position:
+            0 100px;
+
+    }
+}
+
+
+/* ================= SCROLL ================= */
+
+.scroll {
+
+    position: absolute;
+
+    bottom: 35px;
+
+    left: 7%;
+
+    z-index: 10;
+
+    color: #666;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.scroll span {
+
+    width: 35px;
+
+    height: 1px;
+
+    background: #e00000;
+}
+
+
+/* ================= MODELS ================= */
+
+.models {
+
+    position: relative;
+
+    z-index: 10;
+
+    padding: 140px 7%;
+
+    background: #050505;
+}
+
+.section-title small {
+
+    color: #e00000;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+}
+
+.section-title h2 {
+
+    margin-top: 20px;
+
+    font-size: 60px;
+
+    letter-spacing: -3px;
+}
+
+.section-title h2 span {
+
+    color: #777;
+}
+
+.model-grid {
+
+    margin-top: 70px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.model-card {
+
+    position: relative;
+
+    background: #0c0c0c;
+
+    border: 1px solid #202020;
+
+    overflow: hidden;
+
+    transition: .5s;
+}
+
+.model-card:hover {
+
+    transform: translateY(-15px);
+
+    border-color: #e00000;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.7);
+}
+
+.model-number {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    color: #555;
+
+    font-size: 11px;
+
+    z-index: 2;
+}
+
+.model-visual {
+
+    height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 65px;
+
+    font-weight: 800;
+
+    letter-spacing: 7px;
+
+    transition: .5s;
+}
+
+.model-card:hover .model-visual {
+
+    transform: scale(1.1);
+}
+
+.red-car {
+
+    color: #e00000;
+
+    background:
+        radial-gradient(
+            circle,
+            #4c0000,
+            #080808 65%
+        );
+}
+
+.black-car {
+
+    color: #ddd;
+
+    background:
+        radial-gradient(
+            circle,
+            #333,
+            #080808 65%
+        );
+}
+
+.silver-car {
+
+    color: #aaa;
+
+    background:
+        radial-gradient(
+            circle,
+            #555,
+            #080808 65%
+        );
+}
+
+.model-info {
+
+    padding: 25px;
+}
+
+.model-info h3 {
+
+    font-size: 23px;
+}
+
+.model-info p {
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin: 10px 0 20px;
+}
+
+.model-info button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 2px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* ================= PERFORMANCE ================= */
+
+.performance {
+
+    min-height: 80vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 140px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 60px;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #080808,
+            #220000
+        );
+}
+
+.performance-background {
+
+    position: absolute;
+
+    width: 600px;
+
+    height: 600px;
+
+    border-radius: 50%;
+
+    background: #e00000;
+
+    filter: blur(200px);
+
+    opacity: .12;
+}
+
+.performance-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 600px;
+}
+
+.performance-content small {
+
+    color: #e00000;
+
+    letter-spacing: 5px;
+
+    font-size: 10px;
+}
+
+.performance h2 {
+
+    font-size: 70px;
+
+    line-height: .9;
+
+    margin: 20px 0;
+}
+
+.performance h2 span {
+
+    color: #e00000;
+}
+
+.performance-content p {
+
+    color: #999;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+.stats {
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    gap: 50px;
+}
+
+.stat {
+
+    min-width: 130px;
+}
+
+.stat strong {
+
+    font-size: 60px;
+
+    letter-spacing: -3px;
+}
+
+.stat span {
+
+    color: #e00000;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.stat p {
+
+    color: #666;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-top: 5px;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+
+    min-height: 75vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    padding: 150px 10%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #030303;
+}
+
+.about-circle {
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    border: 1px solid #222;
+
+    animation: circleRotate 15s linear infinite;
+}
+
+@keyframes circleRotate {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+}
+
+.about small {
+
+    color: #e00000;
+
+    letter-spacing: 5px;
+
+    font-size: 10px;
+
+    z-index: 2;
+}
+
+.about h2 {
+
+    font-size: 70px;
+
+    line-height: .9;
+
+    margin: 25px 0;
+
+    z-index: 2;
+}
+
+.about h2 span {
+
+    display: block;
+
+    color: #777;
+}
+
+.about p {
+
+    max-width: 600px;
+
+    color: #777;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+    z-index: 2;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    padding: 40px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid #181818;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.footer-logo {
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width: 900px) {
+
+    .navbar nav {
+
+        display: none;
+
+    }
+
+    .menu {
+
+        display: block;
+
+    }
+
+    .hero {
+
+        padding-top: 130px;
+
+        flex-direction: column;
+
+        justify-content: flex-start;
+
+        text-align: center;
+
+    }
+
+    .hero-left {
+
+        width: 100%;
+
+    }
+
+    .hero h1 {
+
+        font-size: 55px;
+
+    }
+
+    .hero-text {
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+    }
+
+    .hero-buttons {
+
+        justify-content: center;
+
+    }
+
+    .car-stage {
+
+        position: relative;
+
+        width: 120%;
+
+        right: auto;
+
+        top: auto;
+
+        transform: none;
+
+        margin-top: 40px;
+
+        height: 350px;
+
+    }
+
+    .hero-car {
+
+        height: 350px;
+
+    }
+
+    .model-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .performance {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+    .stats {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+    .about h2 {
+
+        font-size: 50px;
+
+    }
+
+    footer {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    .intro-logo {
+
+        font-size: 30px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 45px;
+
+    }
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+    }
+
+    .performance h2 {
+
+        font-size: 50px;
+
+    }
+
+    .stats {
+
+        gap: 25px;
+
+    }
+
+    .stat strong {
+
+        font-size: 45px;
+
+    }
+
+}
