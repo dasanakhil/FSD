@@ -1,0 +1,431 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AREA 51 | Classified</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- 3D BACKGROUND -->
+    <canvas id="scene"></canvas>
+
+    <!-- SCANLINES -->
+    <div class="scanlines"></div>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+
+        <div class="brand">
+            <div class="brand-symbol">▲</div>
+
+            <div>
+                <strong>AREA<span>51</span></strong>
+                <small>CLASSIFIED ARCHIVE</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#facility">FACILITY</a>
+            <a href="#mystery">MYSTERY</a>
+            <a href="#contact">ARCHIVE</a>
+        </nav>
+
+        <div class="nav-status">
+            <span></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="classified-label">
+                    <span></span>
+                    CLASSIFICATION: TOP SECRET
+                </div>
+
+                <h1>
+                    AREA
+                    <span>51</span>
+                </h1>
+
+                <div class="hero-line"></div>
+
+                <h2>
+                    BEYOND THE
+                    <strong>KNOWN.</strong>
+                </h2>
+
+                <p>
+                    A highly restricted location hidden deep within
+                    the Nevada desert. Explore the history, technology
+                    and mysteries surrounding one of the world's most
+                    secretive facilities.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#facility" class="btn primary">
+                        ENTER FACILITY
+                        <span>→</span>
+                    </a>
+
+                    <a href="#mystery" class="btn secondary">
+                        INVESTIGATE
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HUD -->
+            <div class="hud hud-top-right">
+
+                <div class="hud-title">
+                    LIVE TELEMETRY
+                </div>
+
+                <div class="hud-value">
+                    37°14'06"N
+                </div>
+
+                <div class="hud-value">
+                    115°48'40"W
+                </div>
+
+            </div>
+
+
+            <div class="hud hud-bottom-left">
+
+                <div>ALTITUDE</div>
+                <strong>4,462 FT</strong>
+
+                <div>VISIBILITY</div>
+                <strong>87%</strong>
+
+            </div>
+
+
+            <div class="scroll-indicator">
+                <span></span>
+                SCROLL TO EXPLORE
+            </div>
+
+        </section>
+
+
+        <!-- FACILITY -->
+        <section id="facility" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <small>01 / FACILITY</small>
+
+                    <h2>
+                        INSIDE THE
+                        <span>UNKNOWN</span>
+                    </h2>
+                </div>
+
+                <p>
+                    The desert hides more than an empty runway.
+                    Behind layers of security lies a history of
+                    aerospace testing and classified programs.
+                </p>
+
+            </div>
+
+
+            <div class="facility-grid">
+
+                <article class="facility-card">
+
+                    <div class="card-number">01</div>
+
+                    <div class="card-icon">◈</div>
+
+                    <h3>GROOM LAKE</h3>
+
+                    <p>
+                        A remote dry lakebed associated with
+                        classified flight testing.
+                    </p>
+
+                    <div class="card-footer">
+                        LOCATION
+                        <strong>NEVADA</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="facility-card featured">
+
+                    <div class="card-number">02</div>
+
+                    <div class="card-icon">⬡</div>
+
+                    <h3>FLIGHT TESTING</h3>
+
+                    <p>
+                        Experimental aerospace programs have
+                        contributed to the site's legendary secrecy.
+                    </p>
+
+                    <div class="card-footer">
+                        STATUS
+                        <strong>RESTRICTED</strong>
+                    </div>
+
+                </article>
+
+
+                <article class="facility-card">
+
+                    <div class="card-number">03</div>
+
+                    <div class="card-icon">⌁</div>
+
+                    <h3>UNKNOWN SIGNAL</h3>
+
+                    <p>
+                        Unidentified observations continue to
+                        fuel speculation around the facility.
+                    </p>
+
+                    <div class="card-footer">
+                        SIGNAL
+                        <strong>DETECTED</strong>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- BIG STATEMENT -->
+        <section class="statement">
+
+            <div class="statement-grid">
+
+                <div class="big-number">
+                    51
+                </div>
+
+                <div>
+
+                    <small>RESTRICTED ZONE</small>
+
+                    <h2>
+                        NOTHING
+                        <span>LEAVES.</span>
+                    </h2>
+
+                    <p>
+                        For decades, secrecy has surrounded the
+                        facility. Officially documented aerospace
+                        history and decades of public speculation
+                        exist side by side.
+                    </p>
+
+                    <button onclick="openTerminal()">
+                        OPEN TERMINAL
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MYSTERY -->
+        <section id="mystery" class="section mystery">
+
+            <div class="section-header">
+
+                <div>
+                    <small>02 / MYSTERY</small>
+
+                    <h2>
+                        SIGNAL FROM
+                        <span>THE SKY</span>
+                    </h2>
+                </div>
+
+                <p>
+                    Monitor an interactive simulated radar interface
+                    inspired by classified surveillance systems.
+                </p>
+
+            </div>
+
+
+            <div class="radar-layout">
+
+                <div class="radar">
+
+                    <div class="radar-ring ring-1"></div>
+                    <div class="radar-ring ring-2"></div>
+                    <div class="radar-ring ring-3"></div>
+
+                    <div class="radar-cross horizontal"></div>
+                    <div class="radar-cross vertical"></div>
+
+                    <div class="radar-sweep"></div>
+
+                    <i class="radar-blip blip-1"></i>
+                    <i class="radar-blip blip-2"></i>
+                    <i class="radar-blip blip-3"></i>
+
+                </div>
+
+
+                <div class="radar-info">
+
+                    <div class="signal-status">
+                        <span></span>
+                        SIGNAL ACQUIRED
+                    </div>
+
+                    <h2>
+                        UNKNOWN
+                        <span>OBJECT</span>
+                    </h2>
+
+                    <p>
+                        An unidentified contact has appeared
+                        inside the simulated surveillance zone.
+                    </p>
+
+                    <div class="telemetry">
+
+                        <div>
+                            <small>OBJECT</small>
+                            <strong>UFO-001</strong>
+                        </div>
+
+                        <div>
+                            <small>VELOCITY</small>
+                            <strong>8,240 KM/H</strong>
+                        </div>
+
+                        <div>
+                            <small>RANGE</small>
+                            <strong>12.7 KM</strong>
+                        </div>
+
+                        <div>
+                            <small>STATUS</small>
+                            <strong>UNKNOWN</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+        <section id="contact" class="final">
+
+            <div class="final-content">
+
+                <div class="classified-label">
+                    <span></span>
+                    ARCHIVE TERMINATION
+                </div>
+
+                <h2>
+                    THE TRUTH IS
+                    <span>OUT THERE.</span>
+                </h2>
+
+                <p>
+                    End of transmission.
+                </p>
+
+                <button onclick="activateSystem()">
+                    DECLASSIFY
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- TERMINAL MODAL -->
+    <div class="modal" id="terminal">
+
+        <div class="terminal-window">
+
+            <button class="close" onclick="closeTerminal()">×</button>
+
+            <div class="terminal-header">
+                AREA 51 // SECURE TERMINAL
+            </div>
+
+            <div class="terminal-body" id="terminalText">
+                > CONNECTING TO SECURE SERVER...<br>
+                > VERIFYING CLEARANCE...<br>
+                > ACCESS LEVEL: UNKNOWN<br>
+                > ENCRYPTED DATA DETECTED...<br>
+                > ACCESS DENIED.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <strong>AREA<span>51</span></strong>
+
+        <p>
+            CLASSIFIED ARCHIVE // SIMULATED EXPERIENCE
+        </p>
+
+        <p>
+            © 2026
+        </p>
+
+    </footer>
+
+
+    <!-- THREE.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
