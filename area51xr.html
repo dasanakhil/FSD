@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AREA 51 — Classified</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="stars"></div>
+    <div class="stars stars-two"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="logo">
+            <span>⚠</span>
+            AREA <strong>51</strong>
+        </div>
+
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#mystery">MYSTERY</a>
+            <a href="#facility">FACILITY</a>
+            <a href="#timeline">TIMELINE</a>
+        </nav>
+
+        <button class="classified-btn">CLASSIFIED</button>
+
+    </header>
+
+    <!-- Hero -->
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="top-secret">
+                    ● TOP SECRET // RESTRICTED ACCESS
+                </p>
+
+                <h1>
+                    AREA <span>51</span>
+                </h1>
+
+                <h2>
+                    THE TRUTH IS<br>
+                    <span>OUT THERE.</span>
+                </h2>
+
+                <p class="description">
+                    Deep inside the Nevada desert lies one of the world's
+                    most mysterious military facilities. Hidden from public
+                    view, Area 51 has inspired decades of speculation,
+                    secrecy and unexplained stories.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#mystery" class="primary-btn">
+                        EXPLORE THE UNKNOWN →
+                    </a>
+
+                    <a href="#timeline" class="secondary-btn">
+                        VIEW TIMELINE
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- UFO -->
+            <div class="ufo-container">
+
+                <div class="ufo-glow"></div>
+
+                <div class="ufo">
+
+                    <div class="ufo-top"></div>
+
+                    <div class="ufo-body">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="ufo-light"></div>
+
+                </div>
+
+                <div class="ufo-beam"></div>
+
+            </div>
+
+            <!-- Coordinates -->
+            <div class="coordinates">
+                37°14′06″N<br>
+                115°48′40″W
+            </div>
+
+            <div class="status">
+                <span></span>
+                SURVEILLANCE ACTIVE
+            </div>
+
+        </section>
+
+
+        <!-- Mystery Section -->
+        <section id="mystery" class="section mystery">
+
+            <div class="section-heading">
+                <p>01 // THE MYSTERY</p>
+
+                <h2>
+                    WHAT IS <span>AREA 51?</span>
+                </h2>
+            </div>
+
+            <div class="mystery-grid">
+
+                <div class="mystery-text">
+
+                    <p>
+                        Area 51 is the popular name associated with a highly
+                        restricted U.S. military installation at Groom Lake,
+                        Nevada.
+                    </p>
+
+                    <p>
+                        The facility has long been connected with the testing
+                        and development of experimental aircraft and
+                        classified aerospace programs.
+                    </p>
+
+                    <p>
+                        Its secrecy has also made it a central part of UFO
+                        folklore and extraterrestrial conspiracy theories.
+                    </p>
+
+                    <button class="red-btn" onclick="showAlert()">
+                        ACCESS CLASSIFIED FILE
+                    </button>
+
+                </div>
+
+                <div class="classified-card">
+
+                    <div class="stamp">
+                        TOP SECRET
+                    </div>
+
+                    <div class="file-header">
+                        <span>FILE_001</span>
+                        <span>1955—PRESENT</span>
+                    </div>
+
+                    <div class="file-lines">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="file-warning">
+                        ⚠ UNAUTHORIZED ACCESS PROHIBITED
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Facility -->
+        <section id="facility" class="section facility">
+
+            <div class="section-heading">
+                <p>02 // THE FACILITY</p>
+
+                <h2>
+                    BEHIND THE <span>FENCE</span>
+                </h2>
+            </div>
+
+            <div class="facility-grid">
+
+                <div class="facility-card">
+
+                    <div class="card-number">01</div>
+
+                    <div class="card-icon">◉</div>
+
+                    <h3>GROOM LAKE</h3>
+
+                    <p>
+                        A remote dry lakebed surrounded by restricted
+                        desert terrain and closely monitored airspace.
+                    </p>
+
+                    <span class="classified">
+                        RESTRICTED
+                    </span>
+
+                </div>
+
+
+                <div class="facility-card">
+
+                    <div class="card-number">02</div>
+
+                    <div class="card-icon">✦</div>
+
+                    <h3>FLIGHT TESTING</h3>
+
+                    <p>
+                        The region has been associated with testing
+                        advanced and experimental aircraft.
+                    </p>
+
+                    <span class="classified">
+                        CLASSIFIED
+                    </span>
+
+                </div>
+
+
+                <div class="facility-card">
+
+                    <div class="card-number">03</div>
+
+                    <div class="card-icon">⌁</div>
+
+                    <h3>UNKNOWN SIGNALS</h3>
+
+                    <p>
+                        Strange lights and unidentified aerial observations
+                        have contributed to the site's legendary reputation.
+                    </p>
+
+                    <span class="classified">
+                        UNKNOWN
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Radar -->
+        <section class="radar-section">
+
+            <div class="radar">
+
+                <div class="radar-circle circle-one"></div>
+                <div class="radar-circle circle-two"></div>
+                <div class="radar-circle circle-three"></div>
+
+                <div class="radar-line"></div>
+
+                <div class="radar-dot dot-one"></div>
+                <div class="radar-dot dot-two"></div>
+                <div class="radar-dot dot-three"></div>
+
+            </div>
+
+            <div class="radar-text">
+
+                <p>LIVE SURVEILLANCE</p>
+
+                <h2>
+                    SOMETHING IS
+                    <span>MOVING.</span>
+                </h2>
+
+                <div class="signal">
+                    SIGNAL STRENGTH
+                    <strong>87%</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Timeline -->
+        <section id="timeline" class="section timeline-section">
+
+            <div class="section-heading">
+
+                <p>03 // CLASSIFIED TIMELINE</p>
+
+                <h2>
+                    DECADES OF <span>SECRECY</span>
+                </h2>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="year">1955</div>
+
+                    <div class="timeline-content">
+                        <h3>THE BEGINNING</h3>
+                        <p>
+                            A remote Nevada location becomes associated
+                            with secret aerospace testing.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="year">1960s</div>
+
+                    <div class="timeline-content">
+                        <h3>BLACK PROJECTS</h3>
+                        <p>
+                            Experimental aircraft programs contribute to
+                            the facility's legendary secrecy.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="year">1989</div>
+
+                    <div class="timeline-content">
+                        <h3>THE UFO CONNECTION</h3>
+                        <p>
+                            Public attention intensifies following claims
+                            involving alleged extraterrestrial technology.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="year">2013</div>
+
+                    <div class="timeline-content">
+                        <h3>OFFICIAL RECOGNITION</h3>
+                        <p>
+                            Declassified historical documents bring renewed
+                            public attention to the site's existence.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Final CTA -->
+        <section class="final-section">
+
+            <div class="scanline"></div>
+
+            <p>END OF TRANSMISSION</p>
+
+            <h2>
+                SOME SECRETS
+                <span>STAY BURIED.</span>
+            </h2>
+
+            <button onclick="activateSystem()">
+                ACTIVATE SYSTEM
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-logo">
+            AREA <span>51</span>
+        </div>
+
+        <p>
+            CLASSIFIED ARCHIVE // SYSTEM 51
+        </p>
+
+        <p>
+            © 2026 AREA 51 PROJECT
+        </p>
+
+    </footer>
+
+
+    <!-- Alert -->
+    <div id="alertBox" class="alert-box">
+
+        <div class="alert-content">
+
+            <span class="close" onclick="closeAlert()">×</span>
+
+            <div class="alert-icon">⚠</div>
+
+            <h2>ACCESS DENIED</h2>
+
+            <p>
+                This information is classified.
+                Your clearance level is insufficient.
+            </p>
+
+            <button onclick="closeAlert()">
+                RETURN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
