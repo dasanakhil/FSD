@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AREA 51 // CLASSIFIED</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #020604;
+            color: #d7ffe1;
+            font-family: "Courier New", monospace;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           LOADING SCREEN
+        ========================== */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #010201;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 1s;
+        }
+
+        .loader-title {
+            color: #39ff88;
+            font-size: clamp(30px, 7vw, 80px);
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px #39ff88;
+            animation: flicker 1s infinite;
+        }
+
+        .loading {
+            margin-top: 25px;
+            width: 300px;
+            height: 4px;
+            background: #102216;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: #39ff88;
+            box-shadow: 0 0 15px #39ff88;
+            animation: loading 3s forwards;
+        }
+
+        @keyframes loading {
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 63%, 64%, 65%, 100% {
+                opacity: 1;
+            }
+
+            20%, 62% {
+                opacity: .3;
+            }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 5, 2, .75);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(57, 255, 136, .2);
+        }
+
+        .logo {
+            color: #39ff88;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #39ff88;
+        }
+
+        nav a {
+            color: #9fc9a9;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #39ff88;
+            text-shadow: 0 0 10px #39ff88;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(20, 90, 45, .2), transparent 35%),
+                linear-gradient(#010402, #031009 65%, #000);
+        }
+
+        /* stars */
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(#ffffff 1px, transparent 1px),
+                radial-gradient(#39ff88 1px, transparent 1px);
+            background-size: 80px 80px, 130px 130px;
+            background-position: 0 0, 40px 30px;
+            opacity: .35;
+            animation: starsMove 20s linear infinite;
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(100px);
+            }
+        }
+
+        /* mountains */
+
+        .mountains {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 35%;
+            background:
+                linear-gradient(135deg, transparent 50%, #020704 50%) 0 0 / 50% 100%,
+                linear-gradient(225deg, transparent 50%, #020704 50%) 100% 0 / 50% 100%;
+            opacity: .9;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            padding: 30px;
+        }
+
+        .classified {
+            color: #ff3333;
+            border: 1px solid #ff3333;
+            display: inline-block;
+            padding: 7px 15px;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, .2);
+            animation: warning 1.5s infinite;
+        }
+
+        @keyframes warning {
+            50% {
+                opacity: .4;
+            }
+        }
+
+        h1 {
+            font-size: clamp(55px, 12vw, 150px);
+            letter-spacing: 15px;
+            color: #dffff0;
+            text-shadow:
+                0 0 10px #39ff88,
+                0 0 40px rgba(57, 255, 136, .5);
+            animation: glitch 4s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+
+            92% {
+                transform: translate(5px, -2px);
+            }
+
+            94% {
+                transform: translate(-5px, 2px);
+            }
+
+            96% {
+                transform: translate(2px);
+            }
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            color: #769783;
+            letter-spacing: 5px;
+        }
+
+        .enter-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 35px;
+            color: #39ff88;
+            border: 1px solid #39ff88;
+            text-decoration: none;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        .enter-btn:hover {
+            color: #001006;
+            background: #39ff88;
+            box-shadow: 0 0 30px #39ff88;
+        }
+
+        /* UFO */
+
+        .ufo {
+            position: absolute;
+            width: 110px;
+            height: 35px;
+            background: #aaffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #39ff88;
+            top: 25%;
+            left: -150px;
+            opacity: .7;
+            animation: ufoFly 12s linear infinite;
+        }
+
+        .ufo::after {
+            content: "";
+            position: absolute;
+            width: 55px;
+            height: 25px;
+            background: #d9fff0;
+            border-radius: 50%;
+            left: 28px;
+            top: -10px;
+            opacity: .7;
+        }
+
+        @keyframes ufoFly {
+            0% {
+                left: -150px;
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(100px) rotate(5deg);
+            }
+
+            100% {
+                left: 110%;
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        section {
+            padding: 110px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            color: #39ff88;
+            font-size: 32px;
+            letter-spacing: 5px;
+            margin-bottom: 50px;
+        }
+
+        .section-title::before {
+            content: "// ";
+            color: #ff3333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(10, 25, 15, .7);
+            border: 1px solid rgba(57, 255, 136, .2);
+            padding: 30px;
+            min-height: 220px;
+            transition: .4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #39ff88;
+            top: 0;
+            left: -100%;
+            transition: .5s;
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #39ff88;
+            box-shadow: 0 10px 40px rgba(57, 255, 136, .12);
+        }
+
+        .card h3 {
+            color: #39ff88;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #769783;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RADAR
+        ========================== */
+
+        .radar-section {
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .radar {
+            width: min(500px, 80vw);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px solid rgba(57, 255, 136, .5);
+            background:
+                repeating-radial-gradient(
+                    circle,
+                    transparent 0,
+                    transparent 45px,
+                    rgba(57, 255, 136, .15) 46px
+                ),
+                linear-gradient(
+                    90deg,
+                    transparent 49.5%,
+                    rgba(57, 255, 136, .2) 50%,
+                    transparent 50.5%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 49.5%,
+                    rgba(57, 255, 136, .2) 50%,
+                    transparent 50.5%
+                );
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(57, 255, 136, .15);
+        }
+
+        .radar::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #39ff88, transparent);
+            left: 50%;
+            top: 50%;
+            transform-origin: left;
+            animation: radarSpin 3s linear infinite;
+            box-shadow: 0 0 15px #39ff88;
+        }
+
+        @keyframes radarSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blip {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #39ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #39ff88;
+            animation: blip 2s infinite;
+        }
+
+        .blip.one {
+            top: 28%;
+            left: 65%;
+        }
+
+        .blip.two {
+            top: 62%;
+            left: 35%;
+            animation-delay: .8s;
+        }
+
+        .blip.three {
+            top: 42%;
+            left: 75%;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes blip {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* =========================
+           DOCUMENT
+        ========================== */
+
+        .document {
+            max-width: 850px;
+            margin: auto;
+            background: #d7d0b9;
+            color: #25251f;
+            padding: 45px;
+            transform: rotate(-1deg);
+            box-shadow: 0 20px 50px #000;
+            position: relative;
+        }
+
+        .document h3 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .document p {
+            font-family: Georgia, serif;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .stamp {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            color: #d22;
+            border: 3px solid #d22;
+            padding: 10px;
+            transform: rotate(15deg);
+            font-weight: bold;
+        }
+
+        /* =========================
+           TERMINAL
+        ========================== */
+
+        .terminal {
+            max-width: 850px;
+            margin: auto;
+            background: #000;
+            border: 1px solid #39ff88;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(57, 255, 136, .1);
+        }
+
+        .terminal p {
+            color: #39ff88;
+            line-height: 2;
+        }
+
+        .cursor {
+            animation: cursorBlink .7s infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(57, 255, 136, .15);
+            color: #486652;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* Scroll animation */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 700px) {
+            nav {
+                padding: 15px;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: 7px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .document {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+
+    <div id="loader">
+        <div class="loader-title">AREA 51</div>
+
+        <div class="loading">
+            <div class="loading-bar"></div>
+        </div>
+
+        <p style="margin-top:15px;color:#486652;">
+            INITIALIZING SECURE CONNECTION...
+        </p>
+    </div>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="logo">A51 // SYSTEM</div>
+
+        <div>
+            <a href="#home">HOME</a>
+            <a href="#files">FILES</a>
+            <a href="#radar">RADAR</a>
+            <a href="#terminal">ACCESS</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="stars"></div>
+
+        <div class="ufo"></div>
+
+        <div class="mountains"></div>
+
+        <div class="hero-content">
+
+            <div class="classified">
+                ⚠ TOP SECRET // CLASSIFIED
+            </div>
+
+            <h1>AREA 51</h1>
+
+            <p class="subtitle">
+                GROOM LAKE // NEVADA // USA
+            </p>
+
+            <a href="#files" class="enter-btn">
+                ENTER DATABASE
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FILES -->
+
+    <section id="files">
+
+        <h2 class="section-title reveal">
+            CLASSIFIED FILES
+        </h2>
+
+        <div class="grid">
+
+            <div class="card reveal">
+                <h3>FILE 001</h3>
+
+                <p>
+                    LOCATION: GROOM LAKE<br><br>
+                    STATUS: RESTRICTED
+                    <br><br>
+                    Information concerning experimental aircraft
+                    development and testing operations.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <h3>FILE 002</h3>
+
+                <p>
+                    PROJECT: OXCART
+                    <br><br>
+                    STATUS: DECLASSIFIED
+                    <br><br>
+                    Historical aircraft testing associated with
+                    high-speed reconnaissance programs.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <h3>FILE 003</h3>
+
+                <p>
+                    INCIDENT REPORT
+                    <br><br>
+                    STATUS: UNKNOWN
+                    <br><br>
+                    Unidentified aerial observations reported
+                    near restricted airspace.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RADAR -->
+
+    <section class="radar-section" id="radar">
+
+        <h2 class="section-title reveal">
+            LIVE RADAR
+        </h2>
+
+        <div class="radar reveal">
+
+            <div class="blip one"></div>
+            <div class="blip two"></div>
+            <div class="blip three"></div>
+
+        </div>
+
+        <p style="margin-top:30px;color:#486652;">
+            SCANNING RESTRICTED AIRSPACE...
+        </p>
+
+    </section>
+
+    <!-- DOCUMENT -->
+
+    <section>
+
+        <h2 class="section-title reveal">
+            DECLASSIFIED DOCUMENT
+        </h2>
+
+        <div class="document reveal">
+
+            <div class="stamp">
+                DECLASSIFIED
+            </div>
+
+            <h3>PROJECT SUMMARY</h3>
+
+            <p>
+                Area 51 is commonly associated with highly classified
+                aviation and military testing programs.
+            </p>
+
+            <p>
+                The facility became particularly famous because of
+                its secrecy and its connection to numerous UFO stories.
+            </p>
+
+            <p>
+                Many unusual sightings were later associated with
+                advanced aircraft operating in the region.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- TERMINAL -->
+
+    <section id="terminal">
+
+        <h2 class="section-title reveal">
+            SECURE TERMINAL
+        </h2>
+
+        <div class="terminal reveal">
+
+            <p>
+                > CONNECTING TO A51 SERVER...
+            </p>
+
+            <p>
+                > ENCRYPTION: AES-256
+            </p>
+
+            <p>
+                > AUTHENTICATION REQUIRED
+            </p>
+
+            <p>
+                > ACCESS LEVEL: ███████
+            </p>
+
+            <p>
+                > WARNING: UNAUTHORIZED ACCESS WILL BE LOGGED
+            </p>
+
+            <p>
+                > SYSTEM READY<span class="cursor">_</span>
+            </p>
+
+        </div>
+
+    </section>
+
+    <footer>
+        AREA 51 // CLASSIFIED DATABASE // 2026
+    </footer>
+
+    <script>
+
+        /* =========================
+           LOADER
+        ========================== */
+
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                document.getElementById("loader").style.opacity = "0";
+
+                setTimeout(() => {
+                    document.getElementById("loader").style.display = "none";
+                }, 1000);
+
+            }, 3000);
+
+        });
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        function revealOnScroll() {
+
+            reveals.forEach(element => {
+
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add("active");
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+
+        revealOnScroll();
+
+
+        /* =========================
+           MOUSE PARALLAX
+        ========================== */
+
+        const hero = document.querySelector(".hero");
+        const stars = document.querySelector(".stars");
+
+        hero.addEventListener("mousemove", (event) => {
+
+            const x = (event.clientX / window.innerWidth - .5) * 20;
+            const y = (event.clientY / window.innerHeight - .5) * 20;
+
+            stars.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+        });
+
+
+        /* =========================
+           TERMINAL TYPING EFFECT
+        ========================== */
+
+        const terminalLines = document.querySelectorAll(".terminal p");
+
+        terminalLines.forEach((line, index) => {
+
+            line.style.opacity = "0";
+
+            setTimeout(() => {
+                line.style.opacity = "1";
+            }, 500 + index * 500);
+
+        });
+
+    </script>
+
+</body>
+</html>
