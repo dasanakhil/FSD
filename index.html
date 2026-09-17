@@ -5,160 +5,410 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Netflix Animated Website</title>
+    <title>RC 390 | Racing Experience</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<!-- LOADING SCREEN -->
-<div id="loader">
-    <div class="loader-logo">NETFLIX</div>
-    <div class="loading-line"></div>
-</div>
+    <!-- LOADING SCREEN -->
 
+    <div id="loader">
 
-<!-- NAVBAR -->
-<header class="navbar">
+        <div class="loader-content">
 
-    <div class="logo">NETFLIX</div>
+            <div class="loader-logo">
+                RC<span>390</span>
+            </div>
 
-    <nav>
-        <a href="#home" class="active">Home</a>
-        <a href="#trending">TV Shows</a>
-        <a href="#popular">Movies</a>
-        <a href="#originals">New & Popular</a>
-        <a href="#">My List</a>
-    </nav>
+            <div class="loader-line">
+                <div class="loader-progress"></div>
+            </div>
 
-    <div class="nav-right">
+            <p>INITIALIZING RACE SYSTEM</p>
 
-        <div class="search-box">
-            🔍
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search movies..."
-            >
         </div>
 
-        <select>
-            <option>English</option>
-            <option>हिन्दी</option>
-            <option>తెలుగు</option>
-        </select>
+    </div>
 
-        <button class="signin">
-            Sign In
+
+    <!-- CUSTOM CURSOR -->
+
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+
+
+    <!-- PARTICLES -->
+
+    <canvas id="particles"></canvas>
+
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+
+        <a href="#home" class="brand">
+
+            <span class="brand-small">
+                RACING
+            </span>
+
+            <span class="brand-main">
+                RC<span>390</span>
+            </span>
+
+        </a>
+
+
+        <nav id="nav">
+
+            <a href="#home">HOME</a>
+
+            <a href="#machine">
+                MACHINE
+            </a>
+
+            <a href="#performance">
+                PERFORMANCE
+            </a>
+
+            <a href="#gallery">
+                GALLERY
+            </a>
+
+        </nav>
+
+
+        <button class="menu-btn" id="menuBtn">
+
+            <span></span>
+            <span></span>
+
         </button>
 
-    </div>
-
-</header>
+    </header>
 
 
-<!-- HERO SECTION -->
-<section class="hero" id="home">
+    <!-- ==========================================
+         HERO
+    =========================================== -->
 
-    <!-- Animated background -->
-    <div class="hero-background"></div>
+    <section id="home" class="hero">
 
-    <div class="red-orb orb1"></div>
-    <div class="red-orb orb2"></div>
-    <div class="red-orb orb3"></div>
+        <div class="hero-background"></div>
 
-    <div class="particles" id="particles"></div>
+        <div class="hero-grid"></div>
 
-    <div class="hero-content">
+        <div class="hero-glow glow-one"></div>
 
-        <p class="netflix-original">
-            N SERIES
-        </p>
+        <div class="hero-glow glow-two"></div>
 
-        <h1 class="hero-title">
-            STRANGER
-            <span>THINGS</span>
-        </h1>
 
-        <div class="movie-info">
-            <span class="match">98% Match</span>
-            <span>2026</span>
-            <span class="age">16+</span>
-            <span>4 Seasons</span>
-            <span>4K</span>
-        </div>
+        <div class="speed-lines">
 
-        <p class="description">
-            When a young boy vanishes, a small town uncovers
-            a mystery involving secret experiments,
-            supernatural forces and one strange little girl.
-        </p>
-
-        <div class="hero-buttons">
-
-            <button class="play-btn" onclick="playMovie()">
-                ▶ &nbsp; Play
-            </button>
-
-            <button class="info-btn" onclick="showInfo()">
-                ⓘ &nbsp; More Info
-            </button>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
 
         </div>
 
-    </div>
 
-    <div class="scroll-down">
-        <span>SCROLL</span>
-        <div class="mouse">
-            <div class="wheel"></div>
+        <!-- HERO TEXT -->
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span></span>
+
+                DASAN AKHIL
+
+            </div>
+
+
+            <h1>
+
+                UNLEASH
+
+                <strong>
+                    THE BEAST
+                </strong>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Precision engineered for riders who don't
+                follow the road. They dominate it.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#machine" class="btn-primary">
+
+                    EXPLORE MACHINE
+
+                    <span>→</span>
+
+                </a>
+
+
+                <a href="#gallery" class="btn-outline">
+
+                    VIEW GALLERY
+
+                </a>
+
+            </div>
+
         </div>
-    </div>
-
-    <div class="hero-bottom"></div>
-
-</section>
 
 
-<!-- MAIN CONTENT -->
-<main>
+        <!-- HERO IMAGE -->
+
+        <div class="hero-photo">
+
+            <div class="photo-glow"></div>
+
+            <img
+                src="rc390-2.jpg"
+                alt="RC390 motorcycle"
+                id="heroBike"
+            >
+
+            <div class="photo-frame"></div>
+
+            <div class="hero-bike-name">
+
+                <small>
+                    SUPERSPORT
+                </small>
+
+                <strong>
+                    RC 390
+                </strong>
+
+            </div>
+
+        </div>
 
 
-<!-- TRENDING -->
-<section class="movie-section" id="trending">
+        <!-- HUD -->
 
-    <div class="section-heading">
+        <div class="hud hud-one">
 
-        <h2>
-            Trending Now
-        </h2>
+            <span>
+                ENGINE
+            </span>
 
-        <span>Explore All →</span>
+            <strong>
+                READY
+            </strong>
 
-    </div>
+        </div>
 
 
-    <div class="movie-row">
+        <div class="hud hud-two">
 
-        <div class="movie-card reveal">
+            <span>
+                MODE
+            </span>
 
-            <div class="rank">1</div>
+            <strong>
+                RACE
+            </strong>
 
-            <div class="poster poster1">
+        </div>
 
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>STRANGER<br>THINGS</h3>
+
+        <div class="hud hud-three">
+
+            <span>
+                RPM
+            </span>
+
+            <strong id="heroRpm">
+                0000
+            </strong>
+
+        </div>
+
+
+        <!-- SCROLL -->
+
+        <div class="scroll-indicator">
+
+            <span>
+                SCROLL TO EXPLORE
+            </span>
+
+            <div class="scroll-line"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         MACHINE
+    =========================================== -->
+
+    <section id="machine" class="section machine">
+
+        <div class="section-heading reveal">
+
+            <div class="section-number">
+                01
+            </div>
+
+            <div>
+
+                <span class="section-tag">
+                    ENGINEERED FOR SPEED
+                </span>
+
+                <h2>
+
+                    THE
+
+                    <span>
+                        MACHINE
+                    </span>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="machine-layout">
+
+
+            <!-- IMAGE -->
+
+            <div class="machine-image reveal">
+
+                <div class="image-frame">
+
+                    <img
+                        src="rc390-3.jpg"
+                        alt="RC390"
+                    >
+
+                    <div class="scan-line"></div>
+
+                    <span class="corner c1"></span>
+                    <span class="corner c2"></span>
+                    <span class="corner c3"></span>
+                    <span class="corner c4"></span>
+
                 </div>
 
-                <div class="card-overlay">
+                <p>
+                    RC390 / TRACK DNA / 001
+                </p>
 
-                    <button>▶</button>
+            </div>
 
-                    <div>
-                        <h4>Stranger Things</h4>
-                        <p>98% Match • 4 Seasons</p>
+
+            <!-- TEXT -->
+
+            <div class="machine-content reveal">
+
+                <div class="orange-line"></div>
+
+                <h3>
+
+                    BUILT TO
+
+                    <span>
+                        ATTACK.
+                    </span>
+
+                </h3>
+
+
+                <p>
+
+                    Aggressive styling, lightweight
+                    performance and race-inspired character
+                    come together in a machine designed to
+                    deliver an exciting riding experience.
+
+                </p>
+
+
+                <div class="spec-grid">
+
+                    <div class="spec-card">
+
+                        <small>
+                            ENGINE
+                        </small>
+
+                        <strong>
+                            373
+                            <span>CC</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="spec-card">
+
+                        <small>
+                            POWER
+                        </small>
+
+                        <strong>
+                            43.5
+                            <span>PS</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="spec-card">
+
+                        <small>
+                            TORQUE
+                        </small>
+
+                        <strong>
+                            37
+                            <span>NM</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="spec-card">
+
+                        <small>
+                            GEARBOX
+                        </small>
+
+                        <strong>
+                            6
+                            <span>SPD</span>
+                        </strong>
+
                     </div>
 
                 </div>
@@ -167,27 +417,212 @@
 
         </div>
 
+    </section>
 
-        <div class="movie-card reveal">
 
-            <div class="rank">2</div>
 
-            <div class="poster poster2">
+    <!-- ==========================================
+         CINEMATIC IMAGE
+    =========================================== -->
 
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>DARK</h3>
+    <section class="cinematic">
+
+        <div class="cinematic-image"></div>
+
+        <div class="cinematic-overlay"></div>
+
+
+        <div class="cinematic-content reveal">
+
+            <span>
+                RACING ATTITUDE
+            </span>
+
+            <h2>
+
+                EVERY ROAD
+
+                <strong>
+                    BECOMES A TRACK.
+                </strong>
+
+            </h2>
+
+            <p>
+                Built around speed, precision and attitude.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PERFORMANCE
+    =========================================== -->
+
+    <section
+        id="performance"
+        class="section performance"
+    >
+
+        <div class="performance-glow"></div>
+
+
+        <div class="section-heading reveal">
+
+            <div class="section-number">
+                02
+            </div>
+
+            <div>
+
+                <span class="section-tag">
+                    NUMBERS THAT MATTER
+                </span>
+
+                <h2>
+
+                    PURE
+
+                    <span>
+                        PERFORMANCE
+                    </span>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat reveal">
+
+                <span class="stat-number">
+                    01
+                </span>
+
+                <small>
+                    DISPLACEMENT
+                </small>
+
+                <div>
+
+                    <strong
+                        class="counter"
+                        data-target="373"
+                    >
+                        0
+                    </strong>
+
+                    <i>
+                        CC
+                    </i>
+
                 </div>
 
-                <div class="card-overlay">
+                <div class="stat-line">
+                    <span></span>
+                </div>
 
-                    <button>▶</button>
+            </div>
 
-                    <div>
-                        <h4>Dark</h4>
-                        <p>96% Match • 3 Seasons</p>
-                    </div>
 
+            <div class="stat reveal">
+
+                <span class="stat-number">
+                    02
+                </span>
+
+                <small>
+                    MAX POWER
+                </small>
+
+                <div>
+
+                    <strong
+                        class="counter"
+                        data-target="43"
+                    >
+                        0
+                    </strong>
+
+                    <i>
+                        PS
+                    </i>
+
+                </div>
+
+                <div class="stat-line">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <div class="stat reveal">
+
+                <span class="stat-number">
+                    03
+                </span>
+
+                <small>
+                    MAX TORQUE
+                </small>
+
+                <div>
+
+                    <strong
+                        class="counter"
+                        data-target="37"
+                    >
+                        0
+                    </strong>
+
+                    <i>
+                        NM
+                    </i>
+
+                </div>
+
+                <div class="stat-line">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <div class="stat reveal">
+
+                <span class="stat-number">
+                    04
+                </span>
+
+                <small>
+                    TRANSMISSION
+                </small>
+
+                <div>
+
+                    <strong
+                        class="counter"
+                        data-target="6"
+                    >
+                        0
+                    </strong>
+
+                    <i>
+                        SPD
+                    </i>
+
+                </div>
+
+                <div class="stat-line">
+                    <span></span>
                 </div>
 
             </div>
@@ -195,25 +630,273 @@
         </div>
 
 
-        <div class="movie-card reveal">
 
-            <div class="rank">3</div>
+        <!-- RPM -->
 
-            <div class="poster poster3">
+        <div class="rpm-box reveal">
 
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>THE<br>WITCHER</h3>
+            <div class="rpm-header">
+
+                <span>
+                    LIVE ENGINE SIMULATION
+                </span>
+
+                <small>
+                    RACE MODE
+                </small>
+
+            </div>
+
+
+            <div class="rpm-value">
+
+                <strong id="liveRpm">
+                    0000
+                </strong>
+
+                <span>
+                    RPM
+                </span>
+
+            </div>
+
+
+            <div class="rpm-track">
+
+                <div id="rpmFill"></div>
+
+            </div>
+
+
+            <div class="rpm-scale">
+
+                <span>0</span>
+                <span>2K</span>
+                <span>4K</span>
+                <span>6K</span>
+                <span>8K</span>
+                <span>10K+</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         GALLERY
+    =========================================== -->
+
+    <section
+        id="gallery"
+        class="section gallery"
+    >
+
+        <div class="section-heading reveal">
+
+            <div class="section-number">
+                03
+            </div>
+
+            <div>
+
+                <span class="section-tag">
+                    RC390 EXPERIENCE
+                </span>
+
+                <h2>
+
+                    OWN THE
+
+                    <span>
+                        MOMENT
+                    </span>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+            <div
+                class="gallery-card gallery-large reveal"
+                data-image="rc390-2.jpg"
+            >
+
+                <img
+                    src="rc390-2.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        01 / MACHINE
+                    </span>
+
+                    <h3>
+                        RACING
+                        <br>
+                        ATTITUDE
+                    </h3>
+
                 </div>
 
-                <div class="card-overlay">
+            </div>
 
-                    <button>▶</button>
 
-                    <div>
-                        <h4>The Witcher</h4>
-                        <p>94% Match • 3 Seasons</p>
-                    </div>
+
+            <div
+                class="gallery-card reveal"
+                data-image="rc390-3.jpg"
+            >
+
+                <img
+                    src="rc390-3.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        02 / STYLE
+                    </span>
+
+                    <h3>
+                        OWN THE
+                        <br>
+                        ROAD
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="gallery-card reveal"
+                data-image="rc390-4.jpg"
+            >
+
+                <img
+                    src="rc390-4.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        03 / MOMENT
+                    </span>
+
+                    <h3>
+                        PURE
+                        <br>
+                        ATTITUDE
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="gallery-card reveal"
+                data-image="rc390-5.jpg"
+            >
+
+                <img
+                    src="rc390-5.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        04 / MONOCHROME
+                    </span>
+
+                    <h3>
+                        DIFFERENT
+                        <br>
+                        MINDSET
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="gallery-card gallery-wide reveal"
+                data-image="rc390-6.jpg"
+            >
+
+                <img
+                    src="rc390-6.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        05 / SUNSET
+                    </span>
+
+                    <h3>
+                        CHASE THE
+                        <br>
+                        HORIZON
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="gallery-card reveal"
+                data-image="rc390-7.jpg"
+            >
+
+                <img
+                    src="rc390-7.jpg"
+                    alt="RC390"
+                >
+
+                <div class="gallery-overlay"></div>
+
+                <div class="gallery-text">
+
+                    <span>
+                        06 / LIFESTYLE
+                    </span>
+
+                    <h3>
+                        BUILT
+                        <br>
+                        DIFFERENT
+                    </h3>
 
                 </div>
 
@@ -221,274 +904,121 @@
 
         </div>
 
+    </section>
 
-        <div class="movie-card reveal">
 
-            <div class="rank">4</div>
 
-            <div class="poster poster4">
+    <!-- ==========================================
+         FULLSCREEN VIEWER
+    =========================================== -->
 
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>WEDNESDAY</h3>
-                </div>
+    <div id="imageViewer">
 
-                <div class="card-overlay">
-
-                    <button>▶</button>
-
-                    <div>
-                        <h4>Wednesday</h4>
-                        <p>97% Match • 2 Seasons</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="movie-card reveal">
-
-            <div class="rank">5</div>
-
-            <div class="poster poster5">
-
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>YOU</h3>
-                </div>
-
-                <div class="card-overlay">
-
-                    <button>▶</button>
-
-                    <div>
-                        <h4>You</h4>
-                        <p>92% Match • 4 Seasons</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="movie-card reveal">
-
-            <div class="rank">6</div>
-
-            <div class="poster poster6">
-
-                <div class="poster-content">
-                    <small>NETFLIX</small>
-                    <h3>BLACK<br>MIRROR</h3>
-                </div>
-
-                <div class="card-overlay">
-
-                    <button>▶</button>
-
-                    <div>
-                        <h4>Black Mirror</h4>
-                        <p>95% Match • 6 Seasons</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- POPULAR -->
-<section class="movie-section" id="popular">
-
-    <div class="section-heading">
-
-        <h2>Popular on Netflix</h2>
-
-        <span>Explore All →</span>
-
-    </div>
-
-
-    <div class="movie-row">
-
-        <div class="normal-card reveal poster7">
-            <span>BREAKING<br>BAD</span>
-        </div>
-
-        <div class="normal-card reveal poster8">
-            <span>MONEY<br>HEIST</span>
-        </div>
-
-        <div class="normal-card reveal poster9">
-            <span>PEAKY<br>BLINDERS</span>
-        </div>
-
-        <div class="normal-card reveal poster10">
-            <span>VIKINGS</span>
-        </div>
-
-        <div class="normal-card reveal poster11">
-            <span>ARCANE</span>
-        </div>
-
-        <div class="normal-card reveal poster12">
-            <span>COBRA KAI</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ORIGINALS -->
-<section class="movie-section" id="originals">
-
-    <div class="section-heading">
-
-        <h2>Netflix Originals</h2>
-
-        <span>Explore All →</span>
-
-    </div>
-
-
-    <div class="movie-row">
-
-        <div class="normal-card reveal poster13">
-            <span>RED NOTICE</span>
-        </div>
-
-        <div class="normal-card reveal poster14">
-            <span>EXTRACTION</span>
-        </div>
-
-        <div class="normal-card reveal poster15">
-            <span>THE GRAY MAN</span>
-        </div>
-
-        <div class="normal-card reveal poster16">
-            <span>ARMY OF DEAD</span>
-        </div>
-
-        <div class="normal-card reveal poster17">
-            <span>ALTERED CARBON</span>
-        </div>
-
-        <div class="normal-card reveal poster18">
-            <span>LOST IN SPACE</span>
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-
-<!-- MOVIE POPUP -->
-<div class="popup" id="moviePopup">
-
-    <div class="popup-box">
-
-        <button
-            class="close"
-            onclick="closeInfo()"
-        >
+        <button id="closeViewer">
             ×
         </button>
 
-        <div class="popup-image">
+        <img
+            id="viewerImage"
+            src=""
+            alt="RC390 fullscreen"
+        >
+
+        <div class="viewer-caption">
+
+            <span>
+                RC390
+            </span>
+
+            RACING EXPERIENCE
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         FINAL
+    =========================================== -->
+
+    <section class="final-section">
+
+        <div class="final-image"></div>
+
+        <div class="final-dark"></div>
+
+        <div class="final-orange-glow"></div>
+
+
+        <div class="final-content reveal">
+
+            <span>
+                THE ROAD IS WAITING
+            </span>
 
             <h2>
-                STRANGER
-                <br>
-                THINGS
+
+                READY TO
+
+                <strong>
+                    RIDE?
+                </strong>
+
             </h2>
 
-        </div>
 
-        <div class="popup-content">
+            <a
+                href="#home"
+                class="launch-btn"
+            >
 
-            <div class="popup-buttons">
+                <span>
+                    START EXPERIENCE
+                </span>
 
-                <button class="play-btn">
-                    ▶ Play
-                </button>
+                <b>
+                    →
+                </b>
 
-                <button class="circle-button">
-                    +
-                </button>
-
-                <button class="circle-button">
-                    ♡
-                </button>
-
-            </div>
-
-            <p class="match">
-                98% Match
-            </p>
-
-            <p>
-                2026 &nbsp; 16+ &nbsp;
-                4 Seasons &nbsp; 4K
-            </p>
-
-            <p class="popup-description">
-
-                Strange events begin unfolding in the
-                quiet town of Hawkins after a young boy
-                mysteriously disappears.
-
-            </p>
+            </a>
 
         </div>
 
-    </div>
 
-</div>
+        <div class="giant-text">
+            RC390
+        </div>
 
-
-
-<!-- FOOTER -->
-<footer>
-
-    <div class="footer-logo">
-        NETFLIX
-    </div>
-
-    <div class="footer-links">
-
-        <a href="#">Audio and Subtitles</a>
-        <a href="#">Media Center</a>
-        <a href="#">Privacy</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Help Center</a>
-        <a href="#">Terms of Use</a>
-
-    </div>
-
-    <p>
-        Netflix-style educational web development project.
-    </p>
-
-</footer>
+    </section>
 
 
-<script src="script.js"></script>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            RC<span>390</span>
+
+        </div>
+
+        <p>
+            PERFORMANCE • PRECISION • ATTITUDE
+        </p>
+
+        <div class="footer-line"></div>
+
+        <small>
+            © 2026 Racing Experience. Concept Website.
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
