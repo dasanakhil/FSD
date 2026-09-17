@@ -1,511 +1,360 @@
-  /* =========================
-    LOADER
-  ========================= */
+// =====================================
+// LOADING SCREEN
+// =====================================
 
-  window.addEventListener("load", () => {
+window.addEventListener("load", () => {
 
-      setTimeout(() => {
+    const loader =
+        document.getElementById("loader");
 
-          const loader = document.getElementById("loader");
+    setTimeout(() => {
 
-          loader.style.opacity = "0";
+        loader.classList.add("hide");
 
-          setTimeout(() => {
-              loader.style.display = "none";
-          }, 1000);
+    }, 1300);
 
-      }, 2200);
+});
 
-  });
 
+// =====================================
+// NAVBAR SCROLL
+// =====================================
 
-  /* =========================
-    CUSTOM CURSOR
-  ========================= */
+const navbar =
+    document.querySelector(".navbar");
 
-  const cursor = document.querySelector(".cursor");
-  const ring = document.querySelector(".cursor-ring");
+window.addEventListener("scroll", () => {
 
-  document.addEventListener("mousemove", (e) => {
+    if (window.scrollY > 70) {
 
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
+        navbar.classList.add("scrolled");
 
-      ring.style.left = e.clientX + "px";
-      ring.style.top = e.clientY + "px";
+    } else {
 
-  });
+        navbar.classList.remove("scrolled");
 
+    }
 
-  /* =========================
-    3D MOTORCYCLE TILT
-  ========================= */
+});
 
-  const bike = document.getElementById("bike");
 
-  document.addEventListener("mousemove", (e) => {
+// =====================================
+// SCROLL REVEAL ANIMATION
+// =====================================
 
-      if (!bike) return;
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-      const x = (window.innerWidth / 2 - e.clientX) / 40;
-      const y = (window.innerHeight / 2 - e.clientY) / 40;
 
-      bike.style.transform =
-          `perspective(1200px)
-          rotateY(${-x}deg)
-          rotateX(${y}deg)
-          translateZ(20px)`;
+const observer =
+    new IntersectionObserver(
 
-  });
+        (entries) => {
 
+            entries.forEach((entry) => {
 
-  /* =========================
-    PARTICLE SYSTEM
-  ========================= */
+                if (entry.isIntersecting) {
 
-  const canvas = document.getElementById("particles");
-  const ctx = canvas.getContext("2d");
+                    entry.target
+                        .classList
+                        .add("show");
 
-  let particles = [];
+                }
 
-  function resizeCanvas() {
+            });
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+        },
 
-  }
+        {
+            threshold: 0.15
+        }
 
-  resizeCanvas();
+    );
 
-  window.addEventListener("resize", resizeCanvas);
 
+revealElements.forEach(
+    (element, index) => {
 
-  class Particle {
+        element.style.transitionDelay =
+            `${(index % 6) * 0.1}s`;
 
-      constructor() {
+        observer.observe(element);
 
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
+    }
+);
 
-          this.size = Math.random() * 2 + .3;
 
-          this.speedX =
-              (Math.random() - .5) * .5;
+// =====================================
+// SEARCH MOVIES
+// =====================================
 
-          this.speedY =
-              (Math.random() - .5) * .5;
+const searchInput =
+    document.getElementById("searchInput");
 
-          this.life = Math.random();
 
-      }
+searchInput.addEventListener(
+    "input",
+    function () {
 
-      update() {
+        const value =
+            this.value
+                .toLowerCase()
+                .trim();
 
-          this.x += this.speedX;
-          this.y += this.speedY;
 
-          this.life -= .002;
+        const cards =
+            document.querySelectorAll(
+                ".movie-card, .normal-card"
+            );
 
-          if (
-              this.life <= 0 ||
-              this.x < 0 ||
-              this.x > canvas.width ||
-              this.y < 0 ||
-              this.y > canvas.height
-          ) {
 
-              this.x = Math.random() * canvas.width;
-              this.y = Math.random() * canvas.height;
-              this.life = 1;
+        cards.forEach((card) => {
 
-          }
+            const text =
+                card.innerText.toLowerCase();
 
-      }
 
-      draw() {
+            if (text.includes(value)) {
 
-          ctx.beginPath();
+                card.style.display = "";
 
-          ctx.arc(
-              this.x,
-              this.y,
-              this.size,
-              0,
-              Math.PI * 2
-          );
+            } else {
 
-          ctx.fillStyle =
-              "rgba(255,90,0," +
-              this.life +
-              ")";
+                card.style.display = "none";
 
-          ctx.fill();
+            }
 
-      }
+        });
 
-  }
+    }
+);
 
 
-  for (let i = 0; i < 130; i++) {
+// =====================================
+// PLAY BUTTON
+// =====================================
 
-      particles.push(
-          new Particle()
-      );
+function playMovie() {
 
-  }
+    const button =
+        document.querySelector(".play-btn");
 
+    const oldText =
+        button.innerHTML;
 
-  function particleAnimation() {
+    button.innerHTML =
+        "▶ Playing...";
 
-      ctx.clearRect(
-          0,
-          0,
-          canvas.width,
-          canvas.height
-      );
+    button.style.transform =
+        "scale(0.95)";
 
-      particles.forEach(p => {
 
-          p.update();
-          p.draw();
+    setTimeout(() => {
 
-      });
+        button.innerHTML =
+            oldText;
 
-      requestAnimationFrame(
-          particleAnimation
-      );
+        button.style.transform = "";
 
-  }
+        alert(
+            "Movie player demo 🎬"
+        );
 
-  particleAnimation();
+    }, 600);
 
+}
 
-  /* =========================
-    SCROLL REVEAL
-  ========================= */
 
-  const revealElements =
-      document.querySelectorAll(".reveal");
+// =====================================
+// MORE INFO POPUP
+// =====================================
 
-  const observer =
-      new IntersectionObserver(
-          entries => {
+function showInfo() {
 
-              entries.forEach(entry => {
+    document
+        .getElementById("moviePopup")
+        .classList
+        .add("active");
 
-                  if (entry.isIntersecting) {
+    document.body.style.overflow =
+        "hidden";
 
-                      entry.target.classList.add(
-                          "visible"
-                      );
+}
 
-                  }
 
-              });
+function closeInfo() {
 
-          },
-          {
-              threshold: .15
-          }
-      );
+    document
+        .getElementById("moviePopup")
+        .classList
+        .remove("active");
 
+    document.body.style.overflow =
+        "auto";
 
-  revealElements.forEach(el => {
+}
 
-      observer.observe(el);
 
-  });
+// Close popup by clicking outside
 
+document
+    .getElementById("moviePopup")
+    .addEventListener(
+        "click",
+        function (event) {
 
-  /* =========================
-    COUNTERS
-  ========================= */
+            if (event.target === this) {
 
-  const counters =
-      document.querySelectorAll(".counter");
+                closeInfo();
 
-  let counterStarted = false;
+            }
 
+        }
+    );
 
-  function startCounters() {
 
-      if (counterStarted) return;
+// ESC key closes popup
 
-      counterStarted = true;
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-      counters.forEach(counter => {
+        if (event.key === "Escape") {
 
-          const target =
-              parseInt(
-                  counter.dataset.target
-              );
+            closeInfo();
 
-          let current = 0;
+        }
 
-          const increment =
-              Math.max(
-                  1,
-                  Math.ceil(target / 60)
-              );
+    }
+);
 
-          const timer =
-              setInterval(() => {
 
-                  current += increment;
+// =====================================
+// MOVIE CARD CLICK ANIMATION
+// =====================================
 
-                  if (current >= target) {
+const movieCards =
+    document.querySelectorAll(
+        ".movie-card, .normal-card"
+    );
 
-                      current = target;
-                      clearInterval(timer);
 
-                  }
+movieCards.forEach((card) => {
 
-                  counter.textContent =
-                      current;
+    card.addEventListener(
+        "click",
+        function () {
 
-              }, 30);
+            this.animate(
 
-      });
+                [
+                    {
+                        transform:
+                            "scale(1)"
+                    },
 
-  }
+                    {
+                        transform:
+                            "scale(1.07)"
+                    },
 
+                    {
+                        transform:
+                            "scale(1)"
+                    }
+                ],
 
-  const performanceSection =
-      document.querySelector(".performance");
+                {
+                    duration: 350
+                }
 
+            );
 
-  const performanceObserver =
-      new IntersectionObserver(
-          entries => {
+        }
+    );
 
-              if (
-                  entries[0].isIntersecting
-              ) {
+});
 
-                  startCounters();
 
-              }
+// =====================================
+// HERO MOUSE PARALLAX
+// =====================================
 
-          },
-          {
-              threshold: .3
-          }
-      );
+const hero =
+    document.querySelector(".hero");
 
+const background =
+    document.querySelector(
+        ".hero-background"
+    );
 
-  performanceObserver.observe(
-      performanceSection
-  );
 
+hero.addEventListener(
+    "mousemove",
+    (event) => {
 
-  /* =========================
-    RPM SIMULATION
-  ========================= */
+        const x =
+            (
+                event.clientX /
+                window.innerWidth
+                - 0.5
+            ) * 20;
 
-  const rpm =
-      document.getElementById("liveRpm");
 
-  const rpmFill =
-      document.getElementById("rpmFill");
+        const y =
+            (
+                event.clientY /
+                window.innerHeight
+                - 0.5
+            ) * 20;
 
-  const heroRpm =
-      document.getElementById("rpm");
 
+        background.style.transform =
+            `scale(1.1)
+             translate(${x}px, ${y}px)`;
 
-  function updateRPM() {
+    }
+);
 
-      const time =
-          Date.now() / 500;
 
-      const value =
-          Math.floor(
-              3500 +
-              Math.sin(time) * 1800 +
-              Math.random() * 500
-          );
+hero.addEventListener(
+    "mouseleave",
+    () => {
 
-      const safeValue =
-          Math.max(
-              1000,
-              Math.min(
-                  10000,
-                  value
-              )
-          );
+        background.style.transform =
+            "scale(1.1) translate(0,0)";
 
-      rpm.textContent =
-          safeValue
-              .toString()
-              .padStart(4, "0");
+    }
+);
 
-      heroRpm.textContent =
-          safeValue
-              .toString()
-              .padStart(4, "0");
 
-      rpmFill.style.width =
-          (safeValue / 10000 * 100) +
-          "%";
+// =====================================
+// HORIZONTAL SCROLL WITH MOUSE WHEEL
+// =====================================
 
-      requestAnimationFrame(
-          updateRPM
-      );
+const rows =
+    document.querySelectorAll(
+        ".movie-row"
+    );
 
-  }
 
-  updateRPM();
+rows.forEach((row) => {
 
+    row.addEventListener(
+        "wheel",
+        (event) => {
 
-  /* =========================
-    MOUSE PARALLAX
-  ========================= */
+            if (
+                Math.abs(event.deltaY) >
+                Math.abs(event.deltaX)
+            ) {
 
-  document.addEventListener(
-      "mousemove",
-      (e) => {
+                row.scrollLeft +=
+                    event.deltaY;
 
-          const x =
-              (e.clientX /
-                  window.innerWidth -
-                  .5) * 20;
+            }
 
-          const y =
-              (e.clientY /
-                  window.innerHeight -
-                  .5) * 20;
+        }
+    );
 
-          document
-              .querySelector(".hero-glow")
-              ?.style.setProperty(
-                  "transform",
-                  `translate(${x}px, ${y}px)`
-              );
-
-      }
-  );
-
-
-  /* =========================
-    BUTTON EFFECT
-  ========================= */
-
-  const launchBtn =
-      document.getElementById(
-          "launchBtn"
-      );
-
-  launchBtn.addEventListener(
-      "click",
-      () => {
-
-          launchBtn.innerHTML =
-              "<span>ENGINE STARTED ✓</span>";
-
-          launchBtn.style.background =
-              "#111";
-
-          launchBtn.style.border =
-              "1px solid #ff5a00";
-
-          setTimeout(() => {
-
-              document
-                  .getElementById("machine")
-                  .scrollIntoView({
-                      behavior: "smooth"
-                  });
-
-          }, 700);
-
-      }
-  );
-
-
-  /* =========================
-    CARD MAGNETIC EFFECT
-  ========================= */
-
-  document
-      .querySelectorAll(".experience-card")
-      .forEach(card => {
-
-          card.addEventListener(
-              "mousemove",
-              e => {
-
-                  const rect =
-                      card.getBoundingClientRect();
-
-                  const x =
-                      e.clientX -
-                      rect.left;
-
-                  const y =
-                      e.clientY -
-                      rect.top;
-
-                  const rotateX =
-                      (y -
-                          rect.height / 2) /
-                      30;
-
-                  const rotateY =
-                      (rect.width / 2 -
-                          x) /
-                      30;
-
-                  card.style.transform =
-                      `perspective(800px)
-                      rotateX(${rotateX}deg)
-                      rotateY(${rotateY}deg)
-                      translateY(-5px)`;
-
-              }
-          );
-
-          card.addEventListener(
-              "mouseleave",
-              () => {
-
-                  card.style.transform =
-                      "perspective(800px) rotateX(0) rotateY(0)";
-
-              }
-          );
-
-      });
-
-
-  /* =========================
-    NAVBAR SCROLL
-  ========================= */
-
-  window.addEventListener(
-      "scroll",
-      () => {
-
-          const navbar =
-              document.querySelector(
-                  ".navbar"
-              );
-
-          if (window.scrollY > 100) {
-
-              navbar.style.background =
-                  "rgba(5,5,5,.9)";
-
-              navbar.style.backdropFilter =
-                  "blur(15px)";
-
-          } else {
-
-              navbar.style.background =
-                  "linear-gradient(to bottom, rgba(0,0,0,.8), transparent)";
-
-              navbar.style.backdropFilter =
-                  "none";
-
-          }
-
-      }
-  );
+});
