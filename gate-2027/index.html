@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GATEHUB | GATE CSE 2027</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        <span class="logo-icon">◆</span>
+        DASAN'S  <span>GATE</span>
+    </a>
+
+    <nav id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#syllabus">Syllabus</a>
+        <a href="#books">Books</a>
+        <a href="#roadmap">Study Plan</a>
+        <a href="#weightage">Weightage</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <p class="small-title">
+            GRADUATE APTITUDE TEST IN ENGINEERING
+        </p>
+
+        <h1>
+            GATE <span>2027</span>
+        </h1>
+
+        <h3>
+            PLAN • STUDY • PRACTICE • SUCCEED
+        </h3>
+
+        <p class="hero-description">
+            A complete preparation dashboard for GATE Computer Science.
+            Explore the syllabus, important subjects, recommended books
+            and a structured four-month preparation roadmap.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#syllabus" class="primary-btn">
+                Explore Syllabus →
+            </a>
+
+            <a href="#books" class="secondary-btn">
+                View Books
+            </a>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div>
+                <strong>10+</strong>
+                <span>Core Subjects</span>
+            </div>
+
+            <div>
+                <strong>4</strong>
+                <span>Study Months</span>
+            </div>
+
+            <div>
+                <strong>17+</strong>
+                <span>Years PYQs</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Floating 3D books -->
+
+    <div class="hero-books reveal">
+
+        <div class="floating-book book-a">
+            <div class="book-cover green">
+                <small>GATE 2027</small>
+                <h3>THEORY OF<br>COMPUTATION</h3>
+                <p>Automata • CFG • PDA</p>
+            </div>
+        </div>
+
+        <div class="floating-book main-book">
+            <div class="book-cover gate">
+                <small>GATE CSE</small>
+                <h2>17 YEARS'</h2>
+                <h3>SOLVED PAPERS</h3>
+                <div class="brain">◉</div>
+                <p>2010 — 2026</p>
+            </div>
+        </div>
+
+        <div class="floating-book book-b">
+            <div class="book-cover red">
+                <small>GATE CSE</small>
+                <h3>OPERATING<br>SYSTEMS</h3>
+                <p>Processes • Memory</p>
+            </div>
+        </div>
+
+        <div class="platform"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SYLLABUS ================= -->
+
+<section class="section" id="syllabus">
+
+    <div class="section-heading reveal">
+
+        <p>EXPLORE</p>
+
+        <h2>
+            GATE CSE <span>Syllabus</span>
+        </h2>
+
+        <p class="section-description">
+            Study subject-wise instead of jumping randomly between topics.
+        </p>
+
+    </div>
+
+
+    <div class="syllabus-grid">
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">01</div>
+
+            <h3>Engineering Mathematics</h3>
+
+            <ul>
+                <li>Linear Algebra</li>
+                <li>Calculus</li>
+                <li>Probability</li>
+                <li>Statistics</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">02</div>
+
+            <h3>Data Structures</h3>
+
+            <ul>
+                <li>Arrays</li>
+                <li>Linked Lists</li>
+                <li>Stacks & Queues</li>
+                <li>Trees</li>
+                <li>Graphs</li>
+                <li>Heaps</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">03</div>
+
+            <h3>Algorithms</h3>
+
+            <ul>
+                <li>Sorting</li>
+                <li>Searching</li>
+                <li>Divide & Conquer</li>
+                <li>Dynamic Programming</li>
+                <li>Greedy Algorithms</li>
+                <li>Graph Algorithms</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">04</div>
+
+            <h3>Operating Systems</h3>
+
+            <ul>
+                <li>Processes</li>
+                <li>CPU Scheduling</li>
+                <li>Deadlocks</li>
+                <li>Memory Management</li>
+                <li>Virtual Memory</li>
+                <li>File Systems</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">05</div>
+
+            <h3>Computer Networks</h3>
+
+            <ul>
+                <li>TCP/IP Model</li>
+                <li>Transport Layer</li>
+                <li>Network Layer</li>
+                <li>Routing Protocols</li>
+                <li>Congestion Control</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">06</div>
+
+            <h3>DBMS</h3>
+
+            <ul>
+                <li>SQL</li>
+                <li>ER Model</li>
+                <li>Normalization</li>
+                <li>Transactions</li>
+                <li>Relational Model</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">07</div>
+
+            <h3>Computer Organisation</h3>
+
+            <ul>
+                <li>Cache Memory</li>
+                <li>Pipeline Hazards</li>
+                <li>Instruction Formats</li>
+                <li>Memory Hierarchy</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">08</div>
+
+            <h3>Theory of Computation</h3>
+
+            <ul>
+                <li>Finite Automata</li>
+                <li>CFGs</li>
+                <li>Pushdown Automata</li>
+                <li>Regular Languages</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">09</div>
+
+            <h3>Compiler Design</h3>
+
+            <ul>
+                <li>Lexical Analysis</li>
+                <li>Parsing Techniques</li>
+                <li>Syntax Directed Translation</li>
+            </ul>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKS ================= -->
+
+<section class="section books-section" id="books">
+
+    <div class="section-heading reveal">
+
+        <p>RECOMMENDED RESOURCES</p>
+
+        <h2>
+            Books That <span>Actually Work</span>
+        </h2>
+
+        <p class="section-description">
+            Move your mouse over the books to experience the 3D effect.
+        </p>
+
+    </div>
+
+
+    <div class="books-grid">
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-green">
+                <span>THEORY OF COMPUTATION</span>
+
+                <h3>
+                    Introduction to<br>
+                    Automata Theory
+                </h3>
+
+                <div class="book-symbol">Σ</div>
+
+                <p>Hopcroft • Motwani • Ullman</p>
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-black">
+
+                <span>DATABASE SYSTEMS</span>
+
+                <h3>
+                    Database<br>
+                    Management<br>
+                    Systems
+                </h3>
+
+                <div class="book-symbol">DB</div>
+
+                <p>Ramakrishnan • Gehrke</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-purple">
+
+                <span>COMPUTER NETWORKS</span>
+
+                <h3>
+                    TCP/IP<br>
+                    Protocol Suite
+                </h3>
+
+                <div class="book-symbol">◎</div>
+
+                <p>Behrouz A. Forouzan</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-red">
+
+                <span>OPERATING SYSTEMS</span>
+
+                <h3>
+                    Operating<br>
+                    System Concepts
+                </h3>
+
+                <div class="book-symbol">OS</div>
+
+                <p>Silberschatz • Galvin</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-orange">
+
+                <span>ENGINEERING MATHEMATICS</span>
+
+                <h3>
+                    Advanced<br>
+                    Engineering<br>
+                    Mathematics
+                </h3>
+
+                <div class="book-symbol">π</div>
+
+                <p>Erwin Kreyszig</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-white">
+
+                <span>DATA STRUCTURES</span>
+
+                <h3>
+                    Data Structures<br>
+                    & Algorithms
+                </h3>
+
+                <div class="book-symbol">⌘</div>
+
+                <p>Narasimha Karumanchi</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-blue">
+
+                <span>DISCRETE MATHEMATICS</span>
+
+                <h3>
+                    Discrete Mathematics<br>
+                    and Its Applications
+                </h3>
+
+                <div class="book-symbol">∞</div>
+
+                <p>Kenneth Rosen</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face gate-book">
+
+                <span>GATE CSE 2027</span>
+
+                <h3>
+                    Previous Year<br>
+                    Solved Papers
+                </h3>
+
+                <div class="book-symbol">17+</div>
+
+                <p>Topic-wise Practice</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ROADMAP ================= -->
+
+<section class="section" id="roadmap">
+
+    <div class="section-heading reveal">
+
+        <p>STUDY STRATEGY</p>
+
+        <h2>
+            4 Month <span>Roadmap</span>
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="month reveal">
+
+            <div class="month-number">01</div>
+
+            <div>
+
+                <h3>Month One — Foundation</h3>
+
+                <p>
+                    <strong>Week 1 & 2:</strong>
+                    Engineering Mathematics + General Aptitude
+                </p>
+
+                <p>
+                    <strong>Week 3 & 4:</strong>
+                    Data Structures
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="month reveal">
+
+            <div class="month-number">02</div>
+
+            <div>
+
+                <h3>Month Two — Core Subjects</h3>
+
+                <p>
+                    <strong>Week 1:</strong>
+                    Algorithms
+                </p>
+
+                <p>
+                    <strong>Week 2:</strong>
+                    Operating Systems
+                </p>
+
+                <p>
+                    <strong>Week 3:</strong>
+                    Computer Networks
+                </p>
+
+                <p>
+                    <strong>Week 4:</strong>
+                    DBMS
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="month reveal">
+
+            <div class="month-number">03</div>
+
+            <div>
+
+                <h3>Month Three — Advanced Core</h3>
+
+                <p>
+                    <strong>Week 1:</strong>
+                    Computer Organisation
+                </p>
+
+                <p>
+                    <strong>Week 2 & 3:</strong>
+                    Theory of Computation + Compiler Design
+                </p>
+
+                <p>
+                    <strong>Week 4:</strong>
+                    Mock Test
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="month reveal">
+
+            <div class="month-number">04</div>
+
+            <div>
+
+                <h3>Month Four — Revision</h3>
+
+                <p>
+                    Revision • PYQs • Mock Tests • Weak Topic Analysis
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WEIGHTAGE ================= -->
+
+<section class="section" id="weightage">
+
+    <div class="section-heading reveal">
+
+        <p>PRIORITY</p>
+
+        <h2>
+            Subject <span>Weightage</span>
+        </h2>
+
+    </div>
+
+
+    <div class="weightage-grid">
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 1</span>
+
+            <h3>Algorithms & Data Structures</h3>
+
+            <strong>13–15 Marks</strong>
+
+            <div class="progress">
+                <div style="width:95%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 1</span>
+
+            <h3>Engineering Mathematics</h3>
+
+            <strong>~13 Marks</strong>
+
+            <div class="progress">
+                <div style="width:88%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 1</span>
+
+            <h3>Operating Systems</h3>
+
+            <strong>8–10 Marks</strong>
+
+            <div class="progress">
+                <div style="width:75%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 2</span>
+
+            <h3>Computer Networks</h3>
+
+            <strong>7–8 Marks</strong>
+
+            <div class="progress">
+                <div style="width:65%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 2</span>
+
+            <h3>DBMS</h3>
+
+            <strong>7–8 Marks</strong>
+
+            <div class="progress">
+                <div style="width:65%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 2</span>
+
+            <h3>Computer Organisation</h3>
+
+            <strong>7–8 Marks</strong>
+
+            <div class="progress">
+                <div style="width:65%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 3</span>
+
+            <h3>Theory of Computation</h3>
+
+            <strong>5–7 Marks</strong>
+
+            <div class="progress">
+                <div style="width:55%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="weight-card reveal">
+
+            <span>TIER 3</span>
+
+            <h3>Compiler Design</h3>
+
+            <strong>4–6 Marks</strong>
+
+            <div class="progress">
+                <div style="width:48%"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= QUOTE ================= -->
+
+<section class="quote-section reveal">
+
+    <p>“</p>
+
+    <h2>
+        Discipline today builds the
+        <span>engineer of tomorrow.</span>
+    </h2>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="logo">
+        GATE<span>HUB</span>
+    </div>
+
+    <p>
+        GATE CSE 2027 Preparation Dashboard
+    </p>
+
+    <p>
+        Learn • Practice • Revise • Succeed
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
