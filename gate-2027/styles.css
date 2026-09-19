@@ -1,7 +1,7 @@
-/* =====================================================
-   IIT CAMPUS EXPLORER
-   Premium Cinematic / 3D Design
-   ===================================================== */
+/* =========================================================
+   IIT EXPLORE
+   PREMIUM CINEMATIC 3D WEBSITE
+========================================================= */
 
 * {
     margin: 0;
@@ -9,42 +9,57 @@
     box-sizing: border-box;
 }
 
+
 :root {
 
-    --bg: #020504;
-    --bg-soft: #07100c;
+    --background: #020604;
 
-    --white: #f5fff9;
-    --text: #9caea4;
+    --background2: #07100b;
+
+    --card: rgba(6, 18, 12, 0.82);
+
+    --white: #f5fff8;
+
+    --text: #9aaba1;
 
     --green: #4ade80;
-    --green-dark: #16a34a;
 
-    --gold: #e8c76a;
-    --orange: #fb923c;
+    --green-light: #86efac;
+
+    --dark-green: #15803d;
+
+    --gold: #e9cc72;
 
     --border: rgba(255,255,255,.10);
+
 }
 
+
 html {
+
     scroll-behavior: smooth;
+
 }
+
 
 body {
 
     min-height: 100vh;
 
-    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
 
-    background: var(--bg);
+    background: var(--background);
 
     color: var(--white);
 
-    overflow-x: hidden;
+    font-family: "Inter", sans-serif;
+
 }
 
 
-/* ================= BACKGROUND ================= */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 .background {
 
@@ -60,26 +75,25 @@ body {
 
         radial-gradient(
             circle at 50% -10%,
-            rgba(32, 100, 65, .22),
-            transparent 35%
+            rgba(21,128,61,.22),
+            transparent 38%
         ),
 
         radial-gradient(
-            circle at 90% 50%,
-            rgba(234, 179, 8, .05),
-            transparent 25%
+            circle at 100% 45%,
+            rgba(234,179,8,.08),
+            transparent 30%
         ),
 
         linear-gradient(
             135deg,
             #010302,
-            #04100a 50%,
-            #020403
+            #031009 50%,
+            #010302
         );
+
 }
 
-
-/* grid */
 
 .background::after {
 
@@ -89,33 +103,32 @@ body {
 
     inset: 0;
 
-    opacity: .16;
-
     background-image:
 
         linear-gradient(
-            rgba(255,255,255,.03) 1px,
+            rgba(255,255,255,.025) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(255,255,255,.03) 1px,
+            rgba(255,255,255,.025) 1px,
             transparent 1px
         );
 
     background-size: 60px 60px;
 
+    opacity: .35;
+
     mask-image:
         linear-gradient(
             to bottom,
             black,
-            transparent
+            transparent 90%
         );
+
 }
 
-
-/* orbs */
 
 .orb {
 
@@ -128,11 +141,16 @@ body {
     opacity: .22;
 
     animation:
-        orbFloat 13s ease-in-out infinite alternate;
+        orbMovement
+        12s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 
-.orb-one {
+.orb1 {
 
     width: 500px;
     height: 500px;
@@ -140,25 +158,27 @@ body {
     background: #16a34a;
 
     top: 5%;
-    left: -150px;
+    left: -200px;
+
 }
 
 
-.orb-two {
+.orb2 {
 
     width: 450px;
     height: 450px;
 
-    background: #eab308;
+    background: #d97706;
 
     top: 40%;
     right: -200px;
 
-    animation-delay: -5s;
+    animation-delay: -4s;
+
 }
 
 
-.orb-three {
+.orb3 {
 
     width: 450px;
     height: 450px;
@@ -168,54 +188,66 @@ body {
     bottom: -200px;
     left: 35%;
 
-    animation-delay: -8s;
+    animation-delay: -7s;
+
 }
 
 
-@keyframes orbFloat {
+@keyframes orbMovement {
 
     from {
+
         transform:
-            translate3d(-40px,-30px,0)
+            translate3d(-40px,-20px,0)
             scale(.9);
+
     }
 
     to {
+
         transform:
-            translate3d(80px,60px,0)
+            translate3d(80px,70px,0)
             scale(1.15);
+
     }
+
 }
 
 
-/* ================= CURSOR ================= */
+/* =========================================================
+   CURSOR LIGHT
+========================================================= */
 
 .cursor-glow {
 
     position: fixed;
 
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
 
     border-radius: 50%;
 
     pointer-events: none;
 
-    z-index: -2;
+    z-index: -1;
 
     transform:
         translate(-50%,-50%);
 
     background:
+
         radial-gradient(
             circle,
-            rgba(74,222,128,.07),
+            rgba(74,222,128,.08),
             transparent 65%
         );
+
 }
 
 
-/* ================= PROGRESS ================= */
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
 
 .scroll-progress {
 
@@ -224,13 +256,13 @@ body {
     top: 0;
     left: 0;
 
+    width: 0%;
     height: 3px;
 
-    width: 0;
-
-    z-index: 3000;
+    z-index: 9999;
 
     background:
+
         linear-gradient(
             90deg,
             var(--green),
@@ -238,15 +270,21 @@ body {
         );
 
     box-shadow:
-        0 0 18px var(--green);
+        0 0 20px
+        var(--green);
+
 }
 
 
-/* ================= NAVBAR ================= */
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar {
 
     position: fixed;
+
+    z-index: 3000;
 
     top: 16px;
     left: 3%;
@@ -254,9 +292,8 @@ body {
     width: 94%;
     height: 76px;
 
-    z-index: 2000;
-
-    padding: 0 35px;
+    padding:
+        0 32px;
 
     display: flex;
 
@@ -264,18 +301,28 @@ body {
 
     justify-content: space-between;
 
+    border:
+
+        1px solid
+        rgba(255,255,255,.09);
+
     border-radius: 20px;
 
-    border:
-        1px solid rgba(255,255,255,.08);
-
     background:
-        rgba(2,8,5,.65);
+
+        rgba(2,8,5,.70);
 
     backdrop-filter:
         blur(22px);
 
-    transition: .4s;
+    box-shadow:
+
+        0 15px 50px
+        rgba(0,0,0,.25);
+
+    transition:
+        .4s ease;
+
 }
 
 
@@ -284,11 +331,13 @@ body {
     top: 8px;
 
     background:
-        rgba(2,7,4,.94);
+        rgba(2,8,5,.95);
 
     box-shadow:
+
         0 20px 60px
-        rgba(0,0,0,.45);
+        rgba(0,0,0,.5);
+
 }
 
 
@@ -303,12 +352,14 @@ body {
     font-weight: 900;
 
     letter-spacing: -1px;
+
 }
 
 
 .logo span {
 
     color: var(--green);
+
 }
 
 
@@ -316,13 +367,18 @@ nav {
 
     display: flex;
 
-    gap: 34px;
+    align-items: center;
+
+    gap: 35px;
+
 }
 
 
 nav a {
 
-    color: #9daaa2;
+    position: relative;
+
+    color: #a0afa5;
 
     text-decoration: none;
 
@@ -330,15 +386,15 @@ nav a {
 
     font-weight: 600;
 
-    position: relative;
-
     transition: .3s;
+
 }
 
 
 nav a:hover {
 
     color: white;
+
 }
 
 
@@ -348,47 +404,57 @@ nav a::after {
 
     position: absolute;
 
-    left: 0;
-    bottom: -9px;
+    left: 50%;
+    bottom: -10px;
 
     width: 0;
     height: 2px;
 
+    transform:
+        translateX(-50%);
+
     background:
         var(--green);
 
-    transition: .3s;
+    transition:
+        .3s;
+
 }
 
 
 nav a:hover::after {
 
     width: 100%;
+
 }
 
 
 .nav-button {
 
-    padding: 12px 20px;
+    padding:
+        12px 19px;
 
     border-radius: 10px;
 
-    text-decoration: none;
+    color: #031007;
 
-    color: #061009;
+    text-decoration: none;
 
     font-size: 12px;
 
     font-weight: 800;
 
     background:
+
         linear-gradient(
             135deg,
             #86efac,
             #4ade80
         );
 
-    transition: .3s;
+    transition:
+        .3s;
+
 }
 
 
@@ -398,8 +464,10 @@ nav a:hover::after {
         translateY(-3px);
 
     box-shadow:
+
         0 10px 30px
-        rgba(74,222,128,.25);
+        rgba(74,222,128,.3);
+
 }
 
 
@@ -407,19 +475,22 @@ nav a:hover::after {
 
     display: none;
 
-    border: 0;
+    border: none;
 
-    background: transparent;
+    background: none;
 
     color: white;
 
-    font-size: 25px;
+    font-size: 26px;
 
     cursor: pointer;
+
 }
 
 
-/* ================= HERO ================= */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
 
@@ -427,15 +498,17 @@ nav a:hover::after {
 
     position: relative;
 
+    overflow: hidden;
+
     display: flex;
 
     align-items: center;
 
-    overflow: hidden;
-
     padding:
-        140px 7%
+
+        150px 7%
         90px;
+
 }
 
 
@@ -447,30 +520,41 @@ nav a:hover::after {
 
     z-index: -5;
 
+    /* IMAGE IS IN SAME FOLDER */
+
     background:
 
-        url("images/iit-bombay.jpg")
-        center / cover
+        url("iit-bombay.jpg")
+        center center /
+        cover
         no-repeat;
 
-    transform:
-        scale(1.08);
-
     animation:
-        heroZoom 18s ease-in-out
-        infinite alternate;
+        heroZoom
+        18s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 
 @keyframes heroZoom {
 
     from {
-        transform: scale(1.06);
+
+        transform:
+            scale(1.03);
+
     }
 
     to {
-        transform: scale(1.16);
+
+        transform:
+            scale(1.13);
+
     }
+
 }
 
 
@@ -486,23 +570,25 @@ nav a:hover::after {
 
         linear-gradient(
             90deg,
-            rgba(1,5,3,.98) 0%,
-            rgba(1,6,4,.88) 40%,
+            rgba(1,5,3,.99) 0%,
+            rgba(1,6,4,.92) 35%,
             rgba(1,5,3,.35) 75%,
             rgba(1,5,3,.55)
         ),
 
         linear-gradient(
             0deg,
-            #020504,
-            transparent 40%
+            #020604,
+            transparent 50%
         );
+
 }
 
 
 .hero-content {
 
-    max-width: 850px;
+    max-width: 900px;
+
 }
 
 
@@ -510,30 +596,37 @@ nav a:hover::after {
 
     margin-bottom: 22px;
 
-    color: #8ee6ae;
+    color: #86efac;
 
     font-size: 11px;
 
     font-weight: 800;
 
     letter-spacing: 5px;
+
 }
 
 
 .hero h1 {
 
-    max-width: 850px;
+    max-width: 900px;
 
     font-family:
         "Playfair Display",
         serif;
 
     font-size:
-        clamp(62px,8vw,125px);
 
-    line-height: .9;
+        clamp(
+            65px,
+            8vw,
+            125px
+        );
 
-    letter-spacing: -5px;
+    line-height: .88;
+
+    letter-spacing: -6px;
+
 }
 
 
@@ -544,97 +637,130 @@ nav a:hover::after {
     color: transparent;
 
     background:
+
         linear-gradient(
-            100deg,
-            #f4e7a2,
-            #7fea9e,
-            #d6c269
+            90deg,
+            #f5e7a6,
+            #86efac,
+            #e6ca70,
+            #86efac
         );
 
-    background-size: 200%;
+    background-size: 300%;
 
     -webkit-background-clip: text;
 
+    background-clip: text;
+
     animation:
-        textGradient 6s linear infinite;
+
+        gradientMovement
+        7s
+        linear
+        infinite;
+
 }
 
 
-@keyframes textGradient {
+@keyframes gradientMovement {
 
     to {
-        background-position: 200%;
+
+        background-position:
+            300% center;
+
     }
+
 }
 
 
-.hero-text {
+.hero-description {
 
-    max-width: 670px;
+    max-width: 680px;
 
     margin-top: 30px;
 
-    color: #a7b5ac;
+    color: #a8b6ad;
+
+    font-size: 16px;
 
     line-height: 1.8;
 
-    font-size: 16px;
 }
 
 
 .hero-buttons {
 
-    display: flex;
+    margin-top: 35px;
 
-    gap: 15px;
+    display: flex;
 
     flex-wrap: wrap;
 
-    margin-top: 35px;
+    gap: 15px;
+
 }
 
 
 .primary-button,
 .secondary-button {
 
-    padding: 16px 24px;
+    display: inline-block;
+
+    padding:
+
+        16px 24px;
 
     border-radius: 12px;
 
     text-decoration: none;
 
-    color: white;
-
     font-size: 13px;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    transition: .3s;
+    transition:
+        .3s;
+
 }
 
 
 .primary-button {
 
-    color: #041007;
+    color: #031007;
 
     background:
+
         linear-gradient(
             135deg,
             #86efac,
             #4ade80
         );
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(74,222,128,.18);
+
 }
 
 
 .secondary-button {
 
+    color: white;
+
     border:
-        1px solid rgba(255,255,255,.18);
+
+        1px solid
+        rgba(255,255,255,.18);
 
     background:
-        rgba(255,255,255,.04);
 
-    backdrop-filter: blur(12px);
+        rgba(255,255,255,.05);
+
+    backdrop-filter:
+        blur(12px);
+
 }
 
 
@@ -643,16 +769,18 @@ nav a:hover::after {
 
     transform:
         translateY(-5px);
+
 }
 
 
 .hero-stats {
 
+    margin-top: 65px;
+
     display: flex;
 
-    gap: 0;
+    flex-wrap: wrap;
 
-    margin-top: 65px;
 }
 
 
@@ -660,130 +788,146 @@ nav a:hover::after {
 
     min-width: 160px;
 
-    padding-right: 30px;
-
     margin-right: 30px;
 
+    padding-right: 30px;
+
     border-right:
-        1px solid rgba(255,255,255,.15);
+
+        1px solid
+        rgba(255,255,255,.15);
 
     display: flex;
 
     flex-direction: column;
+
 }
 
 
 .stat:last-child {
 
-    border: none;
+    border-right: none;
+
 }
 
 
 .stat strong {
 
+    color: #c7f9d7;
+
     font-size: 30px;
 
-    color: #c5f6d4;
 }
 
 
 .stat span {
 
-    margin-top: 6px;
+    margin-top: 5px;
 
-    color: #738078;
+    color: #748179;
 
     font-size: 10px;
 
+    letter-spacing: 1px;
+
     text-transform: uppercase;
 
-    letter-spacing: 1px;
 }
 
-
-/* Scroll */
 
 .scroll-indicator {
 
     position: absolute;
 
     right: 5%;
-    bottom: 50px;
+    bottom: 45px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 18px;
+    gap: 15px;
 
-    color: #748078;
+    color: #748179;
 
     font-size: 9px;
 
     letter-spacing: 3px;
 
-    transform:
-        rotate(90deg);
-
-    transform-origin: right center;
 }
 
 
-.mouse {
+.scroll-line {
 
-    width: 34px;
-    height: 20px;
+    width: 70px;
+    height: 1px;
 
-    border:
-        1px solid rgba(255,255,255,.35);
+    position: relative;
 
-    border-radius: 20px;
+    overflow: hidden;
 
-    display: flex;
+    background:
 
-    align-items: center;
+        rgba(255,255,255,.2);
+
 }
 
 
-.mouse div {
+.scroll-line::after {
 
-    width: 5px;
-    height: 5px;
+    content: "";
 
-    margin-left: 5px;
+    position: absolute;
 
-    border-radius: 50%;
+    left: -100%;
 
-    background: var(--green);
+    width: 100%;
+    height: 100%;
+
+    background:
+        var(--green);
 
     animation:
-        mouseMove 1.5s infinite;
+
+        scrollLine
+        2s
+        infinite;
+
 }
 
 
-@keyframes mouseMove {
+@keyframes scrollLine {
 
-    50% {
-        transform:
-            translateX(16px);
+    to {
+
+        left: 100%;
+
     }
+
 }
 
 
-/* ================= GENERAL ================= */
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
 
 .section {
 
+    position: relative;
+
     padding:
+
         120px 7%;
+
 }
 
 
 .section-heading {
 
-    max-width: 850px;
+    max-width: 900px;
 
     margin-bottom: 60px;
+
 }
 
 
@@ -798,6 +942,7 @@ nav a:hover::after {
     font-weight: 800;
 
     letter-spacing: 5px;
+
 }
 
 
@@ -808,119 +953,195 @@ nav a:hover::after {
         serif;
 
     font-size:
-        clamp(42px,6vw,78px);
 
-    letter-spacing: -3px;
+        clamp(
+            44px,
+            6vw,
+            80px
+        );
 
-    line-height: 1;
+    line-height: .98;
+
+    letter-spacing: -4px;
+
 }
 
 
 .section-heading h2 span {
 
     color: var(--gold);
+
 }
 
 
-.section-heading > p:last-child {
+.section-description {
 
-    max-width: 700px;
+    max-width: 720px;
 
     margin-top: 22px;
 
     color: var(--text);
 
     line-height: 1.8;
+
 }
 
 
-/* ================= INTRO ================= */
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
 
-.intro-grid {
+.feature-grid {
 
     display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+
+        repeat(
+            3,
+            minmax(0,1fr)
+        );
 
     gap: 20px;
+
 }
 
 
-.intro-card {
+.feature-card {
+
+    min-height: 300px;
+
+    position: relative;
+
+    overflow: hidden;
 
     padding: 35px;
 
-    min-height: 260px;
-
-    border-radius: 20px;
+    border-radius: 22px;
 
     border:
-        1px solid var(--border);
+
+        1px solid
+        var(--border);
 
     background:
+
         linear-gradient(
             145deg,
-            rgba(11,25,17,.8),
-            rgba(3,9,6,.75)
+            rgba(10,27,17,.85),
+            rgba(3,9,6,.78)
         );
 
-    transition: .4s;
+    transition:
+
+        transform .4s,
+        border-color .4s,
+        box-shadow .4s;
+
 }
 
 
-.intro-card:hover {
+.feature-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    top: -100px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(74,222,128,.15),
+            transparent 65%
+        );
+
+}
+
+
+.feature-card:hover {
 
     transform:
+
         translateY(-10px);
 
     border-color:
+
         rgba(74,222,128,.35);
 
     box-shadow:
-        0 30px 60px
-        rgba(0,0,0,.35);
+
+        0 30px 70px
+        rgba(0,0,0,.4);
+
 }
 
 
-.intro-card > span {
+.feature-number {
 
     color: var(--green);
 
     font-size: 11px;
 
     font-weight: 800;
+
 }
 
 
-.intro-card h3 {
+.feature-icon {
+
+    margin-top: 35px;
+
+    color: var(--gold);
+
+    font-size: 35px;
+
+}
+
+
+.feature-card h3 {
 
     margin:
-        45px 0 15px;
+
+        25px 0
+        12px;
 
     font-family:
+
         "Playfair Display",
         serif;
 
-    font-size: 30px;
+    font-size: 31px;
+
 }
 
 
-.intro-card p {
+.feature-card p {
 
     color: var(--text);
 
     font-size: 14px;
 
     line-height: 1.8;
+
 }
 
 
-/* ================= CAMPUS CARDS ================= */
+/* =========================================================
+   CAMPUS CARDS
+========================================================= */
 
 .campus-section {
 
-    padding-top: 80px;
+    padding-top: 90px;
+
 }
 
 
@@ -929,40 +1150,53 @@ nav a:hover::after {
     display: grid;
 
     grid-template-columns:
-        repeat(2,1fr);
 
-    gap: 24px;
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
 
-    perspective: 1500px;
+    gap: 25px;
+
+    perspective: 1600px;
+
 }
 
 
 .campus-card {
 
-    --x: 50%;
-    --y: 50%;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+
+    min-height: 610px;
 
     position: relative;
-
-    min-height: 600px;
 
     overflow: hidden;
 
     border-radius: 26px;
 
     border:
-        1px solid rgba(255,255,255,.12);
 
-    transform-style: preserve-3d;
+        1px solid
+        rgba(255,255,255,.13);
+
+    background: #06100b;
+
+    transform-style:
+        preserve-3d;
 
     transition:
+
         transform .15s ease-out,
-        border-color .3s,
-        box-shadow .3s;
+        box-shadow .35s,
+        border-color .35s;
 
     box-shadow:
+
         0 30px 70px
-        rgba(0,0,0,.35);
+        rgba(0,0,0,.4);
+
 }
 
 
@@ -978,38 +1212,47 @@ nav a:hover::after {
 
     pointer-events: none;
 
+    opacity: 0;
+
     background:
 
         radial-gradient(
-            400px circle
-            at var(--x) var(--y),
-            rgba(255,255,255,.14),
+            450px circle
+            at
+            var(--mouse-x)
+            var(--mouse-y),
+
+            rgba(255,255,255,.15),
+
             transparent 50%
         );
 
-    opacity: 0;
-
     transition: .3s;
+
 }
 
 
 .campus-card:hover::after {
 
     opacity: 1;
+
 }
 
 
 .campus-card:hover {
 
     border-color:
-        rgba(134,239,172,.35);
+
+        rgba(134,239,172,.4);
 
     box-shadow:
+
         0 40px 100px
-        rgba(0,0,0,.55),
+        rgba(0,0,0,.6),
 
         0 0 50px
         rgba(74,222,128,.08);
+
 }
 
 
@@ -1017,21 +1260,31 @@ nav a:hover::after {
 
     position: absolute;
 
+    inset: 0;
+
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
 
+    object-position: center;
+
     transition:
-        transform .8s
+
+        transform
+        .9s
         cubic-bezier(.2,.8,.2,1);
+
 }
 
 
 .campus-card:hover img {
 
     transform:
-        scale(1.09);
+        scale(1.08);
+
 }
 
 
@@ -1047,10 +1300,12 @@ nav a:hover::after {
 
         linear-gradient(
             0deg,
-            rgba(1,5,3,.98) 0%,
-            rgba(1,5,3,.70) 38%,
-            rgba(1,5,3,.10) 75%
+            rgba(1,5,3,.99) 0%,
+            rgba(1,5,3,.78) 35%,
+            rgba(1,5,3,.15) 70%,
+            rgba(1,5,3,.08)
         );
+
 }
 
 
@@ -1058,13 +1313,13 @@ nav a:hover::after {
 
     position: absolute;
 
-    z-index: 4;
+    z-index: 5;
 
-    top: 30px;
-    right: 30px;
+    top: 28px;
+    right: 28px;
 
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
 
     display: grid;
 
@@ -1073,17 +1328,21 @@ nav a:hover::after {
     border-radius: 50%;
 
     border:
-        1px solid rgba(255,255,255,.2);
+
+        1px solid
+        rgba(255,255,255,.25);
 
     background:
-        rgba(3,9,6,.25);
+
+        rgba(0,0,0,.28);
 
     backdrop-filter:
         blur(10px);
 
     font-size: 11px;
 
-    font-weight: 700;
+    font-weight: 800;
+
 }
 
 
@@ -1101,47 +1360,61 @@ nav a:hover::after {
     padding: 45px;
 
     transform:
-        translateZ(50px);
+        translateZ(45px);
+
 }
 
 
 .location {
 
-    color: #9ae6b4;
+    color: #9cf0b8;
 
     font-size: 9px;
 
     font-weight: 800;
 
     letter-spacing: 3px;
+
 }
 
 
 .campus-content h3 {
 
     margin:
-        10px 0 15px;
+
+        10px 0
+        15px;
 
     font-family:
+
         "Playfair Display",
         serif;
 
     font-size:
-        clamp(38px,4vw,60px);
 
-    letter-spacing: -2px;
+        clamp(
+            42px,
+            4vw,
+            62px
+        );
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
 }
 
 
 .campus-content p {
 
-    max-width: 600px;
+    max-width: 580px;
 
-    color: #b2beb6;
+    color: #b3c0b7;
+
+    font-size: 14px;
 
     line-height: 1.7;
 
-    font-size: 14px;
 }
 
 
@@ -1149,30 +1422,38 @@ nav a:hover::after {
 
     margin-top: 24px;
 
-    padding: 13px 18px;
+    padding:
+
+        14px 19px;
+
+    border-radius: 11px;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.2);
 
     color: white;
 
-    border:
-        1px solid rgba(255,255,255,.18);
-
-    border-radius: 10px;
-
     background:
-        rgba(255,255,255,.06);
+
+        rgba(255,255,255,.07);
 
     backdrop-filter:
         blur(10px);
 
-    cursor: pointer;
-
-    font-family: inherit;
+    font-family:
+        inherit;
 
     font-size: 12px;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    transition: .3s;
+    cursor: pointer;
+
+    transition:
+        .3s;
+
 }
 
 
@@ -1180,36 +1461,44 @@ nav a:hover::after {
 
     color: #031007;
 
-    background: var(--green);
+    border-color:
+        var(--green);
 
-    border-color: var(--green);
+    background:
+        var(--green);
 
     transform:
         translateX(5px);
+
 }
 
 
-/* ================= QUOTE ================= */
+/* =========================================================
+   QUOTE
+========================================================= */
 
 .quote-section {
 
-    min-height: 600px;
+    min-height: 650px;
 
     position: relative;
+
+    overflow: hidden;
 
     display: grid;
 
     place-items: center;
 
-    overflow: hidden;
+    padding:
+
+        100px 7%;
 
     text-align: center;
 
-    padding: 100px 7%;
 }
 
 
-.quote-glow {
+.quote-light {
 
     position: absolute;
 
@@ -1219,11 +1508,13 @@ nav a:hover::after {
     border-radius: 50%;
 
     background:
+
         radial-gradient(
             circle,
-            rgba(74,222,128,.12),
+            rgba(74,222,128,.13),
             transparent 65%
         );
+
 }
 
 
@@ -1232,14 +1523,16 @@ nav a:hover::after {
     position: relative;
 
     z-index: 2;
+
 }
 
 
-.quote-content > span {
+.quote-symbol {
 
     color: var(--green);
 
-    font-size: 25px;
+    font-size: 24px;
+
 }
 
 
@@ -1248,39 +1541,54 @@ nav a:hover::after {
     margin-top: 25px;
 
     font-family:
+
         "Playfair Display",
         serif;
 
     font-size:
-        clamp(55px,9vw,120px);
 
-    letter-spacing: -5px;
+        clamp(
+            58px,
+            9vw,
+            125px
+        );
+
+    line-height: .9;
+
+    letter-spacing: -6px;
+
 }
 
 
-.quote-content h2 em {
+.quote-content h2 span {
 
     color: var(--gold);
 
-    font-style: normal;
 }
 
 
-.quote-content p {
+.quote-content > p:not(.quote-symbol) {
 
-    margin-top: 15px;
+    margin:
 
-    color: #7e8e84;
+        25px 0
+        35px;
+
+    color: #849188;
+
 }
 
 
-/* ================= FOOTER ================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
 
     min-height: 180px;
 
     padding:
+
         50px 7%;
 
     display: flex;
@@ -1292,10 +1600,14 @@ footer {
     gap: 30px;
 
     border-top:
-        1px solid rgba(255,255,255,.08);
+
+        1px solid
+        rgba(255,255,255,.08);
 
     background:
-        rgba(1,4,2,.7);
+
+        rgba(1,4,2,.8);
+
 }
 
 
@@ -1303,21 +1615,25 @@ footer > div p {
 
     margin-top: 10px;
 
-    color: #657168;
+    color: #657169;
 
     font-size: 12px;
+
 }
 
 
-.footer-note {
+.footer-text {
 
-    color: #657168;
+    color: #657169;
 
     font-size: 11px;
+
 }
 
 
-/* ================= MODAL ================= */
+/* =========================================================
+   MODAL
+========================================================= */
 
 .campus-modal {
 
@@ -1325,7 +1641,7 @@ footer > div p {
 
     inset: 0;
 
-    z-index: 5000;
+    z-index: 6000;
 
     display: flex;
 
@@ -1336,8 +1652,10 @@ footer > div p {
     opacity: 0;
 
     transition:
+
         opacity .5s,
         visibility .5s;
+
 }
 
 
@@ -1346,6 +1664,7 @@ footer > div p {
     visibility: visible;
 
     opacity: 1;
+
 }
 
 
@@ -1355,15 +1674,21 @@ footer > div p {
 
     inset: 0;
 
-    background:
-        center / cover
+    background-position:
+        center;
+
+    background-size:
+        cover;
+
+    background-repeat:
         no-repeat;
 
     transform:
-        scale(1.1);
+        scale(1.12);
 
     transition:
         transform 1s ease;
+
 }
 
 
@@ -1372,6 +1697,7 @@ footer > div p {
 
     transform:
         scale(1);
+
 }
 
 
@@ -1385,9 +1711,61 @@ footer > div p {
 
         linear-gradient(
             0deg,
-            rgba(1,5,3,.99),
-            rgba(1,5,3,.45)
+            rgba(1,5,3,1) 0%,
+            rgba(1,5,3,.82) 25%,
+            rgba(1,5,3,.25) 75%
         );
+
+}
+
+
+.close-modal {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 35px;
+    right: 40px;
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.3);
+
+    color: white;
+
+    background:
+
+        rgba(0,0,0,.3);
+
+    backdrop-filter:
+        blur(12px);
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition:
+        .3s;
+
+}
+
+
+.close-modal:hover {
+
+    transform:
+        rotate(90deg);
+
+    background:
+
+        rgba(255,255,255,.12);
+
 }
 
 
@@ -1395,18 +1773,20 @@ footer > div p {
 
     position: relative;
 
-    z-index: 5;
+    z-index: 10;
 
-    max-width: 900px;
+    max-width: 1000px;
 
     padding:
-        80px 7%;
+
+        90px 7%;
 
     transform:
-        translateY(40px);
+        translateY(50px);
 
     transition:
         transform .6s ease;
+
 }
 
 
@@ -1415,6 +1795,7 @@ footer > div p {
 
     transform:
         translateY(0);
+
 }
 
 
@@ -1427,36 +1808,47 @@ footer > div p {
     font-weight: 800;
 
     letter-spacing: 4px;
+
 }
 
 
 .modal-content h2 {
 
     margin:
-        12px 0 20px;
+
+        15px 0
+        20px;
 
     font-family:
+
         "Playfair Display",
         serif;
 
     font-size:
-        clamp(55px,8vw,110px);
+
+        clamp(
+            58px,
+            9vw,
+            120px
+        );
 
     line-height: .9;
 
-    letter-spacing: -5px;
+    letter-spacing: -6px;
+
 }
 
 
 .modal-content p {
 
-    max-width: 750px;
+    max-width: 760px;
 
-    color: #b1beb5;
+    color: #b5c1b8;
 
     font-size: 16px;
 
     line-height: 1.8;
+
 }
 
 
@@ -1466,66 +1858,29 @@ footer > div p {
 
     margin-top: 30px;
 
-    padding: 15px 22px;
+    padding:
+
+        15px 22px;
 
     border-radius: 10px;
 
     color: #031007;
 
-    background: var(--green);
+    background:
+        var(--green);
 
     text-decoration: none;
 
     font-size: 12px;
 
     font-weight: 800;
+
 }
 
 
-.close-modal {
-
-    position: absolute;
-
-    z-index: 10;
-
-    top: 35px;
-    right: 40px;
-
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(255,255,255,.25);
-
-    color: white;
-
-    background:
-        rgba(0,0,0,.25);
-
-    backdrop-filter:
-        blur(12px);
-
-    font-size: 30px;
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-
-.close-modal:hover {
-
-    transform:
-        rotate(90deg);
-
-    background:
-        rgba(255,255,255,.12);
-}
-
-
-/* ================= REVEAL ================= */
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
 
 .reveal {
 
@@ -1540,9 +1895,12 @@ footer > div p {
     transition:
 
         opacity .8s ease,
+
         transform .8s
         cubic-bezier(.2,.8,.2,1),
+
         filter .8s;
+
 }
 
 
@@ -1555,27 +1913,38 @@ footer > div p {
 
     filter:
         blur(0);
+
 }
 
 
-/* ================= RESPONSIVE ================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1000px) {
 
     .campus-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+
     }
+
+
+    .feature-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 
     .campus-card {
 
-        min-height: 560px;
+        min-height: 580px;
+
     }
 
-    .intro-grid {
-
-        grid-template-columns: 1fr;
-    }
 }
 
 
@@ -1584,7 +1953,9 @@ footer > div p {
     .navbar {
 
         padding:
+
             0 20px;
+
     }
 
 
@@ -1603,13 +1974,16 @@ footer > div p {
 
         align-items: flex-start;
 
+        border:
+
+            1px solid
+            rgba(255,255,255,.1);
+
         border-radius: 18px;
 
-        border:
-            1px solid rgba(255,255,255,.1);
-
         background:
-            rgba(2,8,5,.97);
+
+            rgba(2,8,5,.98);
 
         visibility: hidden;
 
@@ -1618,7 +1992,9 @@ footer > div p {
         transform:
             translateY(-15px);
 
-        transition: .3s;
+        transition:
+            .3s;
+
     }
 
 
@@ -1630,18 +2006,21 @@ footer > div p {
 
         transform:
             translateY(0);
+
     }
 
 
     .nav-button {
 
         display: none;
+
     }
 
 
     .menu-button {
 
         display: block;
+
     }
 
 
@@ -1650,65 +2029,74 @@ footer > div p {
         min-height: 900px;
 
         padding:
+
             150px 6%
             100px;
+
     }
 
 
     .hero h1 {
 
-        letter-spacing: -3px;
+        letter-spacing: -4px;
+
     }
 
 
     .hero-stats {
 
-        flex-wrap: wrap;
-
         gap: 25px;
+
     }
 
 
     .stat {
 
-        border: 0;
+        min-width: 120px;
 
         margin: 0;
 
         padding: 0;
 
-        min-width: 120px;
+        border-right: none;
+
     }
 
 
     .scroll-indicator {
 
         display: none;
+
     }
 
 
     .section {
 
         padding:
+
             90px 6%;
+
     }
 
 
     .campus-card {
 
-        min-height: 520px;
+        min-height: 540px;
+
     }
 
 
     .campus-content {
 
         padding: 30px;
+
     }
 
 
     .campus-content h3 {
 
-        font-size: 42px;
+        font-size: 45px;
+
     }
 
 
@@ -1717,62 +2105,119 @@ footer > div p {
         flex-direction: column;
 
         align-items: flex-start;
+
     }
+
 }
 
 
 @media(max-width:520px) {
 
-    .hero h1 {
+    .navbar {
 
-        font-size: 55px;
+        width: 94%;
+
     }
 
 
-    .hero-text {
+    .logo {
+
+        font-size: 19px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 54px;
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .hero-description {
 
         font-size: 14px;
+
     }
 
 
     .hero-stats {
 
         margin-top: 45px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 45px;
+
+        letter-spacing: -3px;
+
     }
 
 
     .campus-card {
 
         min-height: 500px;
+
     }
 
 
     .campus-content {
 
         padding: 25px;
+
     }
 
 
     .campus-content h3 {
 
-        font-size: 37px;
+        font-size: 38px;
+
+        letter-spacing: -2px;
+
     }
 
 
     .campus-content p {
 
         font-size: 12px;
-    }
 
-
-    .section-heading h2 {
-
-        font-size: 44px;
     }
 
 
     .quote-content h2 {
 
-        letter-spacing: -3px;
+        letter-spacing: -4px;
+
     }
+
+
+    .modal-content {
+
+        padding:
+
+            80px 6%
+            60px;
+
+    }
+
+
+    .modal-content h2 {
+
+        letter-spacing: -4px;
+
+    }
+
+
+    .close-modal {
+
+        top: 20px;
+        right: 20px;
+
+    }
+
 }
