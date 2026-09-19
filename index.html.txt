@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IIT Campus Explorer | India</title>
+
+    <meta name="description"
+        content="Explore eight leading IIT campuses across India through an interactive animated campus showcase.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow"></div>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+    </div>
+
+
+    <!-- Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar" id="navbar">
+
+        <a href="#home" class="logo">
+            IIT<span>EXPLORE</span>
+        </a>
+
+        <nav id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#campuses">Campuses</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a href="#campuses" class="nav-button">
+            Explore IITs
+        </a>
+
+        <button class="menu-button" id="menuButton">
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-image"></div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content reveal">
+
+            <p class="eyebrow">
+                INDIAN INSTITUTES OF TECHNOLOGY
+            </p>
+
+            <h1>
+                Explore India's
+                <span>IIT Campuses</span>
+            </h1>
+
+            <p class="hero-text">
+                Discover eight leading IIT campuses through an
+                immersive visual experience celebrating engineering,
+                research, innovation and academic excellence.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#campuses" class="primary-button">
+                    Explore Campuses
+                    <span>→</span>
+                </a>
+
+                <a href="#about" class="secondary-button">
+                    About IITs
+                </a>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="stat">
+                    <strong data-count="8">0</strong>
+                    <span>Campuses Featured</span>
+                </div>
+
+                <div class="stat">
+                    <strong>23</strong>
+                    <span>IITs Across India</span>
+                </div>
+
+                <div class="stat">
+                    <strong>∞</strong>
+                    <span>Possibilities</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <div class="mouse">
+                <div></div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ================= INTRO ================= -->
+
+    <section class="intro section" id="about">
+
+        <div class="section-heading reveal">
+
+            <p class="section-label">
+                CAMPUS EXPLORER
+            </p>
+
+            <h2>
+                Engineering the
+                <span>Future of India.</span>
+            </h2>
+
+            <p>
+                Explore the institutions in the order presented in this
+                showcase. Each campus has its own academic culture,
+                history, research environment and visual identity.
+            </p>
+
+        </div>
+
+
+        <div class="intro-grid">
+
+            <div class="intro-card reveal">
+
+                <span>01</span>
+
+                <h3>Engineering</h3>
+
+                <p>
+                    Strong foundations across computer science,
+                    electrical, mechanical, civil and other
+                    engineering disciplines.
+                </p>
+
+            </div>
+
+
+            <div class="intro-card reveal">
+
+                <span>02</span>
+
+                <h3>Research</h3>
+
+                <p>
+                    Research ecosystems spanning science,
+                    technology, interdisciplinary work and
+                    emerging fields.
+                </p>
+
+            </div>
+
+
+            <div class="intro-card reveal">
+
+                <span>03</span>
+
+                <h3>Innovation</h3>
+
+                <p>
+                    Student projects, laboratories, entrepreneurship
+                    and collaboration contribute to active
+                    innovation ecosystems.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CAMPUSES ================= -->
+
+    <section class="campus-section section" id="campuses">
+
+        <div class="section-heading reveal">
+
+            <p class="section-label">
+                FEATURED INSTITUTES
+            </p>
+
+            <h2>
+                Explore the
+                <span>Campuses</span>
+            </h2>
+
+            <p>
+                Move your cursor over each campus for an interactive
+                3D experience.
+            </p>
+
+        </div>
+
+
+        <div class="campus-grid">
+
+
+            <!-- IIT MADRAS -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-madras.jpg"
+                    alt="IIT Madras campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    01
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        CHENNAI • TAMIL NADU
+                    </span>
+
+                    <h3>
+                        IIT Madras
+                    </h3>
+
+                    <p>
+                        Known for its research ecosystem,
+                        green campus environment and strong
+                        connections with technology and industry.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="madras">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT DELHI -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-delhi.jpg"
+                    alt="IIT Delhi campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    02
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        NEW DELHI
+                    </span>
+
+                    <h3>
+                        IIT Delhi
+                    </h3>
+
+                    <p>
+                        A major technology and research institution
+                        located in India's national capital.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="delhi">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT BOMBAY -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-bombay.jpg"
+                    alt="IIT Bombay campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    03
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        MUMBAI • MAHARASHTRA
+                    </span>
+
+                    <h3>
+                        IIT Bombay
+                    </h3>
+
+                    <p>
+                        Known for engineering, computing,
+                        entrepreneurship and a vibrant
+                        technology ecosystem.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="bombay">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT KANPUR -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-kanpur.jpg"
+                    alt="IIT Kanpur campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    04
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        KANPUR • UTTAR PRADESH
+                    </span>
+
+                    <h3>
+                        IIT Kanpur
+                    </h3>
+
+                    <p>
+                        Recognised for rigorous engineering
+                        education, scientific research and
+                        technology development.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="kanpur">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT KHARAGPUR -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-kharagpur.jpg"
+                    alt="IIT Kharagpur campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    05
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        KHARAGPUR • WEST BENGAL
+                    </span>
+
+                    <h3>
+                        IIT Kharagpur
+                    </h3>
+
+                    <p>
+                        The first IIT established in India,
+                        with a broad academic ecosystem and
+                        expansive campus.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="kharagpur">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT ROORKEE -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-roorkee.jpg"
+                    alt="IIT Roorkee campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    06
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        ROORKEE • UTTARAKHAND
+                    </span>
+
+                    <h3>
+                        IIT Roorkee
+                    </h3>
+
+                    <p>
+                        A historic engineering institution
+                        with long-standing strengths in
+                        technical education and research.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="roorkee">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT GUWAHATI -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-guwahati.jpg"
+                    alt="IIT Guwahati campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    07
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        GUWAHATI • ASSAM
+                    </span>
+
+                    <h3>
+                        IIT Guwahati
+                    </h3>
+
+                    <p>
+                        A scenic campus on the banks of the
+                        Brahmaputra with active engineering,
+                        science and research programmes.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="guwahati">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- IIT HYDERABAD -->
+
+            <article class="campus-card reveal">
+
+                <img
+                    src="images/iit-hyderabad.jpg"
+                    alt="IIT Hyderabad campus">
+
+                <div class="card-overlay"></div>
+
+                <div class="campus-number">
+                    08
+                </div>
+
+                <div class="campus-content">
+
+                    <span class="location">
+                        KANDI • TELANGANA
+                    </span>
+
+                    <h3>
+                        IIT Hyderabad
+                    </h3>
+
+                    <p>
+                        A newer-generation IIT with modern
+                        infrastructure and expanding research
+                        activity across emerging technologies.
+                    </p>
+
+                    <button class="explore-button"
+                        data-campus="hyderabad">
+
+                        Explore Campus
+                        <span>↗</span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUOTE ================= -->
+
+    <section class="quote-section">
+
+        <div class="quote-glow"></div>
+
+        <div class="quote-content reveal">
+
+            <span>◆</span>
+
+            <h2>
+                Dream.
+                <em>Learn.</em>
+                Build.
+            </h2>
+
+            <p>
+                Great engineering begins with curiosity.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div>
+
+            <a href="#home" class="logo">
+                IIT<span>EXPLORE</span>
+            </a>
+
+            <p>
+                An interactive IIT campus showcase.
+            </p>
+
+        </div>
+
+        <p class="footer-note">
+            Built with HTML • CSS • JavaScript
+        </p>
+
+    </footer>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div class="campus-modal" id="campusModal">
+
+        <div class="modal-background"
+            id="modalBackground">
+        </div>
+
+        <div class="modal-overlay"></div>
+
+        <button class="close-modal"
+            id="closeModal">
+            ×
+        </button>
+
+
+        <div class="modal-content">
+
+            <span id="modalLocation">
+                INDIA
+            </span>
+
+            <h2 id="modalTitle">
+                IIT Campus
+            </h2>
+
+            <p id="modalDescription">
+                Campus information.
+            </p>
+
+            <a
+                id="modalWebsite"
+                href="#"
+                target="_blank"
+                rel="noopener">
+
+                Visit Official Website
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
