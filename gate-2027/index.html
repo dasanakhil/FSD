@@ -1,810 +1,2443 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =========================================================
+   GATE 2027 — PREMIUM 3D / AURORA DESIGN
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #02050c;
+    --bg2: #07101f;
+
+    --card: rgba(10, 20, 38, 0.72);
+    --card-light: rgba(18, 34, 58, 0.72);
+
+    --white: #f7fbff;
+    --text: #aab9cb;
+
+    --cyan: #22d3ee;
+    --blue: #3b82f6;
+    --violet: #8b5cf6;
+    --pink: #ec4899;
+    --gold: #fbbf24;
+    --orange: #fb923c;
+
+    --border: rgba(148, 183, 255, 0.14);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* =========================================================
+   PREMIUM BACKGROUND
+   ========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -8;
+
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+
+    mask-image:
+        linear-gradient(to bottom, rgba(0,0,0,.9), transparent 90%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -7;
+
+    background:
+        radial-gradient(circle at 50% 10%,
+        rgba(59,130,246,.14),
+        transparent 35%);
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -10;
+
+    background:
+        radial-gradient(circle at 50% -10%, #102c55 0%, transparent 36%),
+        radial-gradient(circle at 100% 30%, rgba(139,92,246,.15), transparent 30%),
+        linear-gradient(135deg, #01030a, #040b17 45%, #02050c);
+}
+
+/* animated aurora */
+
+.background::before {
+    content: "";
+    position: absolute;
+
+    width: 1000px;
+    height: 650px;
+
+    left: 50%;
+    top: -250px;
+
+    transform: translateX(-50%);
 
-    <title>GATEHUB | GATE CSE 2027</title>
+    background:
+        conic-gradient(
+            from 180deg,
+            transparent,
+            rgba(34,211,238,.22),
+            rgba(59,130,246,.25),
+            rgba(139,92,246,.25),
+            transparent
+        );
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    filter: blur(100px);
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
+    animation: aurora 14s linear infinite;
+}
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+@keyframes aurora {
 
-<body>
+    0% {
+        transform: translateX(-50%) rotate(0deg) scale(1);
+    }
 
-<!-- Background -->
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-</div>
+    50% {
+        transform: translateX(-50%) rotate(180deg) scale(1.2);
+    }
 
+    100% {
+        transform: translateX(-50%) rotate(360deg) scale(1);
+    }
+}
 
-<!-- ================= NAVBAR ================= -->
+/* ORBS */
 
-<header class="navbar">
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .25;
 
-    <a href="#home" class="logo">
-        <span class="logo-icon">◆</span>
-        DASAN'S  <span>GATE</span>
-    </a>
+    animation:
+        orbMove 12s ease-in-out infinite alternate;
+}
 
-    <nav id="navMenu">
-        <a href="#home">Home</a>
-        <a href="#syllabus">Syllabus</a>
-        <a href="#books">Books</a>
-        <a href="#roadmap">Study Plan</a>
-        <a href="#weightage">Weightage</a>
-    </nav>
+.orb1 {
+    width: 500px;
+    height: 500px;
 
-    <button class="menu-btn" id="menuBtn">☰</button>
+    background: #2563eb;
 
-</header>
+    top: 5%;
+    right: -100px;
+}
 
+.orb2 {
+    width: 430px;
+    height: 430px;
 
-<!-- ================= HERO ================= -->
+    background: #7c3aed;
 
-<section class="hero" id="home">
+    top: 45%;
+    left: -180px;
 
-    <div class="hero-content reveal">
+    animation-delay: -4s;
+}
 
-        <p class="small-title">
-            GRADUATE APTITUDE TEST IN ENGINEERING
-        </p>
+.orb3 {
+    width: 400px;
+    height: 400px;
 
-        <h1>
-            GATE <span>2027</span>
-        </h1>
+    background: #0891b2;
 
-        <h3>
-            PLAN • STUDY • PRACTICE • SUCCEED
-        </h3>
+    bottom: -100px;
+    right: 15%;
 
-        <p class="hero-description">
-            A complete preparation dashboard for GATE Computer Science.
-            Explore the syllabus, important subjects, recommended books
-            and a structured four-month preparation roadmap.
-        </p>
+    animation-delay: -7s;
+}
 
-        <div class="hero-buttons">
+@keyframes orbMove {
 
-            <a href="#syllabus" class="primary-btn">
-                Explore Syllabus →
-            </a>
+    from {
+        transform: translate3d(-40px,-20px,0) scale(.9);
+    }
 
-            <a href="#books" class="secondary-btn">
-                View Books
-            </a>
+    to {
+        transform: translate3d(80px,70px,0) scale(1.2);
+    }
+}
 
-        </div>
+/* =========================================================
+   SCROLL BAR
+   ========================================================= */
 
+::-webkit-scrollbar {
+    width: 8px;
+}
 
-        <div class="stats">
+::-webkit-scrollbar-track {
+    background: #02050c;
+}
 
-            <div>
-                <strong>10+</strong>
-                <span>Core Subjects</span>
-            </div>
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            var(--cyan),
+            var(--blue),
+            var(--violet)
+        );
 
-            <div>
-                <strong>4</strong>
-                <span>Study Months</span>
-            </div>
+    border-radius: 20px;
+}
 
-            <div>
-                <strong>17+</strong>
-                <span>Years PYQs</span>
-            </div>
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
-        </div>
+.navbar {
 
-    </div>
+    width: calc(100% - 40px);
 
+    height: 76px;
 
-    <!-- Floating 3D books -->
+    position: fixed;
 
-    <div class="hero-books reveal">
+    top: 15px;
+    left: 20px;
 
-        <div class="floating-book book-a">
-            <div class="book-cover green">
-                <small>GATE 2027</small>
-                <h3>THEORY OF<br>COMPUTATION</h3>
-                <p>Automata • CFG • PDA</p>
-            </div>
-        </div>
+    z-index: 1000;
 
-        <div class="floating-book main-book">
-            <div class="book-cover gate">
-                <small>GATE CSE</small>
-                <h2>17 YEARS'</h2>
-                <h3>SOLVED PAPERS</h3>
-                <div class="brain">◉</div>
-                <p>2010 — 2026</p>
-            </div>
-        </div>
+    padding: 0 5%;
 
-        <div class="floating-book book-b">
-            <div class="book-cover red">
-                <small>GATE CSE</small>
-                <h3>OPERATING<br>SYSTEMS</h3>
-                <p>Processes • Memory</p>
-            </div>
-        </div>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        <div class="platform"></div>
+    border: 1px solid rgba(255,255,255,.07);
 
-    </div>
+    border-radius: 20px;
 
-</section>
+    background:
+        linear-gradient(
+            135deg,
+            rgba(5,12,25,.82),
+            rgba(6,11,21,.60)
+        );
 
+    backdrop-filter: blur(22px);
 
-<!-- ================= SYLLABUS ================= -->
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.28);
 
-<section class="section" id="syllabus">
+    transition: .4s ease;
+}
 
-    <div class="section-heading reveal">
+.navbar.scrolled {
 
-        <p>EXPLORE</p>
+    top: 8px;
 
-        <h2>
-            GATE CSE <span>Syllabus</span>
-        </h2>
+    background:
+        rgba(3,8,18,.94);
 
-        <p class="section-description">
-            Study subject-wise instead of jumping randomly between topics.
-        </p>
+    box-shadow:
+        0 15px 60px rgba(0,0,0,.5),
+        0 0 30px rgba(59,130,246,.08);
+}
 
-    </div>
+.logo {
 
+    font-size: 23px;
 
-    <div class="syllabus-grid">
+    font-weight: 900;
 
+    text-decoration: none;
 
-        <article class="subject-card reveal">
+    color: white;
 
-            <div class="subject-number">01</div>
+    letter-spacing: -1px;
+}
 
-            <h3>Engineering Mathematics</h3>
+.logo span {
 
-            <ul>
-                <li>Linear Algebra</li>
-                <li>Calculus</li>
-                <li>Probability</li>
-                <li>Statistics</li>
-            </ul>
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--violet)
+        );
 
-        </article>
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
+.logo-icon {
 
-        <article class="subject-card reveal">
+    color: var(--cyan);
 
-            <div class="subject-number">02</div>
+    margin-right: 5px;
 
-            <h3>Data Structures</h3>
+    filter:
+        drop-shadow(0 0 8px var(--cyan));
+}
 
-            <ul>
-                <li>Arrays</li>
-                <li>Linked Lists</li>
-                <li>Stacks & Queues</li>
-                <li>Trees</li>
-                <li>Graphs</li>
-                <li>Heaps</li>
-            </ul>
+nav {
 
-        </article>
+    display: flex;
 
+    align-items: center;
 
-        <article class="subject-card reveal">
+    gap: 32px;
+}
 
-            <div class="subject-number">03</div>
+nav a {
 
-            <h3>Algorithms</h3>
+    color: #a9b6c8;
 
-            <ul>
-                <li>Sorting</li>
-                <li>Searching</li>
-                <li>Divide & Conquer</li>
-                <li>Dynamic Programming</li>
-                <li>Greedy Algorithms</li>
-                <li>Graph Algorithms</li>
-            </ul>
+    font-size: 13px;
 
-        </article>
+    font-weight: 600;
 
+    text-decoration: none;
 
-        <article class="subject-card reveal">
+    position: relative;
 
-            <div class="subject-number">04</div>
+    transition: .3s;
+}
 
-            <h3>Operating Systems</h3>
+nav a::after {
 
-            <ul>
-                <li>Processes</li>
-                <li>CPU Scheduling</li>
-                <li>Deadlocks</li>
-                <li>Memory Management</li>
-                <li>Virtual Memory</li>
-                <li>File Systems</li>
-            </ul>
+    content: "";
 
-        </article>
+    position: absolute;
 
+    width: 0;
+    height: 2px;
 
-        <article class="subject-card reveal">
+    left: 50%;
+    bottom: -10px;
 
-            <div class="subject-number">05</div>
+    transform: translateX(-50%);
 
-            <h3>Computer Networks</h3>
+    border-radius: 10px;
 
-            <ul>
-                <li>TCP/IP Model</li>
-                <li>Transport Layer</li>
-                <li>Network Layer</li>
-                <li>Routing Protocols</li>
-                <li>Congestion Control</li>
-            </ul>
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--violet)
+        );
 
-        </article>
+    box-shadow:
+        0 0 10px var(--cyan);
 
+    transition: .3s;
+}
 
-        <article class="subject-card reveal">
+nav a:hover {
 
-            <div class="subject-number">06</div>
+    color: white;
+}
 
-            <h3>DBMS</h3>
+nav a:hover::after {
 
-            <ul>
-                <li>SQL</li>
-                <li>ER Model</li>
-                <li>Normalization</li>
-                <li>Transactions</li>
-                <li>Relational Model</li>
-            </ul>
+    width: 100%;
+}
 
-        </article>
+.menu-btn {
 
+    display: none;
 
-        <article class="subject-card reveal">
+    background: transparent;
 
-            <div class="subject-number">07</div>
+    color: white;
 
-            <h3>Computer Organisation</h3>
+    border: 0;
 
-            <ul>
-                <li>Cache Memory</li>
-                <li>Pipeline Hazards</li>
-                <li>Instruction Formats</li>
-                <li>Memory Hierarchy</li>
-            </ul>
+    font-size: 25px;
 
-        </article>
+    cursor: pointer;
+}
 
+/* =========================================================
+   HERO
+   ========================================================= */
 
-        <article class="subject-card reveal">
+.hero {
 
-            <div class="subject-number">08</div>
+    min-height: 100vh;
 
-            <h3>Theory of Computation</h3>
+    display: grid;
 
-            <ul>
-                <li>Finite Automata</li>
-                <li>CFGs</li>
-                <li>Pushdown Automata</li>
-                <li>Regular Languages</li>
-            </ul>
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(500px,1fr);
 
-        </article>
+    align-items: center;
 
+    gap: 30px;
 
-        <article class="subject-card reveal">
+    padding:
+        150px 7%
+        80px;
 
-            <div class="subject-number">09</div>
+    position: relative;
+}
 
-            <h3>Compiler Design</h3>
+.hero::after {
 
-            <ul>
-                <li>Lexical Analysis</li>
-                <li>Parsing Techniques</li>
-                <li>Syntax Directed Translation</li>
-            </ul>
+    content: "";
 
-        </article>
+    position: absolute;
 
-    </div>
+    left: 50%;
 
-</section>
+    bottom: 0;
 
+    width: 80%;
+    height: 1px;
 
-<!-- ================= BOOKS ================= -->
+    transform: translateX(-50%);
 
-<section class="section books-section" id="books">
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(34,211,238,.4),
+            rgba(139,92,246,.4),
+            transparent
+        );
+}
 
-    <div class="section-heading reveal">
+.small-title {
 
-        <p>RECOMMENDED RESOURCES</p>
+    color: #6ddcf4;
 
-        <h2>
-            Books That <span>Actually Work</span>
-        </h2>
+    letter-spacing: 5px;
 
-        <p class="section-description">
-            Move your mouse over the books to experience the 3D effect.
-        </p>
+    font-size: 11px;
 
-    </div>
+    margin-bottom: 22px;
 
+    font-weight: 700;
+}
 
-    <div class="books-grid">
+.hero h1 {
 
+    font-size:
+        clamp(70px,8vw,125px);
 
-        <div class="book3d reveal">
+    line-height: .86;
 
-            <div class="book-face book-green">
-                <span>THEORY OF COMPUTATION</span>
+    letter-spacing: -7px;
 
-                <h3>
-                    Introduction to<br>
-                    Automata Theory
-                </h3>
+    font-weight: 900;
 
-                <div class="book-symbol">Σ</div>
+    filter:
+        drop-shadow(0 15px 30px rgba(0,0,0,.4));
+}
 
-                <p>Hopcroft • Motwani • Ullman</p>
-            </div>
+.hero h1 span {
 
-        </div>
+    background:
+        linear-gradient(
+            100deg,
+            #4fdfff,
+            #5b8cff,
+            #a855f7,
+            #f472b6,
+            #fbbf24
+        );
 
+    background-size: 300%;
 
-        <div class="book3d reveal">
+    -webkit-background-clip: text;
 
-            <div class="book-face book-black">
+    color: transparent;
 
-                <span>DATABASE SYSTEMS</span>
+    animation:
+        gradientText 6s linear infinite;
+}
 
-                <h3>
-                    Database<br>
-                    Management<br>
-                    Systems
-                </h3>
+@keyframes gradientText {
 
-                <div class="book-symbol">DB</div>
+    0% {
+        background-position: 0%;
+    }
 
-                <p>Ramakrishnan • Gehrke</p>
+    100% {
+        background-position: 300%;
+    }
+}
 
-            </div>
+.hero h3 {
 
-        </div>
+    margin-top: 30px;
 
+    color: #d8e4f2;
 
-        <div class="book3d reveal">
+    font-size: 14px;
 
-            <div class="book-face book-purple">
+    letter-spacing: 6px;
 
-                <span>COMPUTER NETWORKS</span>
+    font-weight: 600;
+}
 
-                <h3>
-                    TCP/IP<br>
-                    Protocol Suite
-                </h3>
+.hero-description {
 
-                <div class="book-symbol">◎</div>
+    max-width: 600px;
 
-                <p>Behrouz A. Forouzan</p>
+    margin-top: 25px;
 
-            </div>
+    color: #8fa1b8;
 
-        </div>
+    font-size: 16px;
 
+    line-height: 1.8;
+}
 
-        <div class="book3d reveal">
+/* BUTTONS */
 
-            <div class="book-face book-red">
+.hero-buttons {
 
-                <span>OPERATING SYSTEMS</span>
+    display: flex;
 
-                <h3>
-                    Operating<br>
-                    System Concepts
-                </h3>
+    flex-wrap: wrap;
 
-                <div class="book-symbol">OS</div>
+    gap: 16px;
 
-                <p>Silberschatz • Galvin</p>
+    margin-top: 36px;
+}
 
-            </div>
+.primary-btn,
+.secondary-btn {
 
-        </div>
+    min-width: 165px;
 
+    padding: 16px 27px;
 
-        <div class="book3d reveal">
+    border-radius: 14px;
 
-            <div class="book-face book-orange">
+    text-align: center;
 
-                <span>ENGINEERING MATHEMATICS</span>
+    text-decoration: none;
 
-                <h3>
-                    Advanced<br>
-                    Engineering<br>
-                    Mathematics
-                </h3>
+    color: white;
 
-                <div class="book-symbol">π</div>
+    font-size: 14px;
 
-                <p>Erwin Kreyszig</p>
+    font-weight: 700;
 
-            </div>
+    position: relative;
 
-        </div>
+    overflow: hidden;
 
+    transition:
+        transform .3s,
+        box-shadow .3s;
+}
 
-        <div class="book3d reveal">
+.primary-btn {
 
-            <div class="book-face book-white">
+    background:
+        linear-gradient(
+            100deg,
+            #0891b2,
+            #2563eb,
+            #7c3aed
+        );
 
-                <span>DATA STRUCTURES</span>
+    box-shadow:
+        0 12px 35px rgba(37,99,235,.35);
+}
 
-                <h3>
-                    Data Structures<br>
-                    & Algorithms
-                </h3>
+.primary-btn::before {
 
-                <div class="book-symbol">⌘</div>
+    content: "";
 
-                <p>Narasimha Karumanchi</p>
+    position: absolute;
 
-            </div>
+    width: 60px;
+    height: 200%;
 
-        </div>
+    top: -50%;
+    left: -100px;
 
+    transform: rotate(25deg);
 
-        <div class="book3d reveal">
+    background:
+        rgba(255,255,255,.25);
 
-            <div class="book-face book-blue">
+    filter: blur(10px);
 
-                <span>DISCRETE MATHEMATICS</span>
+    transition: .7s;
+}
 
-                <h3>
-                    Discrete Mathematics<br>
-                    and Its Applications
-                </h3>
+.primary-btn:hover::before {
 
-                <div class="book-symbol">∞</div>
+    left: 130%;
+}
 
-                <p>Kenneth Rosen</p>
+.secondary-btn {
 
-            </div>
+    border:
+        1px solid rgba(96,165,250,.5);
 
-        </div>
+    background:
+        rgba(12,25,45,.5);
+}
 
+.primary-btn:hover,
+.secondary-btn:hover {
 
-        <div class="book3d reveal">
+    transform:
+        translateY(-5px)
+        scale(1.02);
+}
 
-            <div class="book-face gate-book">
+.primary-btn:hover {
 
-                <span>GATE CSE 2027</span>
+    box-shadow:
+        0 15px 45px rgba(59,130,246,.45),
+        0 0 35px rgba(139,92,246,.2);
+}
 
-                <h3>
-                    Previous Year<br>
-                    Solved Papers
-                </h3>
+.secondary-btn:hover {
 
-                <div class="book-symbol">17+</div>
+    border-color: var(--cyan);
 
-                <p>Topic-wise Practice</p>
+    box-shadow:
+        0 0 30px rgba(34,211,238,.12);
+}
 
-            </div>
+/* STATS */
 
-        </div>
+.stats {
 
-    </div>
+    display: flex;
 
-</section>
+    flex-wrap: wrap;
 
+    gap: 0;
 
-<!-- ================= ROADMAP ================= -->
+    margin-top: 55px;
+}
 
-<section class="section" id="roadmap">
+.stats div {
 
-    <div class="section-heading reveal">
+    min-width: 130px;
 
-        <p>STUDY STRATEGY</p>
+    padding-right: 30px;
+    margin-right: 30px;
 
-        <h2>
-            4 Month <span>Roadmap</span>
-        </h2>
+    border-right:
+        1px solid rgba(255,255,255,.1);
 
-    </div>
+    display: flex;
+    flex-direction: column;
+}
 
+.stats div:last-child {
 
-    <div class="timeline">
+    border-right: none;
+}
 
+.stats strong {
 
-        <div class="month reveal">
+    font-size: 27px;
 
-            <div class="month-number">01</div>
+    background:
+        linear-gradient(
+            90deg,
+            #67e8f9,
+            #60a5fa
+        );
 
-            <div>
+    -webkit-background-clip: text;
 
-                <h3>Month One — Foundation</h3>
+    color: transparent;
+}
 
-                <p>
-                    <strong>Week 1 & 2:</strong>
-                    Engineering Mathematics + General Aptitude
-                </p>
+.stats span {
 
-                <p>
-                    <strong>Week 3 & 4:</strong>
-                    Data Structures
-                </p>
+    color: #74849a;
 
-            </div>
+    font-size: 11px;
 
-        </div>
+    margin-top: 5px;
+}
 
+/* =========================================================
+   HERO 3D BOOKS
+   ========================================================= */
 
-        <div class="month reveal">
+.hero-books {
 
-            <div class="month-number">02</div>
+    height: 620px;
 
-            <div>
+    position: relative;
 
-                <h3>Month Two — Core Subjects</h3>
+    display: flex;
 
-                <p>
-                    <strong>Week 1:</strong>
-                    Algorithms
-                </p>
+    align-items: center;
 
-                <p>
-                    <strong>Week 2:</strong>
-                    Operating Systems
-                </p>
+    justify-content: center;
 
-                <p>
-                    <strong>Week 3:</strong>
-                    Computer Networks
-                </p>
+    perspective: 1600px;
 
-                <p>
-                    <strong>Week 4:</strong>
-                    DBMS
-                </p>
+    transform-style: preserve-3d;
 
-            </div>
+    transition:
+        transform .2s ease-out;
+}
 
-        </div>
+.floating-book {
 
+    width: 190px;
+    height: 290px;
 
-        <div class="month reveal">
+    position: absolute;
 
-            <div class="month-number">03</div>
+    transform-style: preserve-3d;
 
-            <div>
+    animation:
+        bookFloat 5s ease-in-out infinite;
 
-                <h3>Month Three — Advanced Core</h3>
+    filter:
+        drop-shadow(0 30px 30px rgba(0,0,0,.6));
+}
 
-                <p>
-                    <strong>Week 1:</strong>
-                    Computer Organisation
-                </p>
+.main-book {
 
-                <p>
-                    <strong>Week 2 & 3:</strong>
-                    Theory of Computation + Compiler Design
-                </p>
+    width: 250px;
+    height: 365px;
 
-                <p>
-                    <strong>Week 4:</strong>
-                    Mock Test
-                </p>
+    z-index: 5;
 
-            </div>
+    animation:
+        mainBookFloat 5s ease-in-out infinite;
+}
 
-        </div>
+.book-a {
 
+    left: 7%;
 
-        <div class="month reveal">
+    transform:
+        rotateY(25deg)
+        rotateZ(-5deg);
 
-            <div class="month-number">04</div>
+    animation-delay: -.8s;
+}
 
-            <div>
+.book-b {
 
-                <h3>Month Four — Revision</h3>
+    right: 6%;
 
-                <p>
-                    Revision • PYQs • Mock Tests • Weak Topic Analysis
-                </p>
+    transform:
+        rotateY(-25deg)
+        rotateZ(5deg);
 
-            </div>
+    animation-delay: -2s;
+}
 
-        </div>
+.book-cover {
 
-    </div>
+    width: 100%;
+    height: 100%;
 
-</section>
+    padding: 25px;
 
+    position: relative;
 
-<!-- ================= WEIGHTAGE ================= -->
+    overflow: hidden;
 
-<section class="section" id="weightage">
+    display: flex;
 
-    <div class="section-heading reveal">
+    flex-direction: column;
 
-        <p>PRIORITY</p>
+    align-items: center;
 
-        <h2>
-            Subject <span>Weightage</span>
-        </h2>
+    justify-content: center;
 
-    </div>
+    text-align: center;
 
+    border-radius:
+        5px 16px 16px 5px;
 
-    <div class="weightage-grid">
+    border:
+        1px solid rgba(255,255,255,.22);
 
+    box-shadow:
+        -18px 20px 45px rgba(0,0,0,.7),
+        inset -13px 0 22px rgba(0,0,0,.35);
 
-        <div class="weight-card reveal">
+    transform-style: preserve-3d;
+}
 
-            <span>TIER 1</span>
+.book-cover::after {
 
-            <h3>Algorithms & Data Structures</h3>
+    content: "";
 
-            <strong>13–15 Marks</strong>
+    position: absolute;
 
-            <div class="progress">
-                <div style="width:95%"></div>
-            </div>
+    inset: 0;
 
-        </div>
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,.14),
+            transparent 55%
+        );
 
+    transform:
+        translateX(-120%);
 
-        <div class="weight-card reveal">
+    animation:
+        bookShine 5s infinite;
+}
 
-            <span>TIER 1</span>
+@keyframes bookShine {
 
-            <h3>Engineering Mathematics</h3>
+    0%,55% {
+        transform:
+            translateX(-120%);
+    }
 
-            <strong>~13 Marks</strong>
+    75%,100% {
+        transform:
+            translateX(120%);
+    }
+}
 
-            <div class="progress">
-                <div style="width:88%"></div>
-            </div>
+.green {
 
-        </div>
+    background:
+        linear-gradient(
+            145deg,
+            #075985,
+            #064e3b 60%,
+            #021713
+        );
+}
 
+.red {
 
-        <div class="weight-card reveal">
+    background:
+        linear-gradient(
+            145deg,
+            #ef4444,
+            #7f1d1d 45%,
+            #210606
+        );
+}
 
-            <span>TIER 1</span>
+.gate {
 
-            <h3>Operating Systems</h3>
+    background:
+        radial-gradient(
+            circle at center,
+            #0c5862,
+            #04191e 60%
+        );
 
-            <strong>8–10 Marks</strong>
+    border-top:
+        6px solid var(--orange);
+}
 
-            <div class="progress">
-                <div style="width:75%"></div>
-            </div>
+.book-cover h2 {
 
-        </div>
+    color: #ffd166;
 
+    font-size: 28px;
 
-        <div class="weight-card reveal">
+    margin: 15px 0;
+}
 
-            <span>TIER 2</span>
+.book-cover h3 {
 
-            <h3>Computer Networks</h3>
+    font-size: 20px;
 
-            <strong>7–8 Marks</strong>
+    letter-spacing: 0;
+}
 
-            <div class="progress">
-                <div style="width:65%"></div>
-            </div>
+.book-cover p,
+.book-cover small {
 
-        </div>
+    font-size: 10px;
 
+    color: #c6d6dc;
+}
 
-        <div class="weight-card reveal">
+.brain {
 
-            <span>TIER 2</span>
+    width: 90px;
+    height: 90px;
 
-            <h3>DBMS</h3>
+    margin: 25px auto;
 
-            <strong>7–8 Marks</strong>
+    display: grid;
 
-            <div class="progress">
-                <div style="width:65%"></div>
-            </div>
+    place-items: center;
 
-        </div>
+    border-radius: 50%;
 
+    font-size: 52px;
 
-        <div class="weight-card reveal">
+    color: #5eead4;
 
-            <span>TIER 2</span>
+    background:
+        radial-gradient(
+            circle,
+            rgba(45,212,191,.2),
+            transparent 65%
+        );
 
-            <h3>Computer Organisation</h3>
+    box-shadow:
+        0 0 35px rgba(34,211,238,.5);
 
-            <strong>7–8 Marks</strong>
+    animation:
+        brainPulse 2s ease-in-out infinite;
+}
 
-            <div class="progress">
-                <div style="width:65%"></div>
-            </div>
+@keyframes brainPulse {
 
-        </div>
+    50% {
 
+        transform: scale(1.08);
 
-        <div class="weight-card reveal">
+        box-shadow:
+            0 0 60px rgba(34,211,238,.7);
+    }
+}
 
-            <span>TIER 3</span>
+/* platform */
 
-            <h3>Theory of Computation</h3>
+.platform {
 
-            <strong>5–7 Marks</strong>
+    position: absolute;
 
-            <div class="progress">
-                <div style="width:55%"></div>
-            </div>
+    bottom: 65px;
 
-        </div>
+    width: 88%;
+    height: 50px;
 
+    border-radius: 50%;
 
-        <div class="weight-card reveal">
+    transform:
+        rotateX(72deg);
 
-            <span>TIER 3</span>
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(31,41,55,.9),
+            #02040a
+        );
 
-            <h3>Compiler Design</h3>
+    border:
+        2px solid #4f8cff;
 
-            <strong>4–6 Marks</strong>
+    box-shadow:
+        0 0 15px #38bdf8,
+        0 0 35px #3b82f6,
+        0 0 70px rgba(139,92,246,.7),
+        inset 0 0 30px #2563eb;
 
-            <div class="progress">
-                <div style="width:48%"></div>
-            </div>
+    animation:
+        platformPulse 3s infinite alternate;
+}
 
-        </div>
+@keyframes platformPulse {
 
-    </div>
+    from {
+        box-shadow:
+            0 0 15px #38bdf8,
+            0 0 35px #3b82f6,
+            0 0 60px #7c3aed;
+    }
 
-</section>
+    to {
+        box-shadow:
+            0 0 25px #22d3ee,
+            0 0 60px #3b82f6,
+            0 0 100px #8b5cf6;
+    }
+}
 
+@keyframes bookFloat {
 
-<!-- ================= QUOTE ================= -->
+    0%,100% {
+        margin-top: 0;
+    }
 
-<section class="quote-section reveal">
+    50% {
+        margin-top: -30px;
+    }
+}
 
-    <p>“</p>
+@keyframes mainBookFloat {
 
-    <h2>
-        Discipline today builds the
-        <span>engineer of tomorrow.</span>
-    </h2>
+    0%,100% {
 
-</section>
+        transform:
+            translateY(0)
+            rotateY(-3deg);
+    }
 
+    50% {
 
-<!-- ================= FOOTER ================= -->
+        transform:
+            translateY(-30px)
+            rotateY(3deg);
+    }
+}
 
-<footer>
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
 
-    <div class="logo">
-        GATE<span>HUB</span>
-    </div>
+.section {
 
-    <p>
-        GATE CSE 2027 Preparation Dashboard
-    </p>
+    padding:
+        110px 7%;
 
-    <p>
-        Learn • Practice • Revise • Succeed
-    </p>
+    position: relative;
+}
 
-</footer>
+.section-heading {
 
+    margin-bottom: 55px;
+}
 
-<script src="script.js"></script>
+.section-heading > p:first-child {
 
-</body>
-</html>
+    color: #60a5fa;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+}
+
+.section-heading h2 {
+
+    margin: 10px 0;
+
+    font-size:
+        clamp(38px,5vw,67px);
+
+    letter-spacing: -3px;
+}
+
+.section-heading h2 span {
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--violet)
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.section-description {
+
+    max-width: 700px;
+
+    color: #8191a8;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   SYLLABUS
+   ========================================================= */
+
+.syllabus-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+
+    perspective: 1000px;
+}
+
+.subject-card {
+
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+
+    min-height: 275px;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,29,51,.82),
+            rgba(5,11,22,.88)
+        );
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        border-color .35s,
+        box-shadow .35s,
+        transform .15s;
+}
+
+.subject-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            280px circle
+            at var(--mouse-x)
+            var(--mouse-y),
+
+            rgba(56,189,248,.16),
+
+            transparent 50%
+        );
+
+    opacity: 0;
+
+    transition: .3s;
+}
+
+.subject-card:hover::before {
+
+    opacity: 1;
+}
+
+.subject-card:hover {
+
+    border-color:
+        rgba(56,189,248,.5);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45),
+        0 0 35px rgba(37,99,235,.08);
+}
+
+.subject-number {
+
+    display: inline-flex;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    color: #67e8f9;
+
+    background:
+        rgba(34,211,238,.08);
+
+    border:
+        1px solid rgba(34,211,238,.15);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.subject-card h3 {
+
+    margin: 18px 0;
+
+    font-size: 21px;
+}
+
+.subject-card ul {
+
+    list-style: none;
+}
+
+.subject-card li {
+
+    margin: 10px 0;
+
+    color: #8292a8;
+
+    font-size: 14px;
+}
+
+.subject-card li::before {
+
+    content: "◆";
+
+    margin-right: 10px;
+
+    color: #38bdf8;
+
+    font-size: 7px;
+
+    vertical-align: middle;
+}
+
+/* =========================================================
+   BOOKS SECTION
+   ========================================================= */
+
+.books-section {
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,8,17,.2),
+            rgba(8,16,31,.65),
+            rgba(3,8,17,.2)
+        );
+}
+
+.books-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        70px 45px;
+
+    perspective: 1600px;
+}
+
+.book3d {
+
+    height: 410px;
+
+    perspective: 1200px;
+
+    transform-style: preserve-3d;
+}
+
+.book-face {
+
+    width: 100%;
+    height: 100%;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    text-align: center;
+
+    border-radius:
+        5px 18px 18px 5px;
+
+    border:
+        1px solid rgba(255,255,255,.2);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .15s ease-out,
+        box-shadow .3s;
+
+    box-shadow:
+        -18px 20px 35px rgba(0,0,0,.65),
+        inset -14px 0 22px rgba(0,0,0,.25);
+}
+
+/* page edge */
+
+.book-face::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 5px;
+    right: -15px;
+
+    width: 16px;
+    height: 97%;
+
+    transform:
+        rotateY(82deg);
+
+    transform-origin: left;
+
+    border-radius:
+        0 5px 5px 0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #fafafa,
+            #fafafa 2px,
+            #c8c8c8 3px
+        );
+}
+
+.book-face::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(255,255,255,.16) 45%,
+            transparent 60%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform .7s;
+}
+
+.book3d:hover .book-face::before {
+
+    transform:
+        translateX(120%);
+}
+
+.book3d:hover .book-face {
+
+    box-shadow:
+        -30px 35px 65px rgba(0,0,0,.8),
+        0 0 45px rgba(59,130,246,.18);
+}
+
+.book-face span {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    opacity: .75;
+
+    transform:
+        translateZ(25px);
+}
+
+.book-face h3 {
+
+    font-size: 24px;
+
+    transform:
+        translateZ(40px);
+}
+
+.book-face p {
+
+    font-size: 11px;
+
+    opacity: .8;
+
+    transform:
+        translateZ(25px);
+}
+
+.book-symbol {
+
+    font-size: 55px;
+
+    font-weight: 900;
+
+    transform:
+        translateZ(55px);
+
+    filter:
+        drop-shadow(0 0 15px rgba(255,255,255,.15));
+}
+
+/* BOOK COLOURS */
+
+.book-green {
+
+    background:
+        linear-gradient(
+            145deg,
+            #047857,
+            #064e3b 45%,
+            #022c22
+        );
+}
+
+.book-black {
+
+    background:
+        linear-gradient(
+            145deg,
+            #374151,
+            #111827 45%,
+            #030712
+        );
+}
+
+.book-purple {
+
+    background:
+        linear-gradient(
+            145deg,
+            #7c3aed,
+            #4c1d95 50%,
+            #16052e
+        );
+}
+
+.book-red {
+
+    background:
+        linear-gradient(
+            145deg,
+            #ef4444,
+            #991b1b 50%,
+            #350606
+        );
+}
+
+.book-orange {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fb923c,
+            #ea580c 50%,
+            #7c2d12
+        );
+}
+
+.book-white {
+
+    color: #111827;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #e2e8f0 55%,
+            #94a3b8
+        );
+}
+
+.book-blue {
+
+    background:
+        linear-gradient(
+            145deg,
+            #3b82f6,
+            #1e40af 50%,
+            #081c4c
+        );
+}
+
+.gate-book {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #0f5964,
+            #05252b 55%,
+            #021418
+        );
+
+    border-top:
+        6px solid #fb923c;
+}
+
+/* =========================================================
+   ROADMAP
+   ========================================================= */
+
+.timeline {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+.timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 52px;
+
+    top: 20px;
+    bottom: 20px;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            var(--cyan),
+            var(--blue),
+            var(--violet),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 15px rgba(59,130,246,.5);
+}
+
+.month {
+
+    display: flex;
+
+    gap: 40px;
+
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12,25,45,.8),
+            rgba(4,10,20,.8)
+        );
+
+    backdrop-filter: blur(12px);
+
+    transition: .35s;
+}
+
+.month::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    top: -150px;
+    right: -150px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(59,130,246,.15);
+
+    filter: blur(50px);
+
+    transition: .4s;
+}
+
+.month:hover {
+
+    transform:
+        translateX(10px);
+
+    border-color:
+        rgba(56,189,248,.4);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.3);
+}
+
+.month:hover::after {
+
+    right: -50px;
+}
+
+.month-number {
+
+    min-width: 47px;
+    height: 47px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    z-index: 2;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0891b2,
+            #2563eb,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 0 25px rgba(59,130,246,.35);
+}
+
+.month h3 {
+
+    margin-bottom: 15px;
+
+    font-size: 23px;
+}
+
+.month p {
+
+    margin: 9px 0;
+
+    color: #8293aa;
+
+    line-height: 1.6;
+}
+
+.month strong {
+
+    color: #67e8f9;
+}
+
+/* =========================================================
+   WEIGHTAGE
+   ========================================================= */
+
+.weightage-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 20px;
+}
+
+.weight-card {
+
+    padding: 27px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14,27,47,.8),
+            rgba(5,11,21,.85)
+        );
+
+    transition: .35s;
+}
+
+.weight-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(96,165,250,.4);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
+}
+
+.weight-card span {
+
+    display: inline-block;
+
+    color: #c084fc;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.weight-card h3 {
+
+    margin: 13px 0;
+
+    font-size: 19px;
+}
+
+.weight-card strong {
+
+    color: #67e8f9;
+}
+
+.progress {
+
+    height: 7px;
+
+    margin-top: 22px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #111c2d;
+}
+
+.progress div {
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--violet),
+            var(--pink)
+        );
+
+    background-size: 300%;
+
+    box-shadow:
+        0 0 15px rgba(59,130,246,.5);
+
+    animation:
+        progressAnimation 2s ease,
+        progressGlow 4s linear infinite;
+}
+
+@keyframes progressAnimation {
+
+    from {
+        width: 0;
+    }
+}
+
+@keyframes progressGlow {
+
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: 300%;
+    }
+}
+
+/* =========================================================
+   QUOTE
+   ========================================================= */
+
+.quote-section {
+
+    min-height: 420px;
+
+    padding: 80px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.quote-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(59,130,246,.13);
+
+    filter: blur(90px);
+}
+
+.quote-section > p {
+
+    height: 75px;
+
+    z-index: 2;
+
+    font-size: 90px;
+
+    color: #a855f7;
+}
+
+.quote-section h2 {
+
+    max-width: 850px;
+
+    z-index: 2;
+
+    font-size:
+        clamp(28px,4vw,48px);
+
+    line-height: 1.25;
+
+    letter-spacing: -2px;
+}
+
+.quote-section span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #67e8f9,
+            #60a5fa,
+            #c084fc
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    padding:
+        55px 7%;
+
+    text-align: center;
+
+    color: #63738a;
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
+
+    background:
+        rgba(1,4,10,.7);
+}
+
+footer .logo {
+
+    margin-bottom: 15px;
+
+    color: white;
+}
+
+footer p {
+
+    margin: 6px;
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(55px)
+        scale(.97);
+
+    filter: blur(5px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1),
+        filter .8s ease;
+}
+
+.reveal.active {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    filter: blur(0);
+}
+
+/* =========================================================
+   CURSOR LIGHT
+   ========================================================= */
+
+.cursor-light {
+
+    width: 400px;
+    height: 400px;
+
+    position: fixed;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59,130,246,.08),
+            transparent 65%
+        );
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:1100px) {
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+        padding-top: 150px;
+    }
+
+    .hero-content {
+
+        text-align: center;
+    }
+
+    .hero-description {
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons,
+    .stats {
+
+        justify-content: center;
+    }
+
+    .hero-books {
+
+        height: 550px;
+
+        max-width: 750px;
+
+        width: 100%;
+
+        margin: auto;
+    }
+
+    .syllabus-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .books-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:750px) {
+
+    .navbar {
+
+        width:
+            calc(100% - 20px);
+
+        left: 10px;
+
+        padding:
+            0 20px;
+    }
+
+    nav {
+
+        position: absolute;
+
+        top: 85px;
+
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        border-radius: 18px;
+
+        border:
+            1px solid rgba(255,255,255,.08);
+
+        background:
+            rgba(3,9,19,.97);
+
+        backdrop-filter:
+            blur(20px);
+    }
+
+    nav.show {
+
+        display: flex;
+    }
+
+    .menu-btn {
+
+        display: block;
+    }
+
+    .hero {
+
+        padding:
+            140px 5%
+            60px;
+    }
+
+    .hero h1 {
+
+        font-size: 61px;
+
+        letter-spacing: -4px;
+    }
+
+    .hero h3 {
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    .stats div {
+
+        min-width: 90px;
+
+        margin-right: 12px;
+
+        padding-right: 12px;
+    }
+
+    .hero-books {
+
+        height: 430px;
+
+        transform:
+            scale(.78);
+    }
+
+    .main-book {
+
+        width: 220px;
+        height: 330px;
+    }
+
+    .floating-book {
+
+        width: 160px;
+        height: 250px;
+    }
+
+    .section {
+
+        padding:
+            80px 5%;
+    }
+
+    .section-heading h2 {
+
+        letter-spacing: -2px;
+    }
+
+    .syllabus-grid,
+    .books-grid,
+    .weightage-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .book3d {
+
+        width: 100%;
+
+        max-width: 290px;
+
+        margin: auto;
+    }
+
+    .month {
+
+        gap: 20px;
+
+        padding: 23px;
+    }
+
+    .timeline::before {
+
+        left: 46px;
+    }
+}
+
+@media(max-width:450px) {
+
+    .hero h1 {
+
+        font-size: 52px;
+    }
+
+    .hero-buttons {
+
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+
+        width: 100%;
+    }
+
+    .hero-books {
+
+        margin-top: -40px;
+
+        margin-bottom: -50px;
+
+        transform:
+            scale(.65);
+    }
+
+    .stats {
+
+        gap: 15px;
+    }
+
+    .stats div {
+
+        border: none;
+
+        padding: 0;
+        margin: 0;
+    }
+}
+/* =========================================================
+   ENGINEERING MATHEMATICS PREMIUM CARD
+   ========================================================= */
+
+.math-card {
+    grid-column: span 2;
+    min-height: 520px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(34, 211, 238, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(11, 30, 52, 0.95),
+            rgba(5, 11, 22, 0.95)
+        );
+
+    border:
+        1px solid rgba(34, 211, 238, 0.22);
+}
+
+
+/* Mathematics label */
+
+.subject-badge {
+    position: absolute;
+
+    top: 28px;
+    right: 28px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #67e8f9;
+
+    background:
+        rgba(34, 211, 238, 0.08);
+
+    border:
+        1px solid rgba(34, 211, 238, 0.18);
+}
+
+
+/* Introduction */
+
+.subject-intro {
+    color: #8093aa;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* Individual mathematics section */
+
+.topic-group {
+    margin-top: 17px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(148, 183, 255, 0.10);
+
+    background:
+        rgba(7, 18, 34, 0.62);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Hover animation */
+
+.topic-group:hover {
+    transform:
+        translateX(8px);
+
+    border-color:
+        rgba(34, 211, 238, 0.35);
+
+    box-shadow:
+        0 10px 35px
+        rgba(34, 211, 238, 0.07);
+}
+
+
+/* Heading */
+
+.topic-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #e8f7ff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+
+/* Topic number */
+
+.topic-title span {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    font-size: 9px;
+
+    color: #67e8f9;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 211, 238, 0.12),
+            rgba(59, 130, 246, 0.12)
+        );
+
+    border:
+        1px solid rgba(34, 211, 238, 0.18);
+}
+
+
+/* Topic list */
+
+.math-card .topic-group ul {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    list-style: none;
+}
+
+
+.math-card .topic-group li {
+    margin: 0;
+
+    padding: 8px 11px;
+
+    border-radius: 8px;
+
+    color: #91a7bf;
+
+    font-size: 11px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.25s ease;
+}
+
+
+/* Remove normal diamond */
+
+.math-card .topic-group li::before {
+    display: none;
+}
+
+
+/* Topic hover */
+
+.math-card .topic-group li:hover {
+    color: white;
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(34, 211, 238, 0.10);
+
+    border-color:
+        rgba(34, 211, 238, 0.25);
+
+    box-shadow:
+        0 5px 18px
+        rgba(34, 211, 238, 0.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    .math-card {
+        grid-column: span 1;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .subject-badge {
+        position: static;
+
+        display: inline-block;
+
+        margin:
+            12px 0 4px;
+    }
+
+    .math-card .topic-group ul {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .math-card .topic-group ul {
+        grid-template-columns: 1fr;
+    }
+
+}
