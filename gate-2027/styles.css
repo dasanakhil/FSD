@@ -2191,3 +2191,253 @@ footer p {
         margin: 0;
     }
 }
+/* =========================================================
+   ENGINEERING MATHEMATICS PREMIUM CARD
+   ========================================================= */
+
+.math-card {
+    grid-column: span 2;
+    min-height: 520px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(34, 211, 238, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(11, 30, 52, 0.95),
+            rgba(5, 11, 22, 0.95)
+        );
+
+    border:
+        1px solid rgba(34, 211, 238, 0.22);
+}
+
+
+/* Mathematics label */
+
+.subject-badge {
+    position: absolute;
+
+    top: 28px;
+    right: 28px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #67e8f9;
+
+    background:
+        rgba(34, 211, 238, 0.08);
+
+    border:
+        1px solid rgba(34, 211, 238, 0.18);
+}
+
+
+/* Introduction */
+
+.subject-intro {
+    color: #8093aa;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* Individual mathematics section */
+
+.topic-group {
+    margin-top: 17px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(148, 183, 255, 0.10);
+
+    background:
+        rgba(7, 18, 34, 0.62);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Hover animation */
+
+.topic-group:hover {
+    transform:
+        translateX(8px);
+
+    border-color:
+        rgba(34, 211, 238, 0.35);
+
+    box-shadow:
+        0 10px 35px
+        rgba(34, 211, 238, 0.07);
+}
+
+
+/* Heading */
+
+.topic-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #e8f7ff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+
+/* Topic number */
+
+.topic-title span {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    font-size: 9px;
+
+    color: #67e8f9;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 211, 238, 0.12),
+            rgba(59, 130, 246, 0.12)
+        );
+
+    border:
+        1px solid rgba(34, 211, 238, 0.18);
+}
+
+
+/* Topic list */
+
+.math-card .topic-group ul {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    list-style: none;
+}
+
+
+.math-card .topic-group li {
+    margin: 0;
+
+    padding: 8px 11px;
+
+    border-radius: 8px;
+
+    color: #91a7bf;
+
+    font-size: 11px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.25s ease;
+}
+
+
+/* Remove normal diamond */
+
+.math-card .topic-group li::before {
+    display: none;
+}
+
+
+/* Topic hover */
+
+.math-card .topic-group li:hover {
+    color: white;
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(34, 211, 238, 0.10);
+
+    border-color:
+        rgba(34, 211, 238, 0.25);
+
+    box-shadow:
+        0 5px 18px
+        rgba(34, 211, 238, 0.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    .math-card {
+        grid-column: span 1;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .subject-badge {
+        position: static;
+
+        display: inline-block;
+
+        margin:
+            12px 0 4px;
+    }
+
+    .math-card .topic-group ul {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .math-card .topic-group ul {
+        grid-template-columns: 1fr;
+    }
+
+}
