@@ -1,61 +1,28 @@
 /* =====================================================
-   GATE 2027 — PREMIUM ANIMATION ENGINE
+   IIT CAMPUS EXPLORER
+   Animation Engine
    ===================================================== */
 
 
-/* =========================
-   MOBILE MENU
-   ========================= */
+/* ================= NAVBAR ================= */
 
-const menuBtn =
-    document.getElementById("menuBtn");
+const navbar =
+    document.getElementById("navbar");
+
+const menuButton =
+    document.getElementById("menuButton");
 
 const navMenu =
     document.getElementById("navMenu");
 
 
-if(menuBtn && navMenu){
-
-    menuBtn.addEventListener("click", () => {
-
-        navMenu.classList.toggle("show");
-
-    });
-
-
-    document
-        .querySelectorAll("nav a")
-        .forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                navMenu.classList.remove("show");
-
-            });
-
-        });
-
-}
-
-
-/* =========================
-   NAVBAR
-   ========================= */
-
-const navbar =
-    document.querySelector(".navbar");
-
-
 window.addEventListener("scroll", () => {
 
-    if(!navbar) return;
-
-
-    if(window.scrollY > 40){
+    if (window.scrollY > 40) {
 
         navbar.classList.add("scrolled");
 
-    }else{
+    } else {
 
         navbar.classList.remove("scrolled");
 
@@ -64,29 +31,73 @@ window.addEventListener("scroll", () => {
 });
 
 
-/* =========================
-   SCROLL REVEAL
-   ========================= */
+menuButton.addEventListener("click", () => {
 
-const revealItems =
+    navMenu.classList.toggle("show");
+
+});
+
+
+document
+    .querySelectorAll("nav a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("show");
+
+        });
+
+    });
+
+
+/* ================= SCROLL PROGRESS ================= */
+
+const scrollProgress =
+    document.getElementById("scrollProgress");
+
+
+window.addEventListener("scroll", () => {
+
+    const scrollTop =
+        window.scrollY;
+
+    const pageHeight =
+        document.documentElement.scrollHeight
+        -
+        window.innerHeight;
+
+    const percentage =
+        (scrollTop / pageHeight) * 100;
+
+    scrollProgress.style.width =
+        percentage + "%";
+
+});
+
+
+/* ================= REVEAL ================= */
+
+const revealElements =
     document.querySelectorAll(".reveal");
 
 
-const revealObserver =
+const observer =
     new IntersectionObserver(
 
         entries => {
 
             entries.forEach(entry => {
 
-                if(entry.isIntersecting){
+                if (entry.isIntersecting) {
 
                     entry.target
                         .classList
                         .add("active");
 
-                    revealObserver
-                        .unobserve(entry.target);
+                    observer.unobserve(
+                        entry.target
+                    );
 
                 }
 
@@ -101,277 +112,28 @@ const revealObserver =
     );
 
 
-revealItems.forEach((item,index) => {
+revealElements.forEach(
+    (element, index) => {
 
-    /*
-       Small stagger creates a much more
-       professional entrance animation.
-    */
+        element.style.transitionDelay =
+            `${(index % 4) * 70}ms`;
 
-    item.style.transitionDelay =
-        `${Math.min(index % 4,3) * 80}ms`;
-
-    revealObserver.observe(item);
-
-});
-
-
-/* =========================
-   3D BOOK TILT
-   ========================= */
-
-const books =
-    document.querySelectorAll(".book3d");
-
-
-books.forEach(book => {
-
-    const face =
-        book.querySelector(".book-face");
-
-
-    if(!face) return;
-
-
-    book.addEventListener(
-        "mousemove",
-        event => {
-
-            if(window.innerWidth < 800)
-                return;
-
-
-            const rect =
-                book.getBoundingClientRect();
-
-
-            const mouseX =
-                event.clientX - rect.left;
-
-            const mouseY =
-                event.clientY - rect.top;
-
-
-            const percentX =
-                mouseX / rect.width;
-
-            const percentY =
-                mouseY / rect.height;
-
-
-            const rotateY =
-                (percentX - 0.5) * 28;
-
-            const rotateX =
-                (0.5 - percentY) * 20;
-
-
-            face.style.transform = `
-
-                rotateX(${rotateX}deg)
-
-                rotateY(${rotateY}deg)
-
-                translateY(-16px)
-
-                scale(1.035)
-
-            `;
-
-        }
-    );
-
-
-    book.addEventListener(
-        "mouseleave",
-        () => {
-
-            face.style.transform = `
-
-                rotateX(0deg)
-
-                rotateY(0deg)
-
-                translateY(0)
-
-                scale(1)
-
-            `;
-
-        }
-    );
-
-});
-
-
-/* =========================
-   SYLLABUS CARD SPOTLIGHT
-   ========================= */
-
-const subjectCards =
-    document.querySelectorAll(
-        ".subject-card"
-    );
-
-
-subjectCards.forEach(card => {
-
-    card.addEventListener(
-        "mousemove",
-        event => {
-
-            if(window.innerWidth < 800)
-                return;
-
-
-            const rect =
-                card.getBoundingClientRect();
-
-
-            const x =
-                event.clientX - rect.left;
-
-            const y =
-                event.clientY - rect.top;
-
-
-            /*
-               Update spotlight position
-            */
-
-            card.style.setProperty(
-                "--mouse-x",
-                `${x}px`
-            );
-
-            card.style.setProperty(
-                "--mouse-y",
-                `${y}px`
-            );
-
-
-            /*
-               3D movement
-            */
-
-            const rotateY =
-                ((x / rect.width) - .5) * 7;
-
-            const rotateX =
-                (.5 - (y / rect.height)) * 7;
-
-
-            card.style.transform = `
-
-                perspective(900px)
-
-                rotateX(${rotateX}deg)
-
-                rotateY(${rotateY}deg)
-
-                translateY(-7px)
-
-            `;
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform = `
-
-                perspective(900px)
-
-                rotateX(0)
-
-                rotateY(0)
-
-                translateY(0)
-
-            `;
-
-        }
-    );
-
-});
-
-
-/* =========================
-   HERO PARALLAX
-   ========================= */
-
-const heroBooks =
-    document.querySelector(
-        ".hero-books"
-    );
-
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        if(
-            !heroBooks ||
-            window.innerWidth < 1000
-        ){
-            return;
-        }
-
-
-        const x =
-            (event.clientX /
-            window.innerWidth - .5);
-
-        const y =
-            (event.clientY /
-            window.innerHeight - .5);
-
-
-        heroBooks.style.transform = `
-
-            perspective(1400px)
-
-            rotateY(${x * 5}deg)
-
-            rotateX(${-y * 4}deg)
-
-            translate3d(
-                ${x * 10}px,
-                ${y * 10}px,
-                0
-            )
-
-        `;
+        observer.observe(element);
 
     }
 );
 
 
-/* =========================
-   CURSOR AMBIENT LIGHT
-   ========================= */
+/* ================= CURSOR GLOW ================= */
 
-const cursorLight =
-    document.createElement("div");
-
-
-cursorLight.className =
-    "cursor-light";
-
-
-document.body.appendChild(
-    cursorLight
-);
-
+const cursorGlow =
+    document.querySelector(".cursor-glow");
 
 let mouseX = 0;
 let mouseY = 0;
 
-let lightX = 0;
-let lightY = 0;
+let glowX = 0;
+let glowY = 0;
 
 
 document.addEventListener(
@@ -388,49 +150,477 @@ document.addEventListener(
 );
 
 
-function animateLight(){
+function animateCursor() {
 
-    lightX +=
-        (mouseX - lightX) * .08;
+    glowX +=
+        (mouseX - glowX) * 0.08;
 
-    lightY +=
-        (mouseY - lightY) * .08;
+    glowY +=
+        (mouseY - glowY) * 0.08;
 
 
-    cursorLight.style.left =
-        `${lightX}px`;
+    cursorGlow.style.left =
+        glowX + "px";
 
-    cursorLight.style.top =
-        `${lightY}px`;
+    cursorGlow.style.top =
+        glowY + "px";
 
 
     requestAnimationFrame(
-        animateLight
+        animateCursor
     );
 
 }
 
 
-animateLight();
+animateCursor();
 
 
-/* =========================
-   SMOOTH NAVIGATION
-   ========================= */
+/* ================= 3D CAMPUS CARDS ================= */
+
+const campusCards =
+    document.querySelectorAll(".campus-card");
+
+
+campusCards.forEach(card => {
+
+    card.addEventListener(
+        "mousemove",
+        event => {
+
+            if (window.innerWidth < 900)
+                return;
+
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+
+            card.style.setProperty(
+                "--x",
+                `${x}px`
+            );
+
+            card.style.setProperty(
+                "--y",
+                `${y}px`
+            );
+
+
+            const rotateY =
+                ((x / rect.width) - 0.5) * 8;
+
+            const rotateX =
+                (0.5 - (y / rect.height)) * 7;
+
+
+            card.style.transform = `
+
+                perspective(1400px)
+
+                rotateX(${rotateX}deg)
+
+                rotateY(${rotateY}deg)
+
+                translateY(-8px)
+
+            `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform = `
+
+                perspective(1400px)
+
+                rotateX(0)
+
+                rotateY(0)
+
+                translateY(0)
+
+            `;
+
+        }
+    );
+
+});
+
+
+/* ================= CAMPUS DATA ================= */
+
+const campusData = {
+
+    madras: {
+
+        title:
+            "IIT Madras",
+
+        location:
+            "CHENNAI • TAMIL NADU",
+
+        image:
+            "images/iit-madras.jpg",
+
+        description:
+            "IIT Madras is an Institute of National Importance located in Chennai. Its campus combines engineering education, research facilities and a distinctive green environment.",
+
+        website:
+            "https://www.iitm.ac.in/"
+
+    },
+
+
+    delhi: {
+
+        title:
+            "IIT Delhi",
+
+        location:
+            "NEW DELHI",
+
+        image:
+            "images/iit-delhi.jpg",
+
+        description:
+            "IIT Delhi is an Institute of National Importance in New Delhi with programmes and research spanning engineering, technology, science and interdisciplinary fields.",
+
+        website:
+            "https://home.iitd.ac.in/"
+
+    },
+
+
+    bombay: {
+
+        title:
+            "IIT Bombay",
+
+        location:
+            "MUMBAI • MAHARASHTRA",
+
+        image:
+            "images/iit-bombay.jpg",
+
+        description:
+            "IIT Bombay is located in Powai, Mumbai and is known for engineering education, research, student technical activity and entrepreneurship.",
+
+        website:
+            "https://www.iitb.ac.in/"
+
+    },
+
+
+    kanpur: {
+
+        title:
+            "IIT Kanpur",
+
+        location:
+            "KANPUR • UTTAR PRADESH",
+
+        image:
+            "images/iit-kanpur.jpg",
+
+        description:
+            "IIT Kanpur is a major engineering and research institution offering education across engineering, science and interdisciplinary disciplines.",
+
+        website:
+            "https://www.iitk.ac.in/"
+
+    },
+
+
+    kharagpur: {
+
+        title:
+            "IIT Kharagpur",
+
+        location:
+            "KHARAGPUR • WEST BENGAL",
+
+        image:
+            "images/iit-kharagpur.jpg",
+
+        description:
+            "IIT Kharagpur was the first Indian Institute of Technology established in India and has developed a broad multidisciplinary academic ecosystem.",
+
+        website:
+            "https://www.iitkgp.ac.in/"
+
+    },
+
+
+    roorkee: {
+
+        title:
+            "IIT Roorkee",
+
+        location:
+            "ROORKEE • UTTARAKHAND",
+
+        image:
+            "images/iit-roorkee.jpg",
+
+        description:
+            "IIT Roorkee traces its institutional history to the nineteenth century and today offers education and research across engineering, science and technology.",
+
+        website:
+            "https://www.iitr.ac.in/"
+
+    },
+
+
+    guwahati: {
+
+        title:
+            "IIT Guwahati",
+
+        location:
+            "GUWAHATI • ASSAM",
+
+        image:
+            "images/iit-guwahati.jpg",
+
+        description:
+            "IIT Guwahati is located in Assam beside the Brahmaputra and combines a scenic campus environment with engineering, science, design and research programmes.",
+
+        website:
+            "https://www.iitg.ac.in/"
+
+    },
+
+
+    hyderabad: {
+
+        title:
+            "IIT Hyderabad",
+
+        location:
+            "KANDI • TELANGANA",
+
+        image:
+            "images/iit-hyderabad.jpg",
+
+        description:
+            "IIT Hyderabad is a newer-generation IIT with a modern campus and research activity across engineering, science, design and emerging technologies.",
+
+        website:
+            "https://www.iith.ac.in/"
+
+    }
+
+};
+
+
+/* ================= MODAL ================= */
+
+const modal =
+    document.getElementById("campusModal");
+
+const modalBackground =
+    document.getElementById(
+        "modalBackground"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+const modalLocation =
+    document.getElementById(
+        "modalLocation"
+    );
+
+const modalDescription =
+    document.getElementById(
+        "modalDescription"
+    );
+
+const modalWebsite =
+    document.getElementById(
+        "modalWebsite"
+    );
+
+const closeModal =
+    document.getElementById(
+        "closeModal"
+    );
+
+
+document
+    .querySelectorAll(".explore-button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const campusName =
+                    button.dataset.campus;
+
+
+                const data =
+                    campusData[campusName];
+
+
+                if (!data)
+                    return;
+
+
+                modalTitle.textContent =
+                    data.title;
+
+                modalLocation.textContent =
+                    data.location;
+
+                modalDescription.textContent =
+                    data.description;
+
+                modalWebsite.href =
+                    data.website;
+
+
+                modalBackground.style
+                    .backgroundImage =
+                    `url("${data.image}")`;
+
+
+                modal.classList.add(
+                    "active"
+                );
+
+
+                document.body.style
+                    .overflow =
+                    "hidden";
+
+            }
+        );
+
+    });
+
+
+function hideModal() {
+
+    modal.classList.remove(
+        "active"
+    );
+
+    document.body.style
+        .overflow =
+        "";
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    hideModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modal ||
+            event.target.classList
+                .contains("modal-overlay")
+        ) {
+
+            hideModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            hideModal();
+
+        }
+
+    }
+);
+
+
+/* ================= COUNTER ================= */
+
+const counters =
+    document.querySelectorAll(
+        "[data-count]"
+    );
+
+
+counters.forEach(counter => {
+
+    const target =
+        Number(
+            counter.dataset.count
+        );
+
+
+    let value = 0;
+
+
+    const timer =
+        setInterval(() => {
+
+            value++;
+
+            counter.textContent =
+                value;
+
+
+            if (value >= target) {
+
+                clearInterval(timer);
+
+            }
+
+        }, 120);
+
+});
+
+
+/* ================= SMOOTH LINKS ================= */
 
 document
     .querySelectorAll('a[href^="#"]')
-    .forEach(anchor => {
+    .forEach(link => {
 
-        anchor.addEventListener(
+        link.addEventListener(
             "click",
-            function(event){
+            event => {
 
                 const id =
-                    this.getAttribute("href");
+                    link.getAttribute(
+                        "href"
+                    );
 
 
-                if(id === "#")
+                if (id === "#")
                     return;
 
 
@@ -438,107 +628,32 @@ document
                     document.querySelector(id);
 
 
-                if(target){
-
-                    event.preventDefault();
-
-
-                    const navbarHeight =
-                        100;
+                if (!target)
+                    return;
 
 
-                    const top =
-                        target
-                            .getBoundingClientRect()
-                            .top
-                        +
-                        window.pageYOffset
-                        -
-                        navbarHeight;
+                event.preventDefault();
 
 
-                    window.scrollTo({
+                const position =
+                    target
+                        .getBoundingClientRect()
+                        .top
+                    +
+                    window.scrollY
+                    -
+                    100;
 
-                        top: top,
 
-                        behavior: "smooth"
+                window.scrollTo({
 
-                    });
+                    top: position,
 
-                }
+                    behavior: "smooth"
+
+                });
 
             }
         );
 
     });
-
-
-/* =========================
-   ROADMAP HOVER
-   ========================= */
-
-document
-    .querySelectorAll(".month")
-    .forEach(month => {
-
-        month.addEventListener(
-            "mouseenter",
-            () => {
-
-                const number =
-                    month.querySelector(
-                        ".month-number"
-                    );
-
-
-                if(number){
-
-                    number.style.transform =
-                        "scale(1.12) rotate(8deg)";
-
-                    number.style.transition =
-                        ".3s";
-
-                }
-
-            }
-        );
-
-
-        month.addEventListener(
-            "mouseleave",
-            () => {
-
-                const number =
-                    month.querySelector(
-                        ".month-number"
-                    );
-
-
-                if(number){
-
-                    number.style.transform =
-                        "scale(1) rotate(0)";
-
-                }
-
-            }
-        );
-
-    });
-
-
-/* =========================
-   HERO ENTRANCE
-   ========================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body
-            .classList
-            .add("loaded");
-
-    }
-);
