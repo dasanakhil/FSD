@@ -1,10 +1,12 @@
-/* =====================================================
-   IIT CAMPUS EXPLORER
-   Animation Engine
-   ===================================================== */
+/* =========================================================
+   IIT EXPLORE
+   PREMIUM ANIMATION ENGINE
+========================================================= */
 
 
-/* ================= NAVBAR ================= */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const navbar =
     document.getElementById("navbar");
@@ -15,6 +17,17 @@ const menuButton =
 const navMenu =
     document.getElementById("navMenu");
 
+const scrollProgress =
+    document.getElementById("scrollProgress");
+
+const cursorGlow =
+    document.getElementById("cursorGlow");
+
+
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
 
 window.addEventListener("scroll", () => {
 
@@ -31,58 +44,79 @@ window.addEventListener("scroll", () => {
 });
 
 
-menuButton.addEventListener("click", () => {
 
-    navMenu.classList.toggle("show");
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-});
+if (menuButton && navMenu) {
 
+    menuButton.addEventListener("click", () => {
 
-document
-    .querySelectorAll("nav a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navMenu.classList.remove("show");
-
-        });
+        navMenu.classList.toggle("show");
 
     });
 
 
-/* ================= SCROLL PROGRESS ================= */
+    document
+        .querySelectorAll("#navMenu a")
+        .forEach(link => {
 
-const scrollProgress =
-    document.getElementById("scrollProgress");
+            link.addEventListener("click", () => {
 
+                navMenu.classList.remove("show");
+
+            });
+
+        });
+
+}
+
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
 
 window.addEventListener("scroll", () => {
 
-    const scrollTop =
-        window.scrollY;
-
-    const pageHeight =
+    const documentHeight =
         document.documentElement.scrollHeight
         -
         window.innerHeight;
 
+
+    if (documentHeight <= 0) {
+
+        scrollProgress.style.width =
+            "0%";
+
+        return;
+
+    }
+
+
     const percentage =
-        (scrollTop / pageHeight) * 100;
+        (window.scrollY / documentHeight)
+        * 100;
+
 
     scrollProgress.style.width =
-        percentage + "%";
+        `${percentage}%`;
 
 });
 
 
-/* ================= REVEAL ================= */
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
 const revealElements =
     document.querySelectorAll(".reveal");
 
 
-const observer =
+const revealObserver =
     new IntersectionObserver(
 
         entries => {
@@ -95,9 +129,11 @@ const observer =
                         .classList
                         .add("active");
 
-                    observer.unobserve(
-                        entry.target
-                    );
+
+                    revealObserver
+                        .unobserve(
+                            entry.target
+                        );
 
                 }
 
@@ -118,16 +154,18 @@ revealElements.forEach(
         element.style.transitionDelay =
             `${(index % 4) * 70}ms`;
 
-        observer.observe(element);
+        revealObserver.observe(
+            element
+        );
 
     }
 );
 
 
-/* ================= CURSOR GLOW ================= */
 
-const cursorGlow =
-    document.querySelector(".cursor-glow");
+/* =========================================================
+   CURSOR LIGHT
+========================================================= */
 
 let mouseX = 0;
 let mouseY = 0;
@@ -153,17 +191,23 @@ document.addEventListener(
 function animateCursor() {
 
     glowX +=
-        (mouseX - glowX) * 0.08;
+        (mouseX - glowX)
+        * 0.08;
 
     glowY +=
-        (mouseY - glowY) * 0.08;
+        (mouseY - glowY)
+        * 0.08;
 
 
-    cursorGlow.style.left =
-        glowX + "px";
+    if (cursorGlow) {
 
-    cursorGlow.style.top =
-        glowY + "px";
+        cursorGlow.style.left =
+            `${glowX}px`;
+
+        cursorGlow.style.top =
+            `${glowY}px`;
+
+    }
 
 
     requestAnimationFrame(
@@ -176,49 +220,78 @@ function animateCursor() {
 animateCursor();
 
 
-/* ================= 3D CAMPUS CARDS ================= */
+
+/* =========================================================
+   3D CAMPUS CARD EFFECT
+========================================================= */
 
 const campusCards =
-    document.querySelectorAll(".campus-card");
+    document.querySelectorAll(
+        ".campus-card"
+    );
 
 
 campusCards.forEach(card => {
+
 
     card.addEventListener(
         "mousemove",
         event => {
 
-            if (window.innerWidth < 900)
+
+            if (window.innerWidth < 900) {
+
                 return;
 
+            }
 
-            const rect =
+
+            const rectangle =
                 card.getBoundingClientRect();
 
 
             const x =
-                event.clientX - rect.left;
+                event.clientX
+                -
+                rectangle.left;
+
 
             const y =
-                event.clientY - rect.top;
+                event.clientY
+                -
+                rectangle.top;
 
 
             card.style.setProperty(
-                "--x",
+                "--mouse-x",
                 `${x}px`
             );
 
+
             card.style.setProperty(
-                "--y",
+                "--mouse-y",
                 `${y}px`
             );
 
 
             const rotateY =
-                ((x / rect.width) - 0.5) * 8;
+                (
+                    x /
+                    rectangle.width
+                    -
+                    0.5
+                )
+                * 8;
+
 
             const rotateX =
-                (0.5 - (y / rect.height)) * 7;
+                (
+                    0.5
+                    -
+                    y /
+                    rectangle.height
+                )
+                * 7;
 
 
             card.style.transform = `
@@ -234,6 +307,7 @@ campusCards.forEach(card => {
             `;
 
         }
+
     );
 
 
@@ -245,23 +319,31 @@ campusCards.forEach(card => {
 
                 perspective(1400px)
 
-                rotateX(0)
+                rotateX(0deg)
 
-                rotateY(0)
+                rotateY(0deg)
 
                 translateY(0)
 
             `;
 
         }
+
     );
+
 
 });
 
 
-/* ================= CAMPUS DATA ================= */
+
+/* =========================================================
+   CAMPUS INFORMATION
+   IMPORTANT:
+   Images are in SAME folder as HTML.
+========================================================= */
 
 const campusData = {
+
 
     madras: {
 
@@ -272,10 +354,10 @@ const campusData = {
             "CHENNAI • TAMIL NADU",
 
         image:
-            "images/iit-madras.jpg",
+            "iit-madras.jpg",
 
         description:
-            "IIT Madras is an Institute of National Importance located in Chennai. Its campus combines engineering education, research facilities and a distinctive green environment.",
+            "IIT Madras is located in Chennai and combines engineering education, research facilities, technology development and a distinctive green campus environment.",
 
         website:
             "https://www.iitm.ac.in/"
@@ -292,10 +374,10 @@ const campusData = {
             "NEW DELHI",
 
         image:
-            "images/iit-delhi.jpg",
+            "iit-delhi.jpg",
 
         description:
-            "IIT Delhi is an Institute of National Importance in New Delhi with programmes and research spanning engineering, technology, science and interdisciplinary fields.",
+            "IIT Delhi is a major engineering and research institution in New Delhi with programmes spanning engineering, technology, science and interdisciplinary fields.",
 
         website:
             "https://home.iitd.ac.in/"
@@ -312,10 +394,10 @@ const campusData = {
             "MUMBAI • MAHARASHTRA",
 
         image:
-            "images/iit-bombay.jpg",
+            "iit-bombay.jpg",
 
         description:
-            "IIT Bombay is located in Powai, Mumbai and is known for engineering education, research, student technical activity and entrepreneurship.",
+            "IIT Bombay is located in Powai, Mumbai and is known for engineering education, research, computing, student technical activity and entrepreneurship.",
 
         website:
             "https://www.iitb.ac.in/"
@@ -332,10 +414,10 @@ const campusData = {
             "KANPUR • UTTAR PRADESH",
 
         image:
-            "images/iit-kanpur.jpg",
+            "iit-kanpur.jpg",
 
         description:
-            "IIT Kanpur is a major engineering and research institution offering education across engineering, science and interdisciplinary disciplines.",
+            "IIT Kanpur is an engineering and research institution offering education across engineering, science and interdisciplinary disciplines.",
 
         website:
             "https://www.iitk.ac.in/"
@@ -352,7 +434,7 @@ const campusData = {
             "KHARAGPUR • WEST BENGAL",
 
         image:
-            "images/iit-kharagpur.jpg",
+            "iit-kharagpur.jpg",
 
         description:
             "IIT Kharagpur was the first Indian Institute of Technology established in India and has developed a broad multidisciplinary academic ecosystem.",
@@ -372,10 +454,10 @@ const campusData = {
             "ROORKEE • UTTARAKHAND",
 
         image:
-            "images/iit-roorkee.jpg",
+            "iit-roorkee.jpg",
 
         description:
-            "IIT Roorkee traces its institutional history to the nineteenth century and today offers education and research across engineering, science and technology.",
+            "IIT Roorkee has a long institutional history and today offers education and research across engineering, science and technology.",
 
         website:
             "https://www.iitr.ac.in/"
@@ -392,10 +474,10 @@ const campusData = {
             "GUWAHATI • ASSAM",
 
         image:
-            "images/iit-guwahati.jpg",
+            "iit-guwahati.jpg",
 
         description:
-            "IIT Guwahati is located in Assam beside the Brahmaputra and combines a scenic campus environment with engineering, science, design and research programmes.",
+            "IIT Guwahati is located in Assam and combines a scenic campus environment with engineering, science, design and research programmes.",
 
         website:
             "https://www.iitg.ac.in/"
@@ -412,10 +494,10 @@ const campusData = {
             "KANDI • TELANGANA",
 
         image:
-            "images/iit-hyderabad.jpg",
+            "iit-hyderabad.jpg",
 
         description:
-            "IIT Hyderabad is a newer-generation IIT with a modern campus and research activity across engineering, science, design and emerging technologies.",
+            "IIT Hyderabad is a newer-generation IIT with modern infrastructure and research activity across engineering, science, design and emerging technologies.",
 
         website:
             "https://www.iith.ac.in/"
@@ -425,35 +507,46 @@ const campusData = {
 };
 
 
-/* ================= MODAL ================= */
+
+/* =========================================================
+   CAMPUS MODAL
+========================================================= */
 
 const modal =
-    document.getElementById("campusModal");
+    document.getElementById(
+        "campusModal"
+    );
+
 
 const modalBackground =
     document.getElementById(
         "modalBackground"
     );
 
+
 const modalTitle =
     document.getElementById(
         "modalTitle"
     );
+
 
 const modalLocation =
     document.getElementById(
         "modalLocation"
     );
 
+
 const modalDescription =
     document.getElementById(
         "modalDescription"
     );
 
+
 const modalWebsite =
     document.getElementById(
         "modalWebsite"
     );
+
 
 const closeModal =
     document.getElementById(
@@ -461,40 +554,54 @@ const closeModal =
     );
 
 
+
+/* OPEN MODAL */
+
 document
-    .querySelectorAll(".explore-button")
+    .querySelectorAll(
+        ".explore-button"
+    )
     .forEach(button => {
+
 
         button.addEventListener(
             "click",
             () => {
 
-                const campusName =
+
+                const campusKey =
                     button.dataset.campus;
 
 
                 const data =
-                    campusData[campusName];
+                    campusData[campusKey];
 
 
-                if (!data)
+                if (!data) {
+
                     return;
+
+                }
 
 
                 modalTitle.textContent =
                     data.title;
 
+
                 modalLocation.textContent =
                     data.location;
 
+
                 modalDescription.textContent =
                     data.description;
+
 
                 modalWebsite.href =
                     data.website;
 
 
-                modalBackground.style
+                modalBackground
+                    .style
                     .backgroundImage =
                     `url("${data.image}")`;
 
@@ -504,15 +611,19 @@ document
                 );
 
 
-                document.body.style
-                    .overflow =
+                document.body.style.overflow =
                     "hidden";
 
             }
+
         );
+
 
     });
 
+
+
+/* CLOSE MODAL */
 
 function hideModal() {
 
@@ -520,27 +631,68 @@ function hideModal() {
         "active"
     );
 
-    document.body.style
-        .overflow =
+
+    document.body.style.overflow =
         "";
 
 }
 
 
-closeModal.addEventListener(
-    "click",
-    hideModal
-);
+
+if (closeModal) {
+
+    closeModal.addEventListener(
+        "click",
+        hideModal
+    );
+
+}
 
 
-modal.addEventListener(
-    "click",
+
+/* CLICK OUTSIDE */
+
+if (modal) {
+
+    modal.addEventListener(
+        "click",
+        event => {
+
+
+            if (
+                event.target === modal
+                ||
+                event.target
+                    .classList
+                    .contains(
+                        "modal-overlay"
+                    )
+            ) {
+
+                hideModal();
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+/* ESC KEY */
+
+document.addEventListener(
+    "keydown",
     event => {
 
+
         if (
-            event.target === modal ||
-            event.target.classList
-                .contains("modal-overlay")
+            event.key === "Escape"
+            &&
+            modal.classList
+                .contains("active")
         ) {
 
             hideModal();
@@ -551,21 +703,10 @@ modal.addEventListener(
 );
 
 
-document.addEventListener(
-    "keydown",
-    event => {
 
-        if (event.key === "Escape") {
-
-            hideModal();
-
-        }
-
-    }
-);
-
-
-/* ================= COUNTER ================= */
+/* =========================================================
+   ANIMATED COUNTER
+========================================================= */
 
 const counters =
     document.querySelectorAll(
@@ -575,44 +716,68 @@ const counters =
 
 counters.forEach(counter => {
 
+
     const target =
         Number(
             counter.dataset.count
         );
 
 
-    let value = 0;
+    let current = 0;
 
 
-    const timer =
-        setInterval(() => {
-
-            value++;
-
-            counter.textContent =
-                value;
+    const interval =
+        setInterval(
+            () => {
 
 
-            if (value >= target) {
+                current++;
 
-                clearInterval(timer);
 
-            }
+                counter.textContent =
+                    current;
 
-        }, 120);
+
+                if (
+                    current >= target
+                ) {
+
+                    counter.textContent =
+                        target;
+
+                    clearInterval(
+                        interval
+                    );
+
+                }
+
+
+            },
+
+            120
+
+        );
+
 
 });
 
 
-/* ================= SMOOTH LINKS ================= */
+
+/* =========================================================
+   SMOOTH NAVIGATION
+========================================================= */
 
 document
-    .querySelectorAll('a[href^="#"]')
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
     .forEach(link => {
+
 
         link.addEventListener(
             "click",
             event => {
+
 
                 const id =
                     link.getAttribute(
@@ -620,40 +785,107 @@ document
                     );
 
 
-                if (id === "#")
+                if (
+                    !id
+                    ||
+                    id === "#"
+                ) {
+
                     return;
+
+                }
 
 
                 const target =
-                    document.querySelector(id);
+                    document.querySelector(
+                        id
+                    );
 
 
-                if (!target)
+                if (!target) {
+
                     return;
+
+                }
 
 
                 event.preventDefault();
 
 
+                const navbarOffset =
+                    100;
+
+
                 const position =
+
                     target
                         .getBoundingClientRect()
                         .top
+
                     +
+
                     window.scrollY
+
                     -
-                    100;
+
+                    navbarOffset;
 
 
                 window.scrollTo({
 
-                    top: position,
+                    top:
+                        position,
 
-                    behavior: "smooth"
+                    behavior:
+                        "smooth"
 
                 });
 
+
             }
+
         );
 
+
     });
+
+
+
+/* =========================================================
+   HERO IMAGE PARALLAX
+========================================================= */
+
+const heroImage =
+    document.querySelector(
+        ".hero-image"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+
+        if (!heroImage) {
+
+            return;
+
+        }
+
+
+        const scroll =
+            window.scrollY;
+
+
+        if (scroll < window.innerHeight) {
+
+            heroImage.style
+                .backgroundPosition =
+                `center calc(50% + ${scroll * 0.08}px)`;
+
+        }
+
+
+    }
+
+);
