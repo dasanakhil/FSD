@@ -1,682 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>IIT Campus Explorer | India</title>
-
-    <meta name="description"
-        content="Explore eight leading IIT campuses across India through an interactive animated campus showcase.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | 3D Spatial Music Player</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- Cursor Glow -->
-    <div class="cursor-glow"></div>
+  <div class="noise"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
 
-    <!-- Background -->
-    <div class="background">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-        <div class="orb orb-three"></div>
-    </div>
+  <main class="app">
 
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">A</div>
 
-    <!-- Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+        <div>
+          <h1>AURA</h1>
+          <span>SPATIAL AUDIO</span>
+        </div>
+      </div>
 
-
-    <!-- ================= NAVBAR ================= -->
-
-    <header class="navbar" id="navbar">
-
-        <a href="#home" class="logo">
-            IIT<span>EXPLORE</span>
-        </a>
-
-        <nav id="navMenu">
-            <a href="#home">Home</a>
-            <a href="#campuses">Campuses</a>
-            <a href="#about">About</a>
-        </nav>
-
-        <a href="#campuses" class="nav-button">
-            Explore IITs
-        </a>
-
-        <button class="menu-button" id="menuButton">
-            ☰
-        </button>
-
+      <div class="status">
+        <span class="status-dot"></span>
+        AUDIO ENGINE READY
+      </div>
     </header>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- MAIN PLAYER -->
+    <section class="hero">
 
-    <section class="hero" id="home">
+      <!-- LEFT -->
+      <div class="hero-info">
 
-        <div class="hero-image"></div>
+        <p class="eyebrow">IMMERSIVE LISTENING</p>
 
-        <div class="hero-overlay"></div>
+        <h2>
+          FEEL THE
+          <span>MUSIC.</span>
+        </h2>
 
-        <div class="hero-content reveal">
-
-            <p class="eyebrow">
-                INDIAN INSTITUTES OF TECHNOLOGY
-            </p>
-
-            <h1>
-                Explore India's
-                <span>IIT Campuses</span>
-            </h1>
-
-            <p class="hero-text">
-                Discover eight leading IIT campuses through an
-                immersive visual experience celebrating engineering,
-                research, innovation and academic excellence.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#campuses" class="primary-button">
-                    Explore Campuses
-                    <span>→</span>
-                </a>
-
-                <a href="#about" class="secondary-button">
-                    About IITs
-                </a>
-
-            </div>
-
-
-            <div class="hero-stats">
-
-                <div class="stat">
-                    <strong data-count="8">0</strong>
-                    <span>Campuses Featured</span>
-                </div>
-
-                <div class="stat">
-                    <strong>23</strong>
-                    <span>IITs Across India</span>
-                </div>
-
-                <div class="stat">
-                    <strong>∞</strong>
-                    <span>Possibilities</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="scroll-indicator">
-            <span>SCROLL TO EXPLORE</span>
-            <div class="mouse">
-                <div></div>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- ================= INTRO ================= -->
-
-    <section class="intro section" id="about">
-
-        <div class="section-heading reveal">
-
-            <p class="section-label">
-                CAMPUS EXPLORER
-            </p>
-
-            <h2>
-                Engineering the
-                <span>Future of India.</span>
-            </h2>
-
-            <p>
-                Explore the institutions in the order presented in this
-                showcase. Each campus has its own academic culture,
-                history, research environment and visual identity.
-            </p>
-
-        </div>
-
-
-        <div class="intro-grid">
-
-            <div class="intro-card reveal">
-
-                <span>01</span>
-
-                <h3>Engineering</h3>
-
-                <p>
-                    Strong foundations across computer science,
-                    electrical, mechanical, civil and other
-                    engineering disciplines.
-                </p>
-
-            </div>
-
-
-            <div class="intro-card reveal">
-
-                <span>02</span>
-
-                <h3>Research</h3>
-
-                <p>
-                    Research ecosystems spanning science,
-                    technology, interdisciplinary work and
-                    emerging fields.
-                </p>
-
-            </div>
-
-
-            <div class="intro-card reveal">
-
-                <span>03</span>
-
-                <h3>Innovation</h3>
-
-                <p>
-                    Student projects, laboratories, entrepreneurship
-                    and collaboration contribute to active
-                    innovation ecosystems.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CAMPUSES ================= -->
-
-    <section class="campus-section section" id="campuses">
-
-        <div class="section-heading reveal">
-
-            <p class="section-label">
-                FEATURED INSTITUTES
-            </p>
-
-            <h2>
-                Explore the
-                <span>Campuses</span>
-            </h2>
-
-            <p>
-                Move your cursor over each campus for an interactive
-                3D experience.
-            </p>
-
-        </div>
-
-
-        <div class="campus-grid">
-
-
-            <!-- IIT MADRAS -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-madras.jpg"
-                    alt="IIT Madras campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    01
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        CHENNAI • TAMIL NADU
-                    </span>
-
-                    <h3>
-                        IIT Madras
-                    </h3>
-
-                    <p>
-                        Known for its research ecosystem,
-                        green campus environment and strong
-                        connections with technology and industry.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="madras">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT DELHI -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-delhi.jpg"
-                    alt="IIT Delhi campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    02
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        NEW DELHI
-                    </span>
-
-                    <h3>
-                        IIT Delhi
-                    </h3>
-
-                    <p>
-                        A major technology and research institution
-                        located in India's national capital.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="delhi">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT BOMBAY -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-bombay.jpg"
-                    alt="IIT Bombay campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    03
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        MUMBAI • MAHARASHTRA
-                    </span>
-
-                    <h3>
-                        IIT Bombay
-                    </h3>
-
-                    <p>
-                        Known for engineering, computing,
-                        entrepreneurship and a vibrant
-                        technology ecosystem.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="bombay">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT KANPUR -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-kanpur.jpg"
-                    alt="IIT Kanpur campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    04
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        KANPUR • UTTAR PRADESH
-                    </span>
-
-                    <h3>
-                        IIT Kanpur
-                    </h3>
-
-                    <p>
-                        Recognised for rigorous engineering
-                        education, scientific research and
-                        technology development.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="kanpur">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT KHARAGPUR -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-kharagpur.jpg"
-                    alt="IIT Kharagpur campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    05
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        KHARAGPUR • WEST BENGAL
-                    </span>
-
-                    <h3>
-                        IIT Kharagpur
-                    </h3>
-
-                    <p>
-                        The first IIT established in India,
-                        with a broad academic ecosystem and
-                        expansive campus.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="kharagpur">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT ROORKEE -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-roorkee.jpg"
-                    alt="IIT Roorkee campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    06
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        ROORKEE • UTTARAKHAND
-                    </span>
-
-                    <h3>
-                        IIT Roorkee
-                    </h3>
-
-                    <p>
-                        A historic engineering institution
-                        with long-standing strengths in
-                        technical education and research.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="roorkee">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT GUWAHATI -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-guwahati.jpg"
-                    alt="IIT Guwahati campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    07
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        GUWAHATI • ASSAM
-                    </span>
-
-                    <h3>
-                        IIT Guwahati
-                    </h3>
-
-                    <p>
-                        A scenic campus on the banks of the
-                        Brahmaputra with active engineering,
-                        science and research programmes.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="guwahati">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- IIT HYDERABAD -->
-
-            <article class="campus-card reveal">
-
-                <img
-                    src="images/iit-hyderabad.jpg"
-                    alt="IIT Hyderabad campus">
-
-                <div class="card-overlay"></div>
-
-                <div class="campus-number">
-                    08
-                </div>
-
-                <div class="campus-content">
-
-                    <span class="location">
-                        KANDI • TELANGANA
-                    </span>
-
-                    <h3>
-                        IIT Hyderabad
-                    </h3>
-
-                    <p>
-                        A newer-generation IIT with modern
-                        infrastructure and expanding research
-                        activity across emerging technologies.
-                    </p>
-
-                    <button class="explore-button"
-                        data-campus="hyderabad">
-
-                        Explore Campus
-                        <span>↗</span>
-
-                    </button>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= QUOTE ================= -->
-
-    <section class="quote-section">
-
-        <div class="quote-glow"></div>
-
-        <div class="quote-content reveal">
-
-            <span>◆</span>
-
-            <h2>
-                Dream.
-                <em>Learn.</em>
-                Build.
-            </h2>
-
-            <p>
-                Great engineering begins with curiosity.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <div>
-
-            <a href="#home" class="logo">
-                IIT<span>EXPLORE</span>
-            </a>
-
-            <p>
-                An interactive IIT campus showcase.
-            </p>
-
-        </div>
-
-        <p class="footer-note">
-            Built with HTML • CSS • JavaScript
+        <p class="description">
+          A futuristic 3D music experience powered by
+          immersive visuals and spatial audio.
         </p>
 
-    </footer>
+        <div class="mini-stats">
 
+          <div>
+            <strong id="trackNumber">01</strong>
+            <span>TRACK</span>
+          </div>
 
-    <!-- ================= MODAL ================= -->
+          <div>
+            <strong>3D</strong>
+            <span>MODE</span>
+          </div>
 
-    <div class="campus-modal" id="campusModal">
+          <div>
+            <strong>HQ</strong>
+            <span>AUDIO</span>
+          </div>
 
-        <div class="modal-background"
-            id="modalBackground">
         </div>
 
-        <div class="modal-overlay"></div>
+      </div>
 
-        <button class="close-modal"
-            id="closeModal">
-            ×
+
+      <!-- CENTER 3D ART -->
+      <div class="visual-stage" id="visualStage">
+
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit orbit-three"></div>
+
+        <div class="particles" id="particles"></div>
+
+        <div class="cube-wrapper" id="cubeWrapper">
+
+          <div class="album-cube" id="albumCube">
+
+            <div class="cube-face front">
+              <img id="coverImage" src="assets/cover1.jpg" alt="Album cover">
+            </div>
+
+            <div class="cube-face back"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+
+          </div>
+
+        </div>
+
+        <div class="floor-shadow"></div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+      <div class="audio-panel">
+
+        <p class="eyebrow">AUDIO ENGINE</p>
+
+        <div class="audio-setting">
+          <div>
+            <span>BASS</span>
+            <small>ENHANCED</small>
+          </div>
+
+          <div class="meter">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <div class="audio-setting">
+          <div>
+            <span>SPATIAL</span>
+            <small>ACTIVE</small>
+          </div>
+
+          <div class="meter">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <div class="audio-setting">
+          <div>
+            <span>QUALITY</span>
+            <small>HIGH</small>
+          </div>
+
+          <div class="meter">
+            <i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOW PLAYING -->
+    <section class="player">
+
+      <div class="song-meta">
+
+        <p class="eyebrow">NOW PLAYING</p>
+
+        <h3 id="songTitle">Midnight Horizon</h3>
+
+        <span id="artistName">AURA Collective</span>
+
+      </div>
+
+
+      <!-- REAL AUDIO VISUALIZER -->
+      <canvas id="visualizer"></canvas>
+
+
+      <!-- PROGRESS -->
+      <div class="progress-section">
+
+        <span id="currentTime">0:00</span>
+
+        <input
+          id="progress"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        >
+
+        <span id="duration">0:00</span>
+
+      </div>
+
+
+      <!-- CONTROLS -->
+      <div class="controls">
+
+        <button id="shuffleBtn" class="secondary-btn" title="Shuffle">
+          ⇄
         </button>
 
+        <button id="prevBtn" class="control-btn" title="Previous">
+          ◀
+        </button>
 
-        <div class="modal-content">
+        <button id="playBtn" class="play-btn" title="Play">
+          ▶
+        </button>
 
-            <span id="modalLocation">
-                INDIA
-            </span>
+        <button id="nextBtn" class="control-btn" title="Next">
+          ▶
+        </button>
 
-            <h2 id="modalTitle">
-                IIT Campus
-            </h2>
+        <button id="repeatBtn" class="secondary-btn" title="Repeat">
+          ↻
+        </button>
 
-            <p id="modalDescription">
-                Campus information.
-            </p>
+      </div>
 
-            <a
-                id="modalWebsite"
-                href="#"
-                target="_blank"
-                rel="noopener">
 
-                Visit Official Website
-                <span>↗</span>
+      <!-- VOLUME -->
+      <div class="volume">
 
-            </a>
+        <span>VOL</span>
 
+        <input
+          id="volume"
+          type="range"
+          min="0"
+          max="1"
+          value="0.8"
+          step="0.01"
+        >
+
+        <span id="volumeValue">80%</span>
+
+      </div>
+
+    </section>
+
+
+    <!-- PLAYLIST -->
+    <section class="playlist-section">
+
+      <div class="playlist-heading">
+
+        <div>
+          <p class="eyebrow">CURATED FOR YOU</p>
+          <h3>Up Next</h3>
         </div>
 
-    </div>
+        <span id="trackCount">4 TRACKS</span>
+
+      </div>
+
+      <div class="playlist" id="playlist"></div>
+
+    </section>
 
 
-    <script src="script.js"></script>
+    <footer>
+      <span>AURA / SPATIAL MUSIC SYSTEM</span>
+      <span>DESIGNED FOR IMMERSIVE LISTENING</span>
+    </footer>
+
+  </main>
+
+
+  <audio id="audio" crossorigin="anonymous"></audio>
+
+  <script src="script.js"></script>
 
 </body>
-
 </html>

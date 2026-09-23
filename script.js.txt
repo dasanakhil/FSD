@@ -1,659 +1,993 @@
-/* =====================================================
-   IIT CAMPUS EXPLORER
-   Animation Engine
-   ===================================================== */
+// ======================================
+// AURA 3D SPATIAL MUSIC PLAYER
+// ======================================
 
 
-/* ================= NAVBAR ================= */
+// --------------------------------------
+// SONG DATA
+// --------------------------------------
 
-const navbar =
-    document.getElementById("navbar");
+const songs = [
 
-const menuButton =
-    document.getElementById("menuButton");
+  {
+    title: "Midnight Horizon",
+    artist: "AURA Collective",
+    file: "music/song1.mp3",
+    cover: "assets/cover1.jpg"
+  },
 
-const navMenu =
-    document.getElementById("navMenu");
+  {
+    title: "Neon Memories",
+    artist: "Nova Dreams",
+    file: "music/song2.mp3",
+    cover: "assets/cover2.jpg"
+  },
+
+  {
+    title: "Lost Signal",
+    artist: "Night Division",
+    file: "music/song3.mp3",
+    cover: "assets/cover3.jpg"
+  },
+
+  {
+    title: "After Dark",
+    artist: "Electric Soul",
+    file: "music/song4.mp3",
+    cover: "assets/cover4.jpg"
+  }
+
+];
 
 
-window.addEventListener("scroll", () => {
+// --------------------------------------
+// ELEMENTS
+// --------------------------------------
 
-    if (window.scrollY > 40) {
+const audio =
+  document.getElementById("audio");
 
-        navbar.classList.add("scrolled");
+const playBtn =
+  document.getElementById("playBtn");
 
-    } else {
+const nextBtn =
+  document.getElementById("nextBtn");
 
-        navbar.classList.remove("scrolled");
+const prevBtn =
+  document.getElementById("prevBtn");
 
+const shuffleBtn =
+  document.getElementById("shuffleBtn");
+
+const repeatBtn =
+  document.getElementById("repeatBtn");
+
+const progress =
+  document.getElementById("progress");
+
+const volume =
+  document.getElementById("volume");
+
+const volumeValue =
+  document.getElementById("volumeValue");
+
+const songTitle =
+  document.getElementById("songTitle");
+
+const artistName =
+  document.getElementById("artistName");
+
+const coverImage =
+  document.getElementById("coverImage");
+
+const playlist =
+  document.getElementById("playlist");
+
+const albumCube =
+  document.getElementById("albumCube");
+
+const visualStage =
+  document.getElementById("visualStage");
+
+const currentTimeText =
+  document.getElementById("currentTime");
+
+const durationText =
+  document.getElementById("duration");
+
+const trackNumber =
+  document.getElementById("trackNumber");
+
+const trackCount =
+  document.getElementById("trackCount");
+
+
+// --------------------------------------
+// PLAYER STATE
+// --------------------------------------
+
+let currentSong = 0;
+
+let isPlaying = false;
+
+let shuffle = false;
+
+let repeat = false;
+
+
+// --------------------------------------
+// WEB AUDIO API
+// --------------------------------------
+
+let audioContext;
+
+let analyser;
+
+let source;
+
+let dataArray;
+
+let audioConnected = false;
+
+
+// --------------------------------------
+// CANVAS
+// --------------------------------------
+
+const canvas =
+  document.getElementById("visualizer");
+
+const ctx =
+  canvas.getContext("2d");
+
+let animationId;
+
+
+// --------------------------------------
+// CREATE PLAYLIST
+// --------------------------------------
+
+function createPlaylist() {
+
+  playlist.innerHTML = "";
+
+  songs.forEach((song, index) => {
+
+    const card =
+      document.createElement("div");
+
+    card.classList.add("track");
+
+    if (index === currentSong) {
+      card.classList.add("active");
     }
 
-});
+    card.innerHTML = `
 
+      <img
+        src="${song.cover}"
+        alt="${song.title}"
+      >
 
-menuButton.addEventListener("click", () => {
+      <span class="track-number">
+        TRACK ${String(index + 1).padStart(2, "0")}
+      </span>
 
-    navMenu.classList.toggle("show");
+      <h4>${song.title}</h4>
 
-});
+      <p>${song.artist}</p>
 
+    `;
 
-document
-    .querySelectorAll("nav a")
-    .forEach(link => {
+    card.addEventListener(
+      "click",
+      () => {
 
-        link.addEventListener("click", () => {
+        currentSong = index;
 
-            navMenu.classList.remove("show");
+        loadSong();
 
-        });
+        playSong();
 
-    });
-
-
-/* ================= SCROLL PROGRESS ================= */
-
-const scrollProgress =
-    document.getElementById("scrollProgress");
-
-
-window.addEventListener("scroll", () => {
-
-    const scrollTop =
-        window.scrollY;
-
-    const pageHeight =
-        document.documentElement.scrollHeight
-        -
-        window.innerHeight;
-
-    const percentage =
-        (scrollTop / pageHeight) * 100;
-
-    scrollProgress.style.width =
-        percentage + "%";
-
-});
-
-
-/* ================= REVEAL ================= */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target
-                        .classList
-                        .add("active");
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.12
-        }
-
+      }
     );
 
+    playlist.appendChild(card);
 
-revealElements.forEach(
-    (element, index) => {
-
-        element.style.transitionDelay =
-            `${(index % 4) * 70}ms`;
-
-        observer.observe(element);
-
-    }
-);
-
-
-/* ================= CURSOR GLOW ================= */
-
-const cursorGlow =
-    document.querySelector(".cursor-glow");
-
-let mouseX = 0;
-let mouseY = 0;
-
-let glowX = 0;
-let glowY = 0;
-
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        mouseX =
-            event.clientX;
-
-        mouseY =
-            event.clientY;
-
-    }
-);
-
-
-function animateCursor() {
-
-    glowX +=
-        (mouseX - glowX) * 0.08;
-
-    glowY +=
-        (mouseY - glowY) * 0.08;
-
-
-    cursorGlow.style.left =
-        glowX + "px";
-
-    cursorGlow.style.top =
-        glowY + "px";
-
-
-    requestAnimationFrame(
-        animateCursor
-    );
+  });
 
 }
 
 
-animateCursor();
+// --------------------------------------
+// LOAD SONG
+// --------------------------------------
 
+function loadSong() {
 
-/* ================= 3D CAMPUS CARDS ================= */
+  const song =
+    songs[currentSong];
 
-const campusCards =
-    document.querySelectorAll(".campus-card");
+  audio.src =
+    song.file;
 
+  songTitle.textContent =
+    song.title;
 
-campusCards.forEach(card => {
+  artistName.textContent =
+    song.artist;
 
-    card.addEventListener(
-        "mousemove",
-        event => {
+  coverImage.src =
+    song.cover;
 
-            if (window.innerWidth < 900)
-                return;
+  trackNumber.textContent =
+    String(
+      currentSong + 1
+    ).padStart(2, "0");
 
+  progress.value = 0;
 
-            const rect =
-                card.getBoundingClientRect();
+  currentTimeText.textContent =
+    "0:00";
 
+  durationText.textContent =
+    "0:00";
 
-            const x =
-                event.clientX - rect.left;
-
-            const y =
-                event.clientY - rect.top;
-
-
-            card.style.setProperty(
-                "--x",
-                `${x}px`
-            );
-
-            card.style.setProperty(
-                "--y",
-                `${y}px`
-            );
-
-
-            const rotateY =
-                ((x / rect.width) - 0.5) * 8;
-
-            const rotateX =
-                (0.5 - (y / rect.height)) * 7;
-
-
-            card.style.transform = `
-
-                perspective(1400px)
-
-                rotateX(${rotateX}deg)
-
-                rotateY(${rotateY}deg)
-
-                translateY(-8px)
-
-            `;
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform = `
-
-                perspective(1400px)
-
-                rotateX(0)
-
-                rotateY(0)
-
-                translateY(0)
-
-            `;
-
-        }
-    );
-
-});
-
-
-/* ================= CAMPUS DATA ================= */
-
-const campusData = {
-
-    madras: {
-
-        title:
-            "IIT Madras",
-
-        location:
-            "CHENNAI • TAMIL NADU",
-
-        image:
-            "images/iit-madras.jpg",
-
-        description:
-            "IIT Madras is an Institute of National Importance located in Chennai. Its campus combines engineering education, research facilities and a distinctive green environment.",
-
-        website:
-            "https://www.iitm.ac.in/"
-
-    },
-
-
-    delhi: {
-
-        title:
-            "IIT Delhi",
-
-        location:
-            "NEW DELHI",
-
-        image:
-            "images/iit-delhi.jpg",
-
-        description:
-            "IIT Delhi is an Institute of National Importance in New Delhi with programmes and research spanning engineering, technology, science and interdisciplinary fields.",
-
-        website:
-            "https://home.iitd.ac.in/"
-
-    },
-
-
-    bombay: {
-
-        title:
-            "IIT Bombay",
-
-        location:
-            "MUMBAI • MAHARASHTRA",
-
-        image:
-            "images/iit-bombay.jpg",
-
-        description:
-            "IIT Bombay is located in Powai, Mumbai and is known for engineering education, research, student technical activity and entrepreneurship.",
-
-        website:
-            "https://www.iitb.ac.in/"
-
-    },
-
-
-    kanpur: {
-
-        title:
-            "IIT Kanpur",
-
-        location:
-            "KANPUR • UTTAR PRADESH",
-
-        image:
-            "images/iit-kanpur.jpg",
-
-        description:
-            "IIT Kanpur is a major engineering and research institution offering education across engineering, science and interdisciplinary disciplines.",
-
-        website:
-            "https://www.iitk.ac.in/"
-
-    },
-
-
-    kharagpur: {
-
-        title:
-            "IIT Kharagpur",
-
-        location:
-            "KHARAGPUR • WEST BENGAL",
-
-        image:
-            "images/iit-kharagpur.jpg",
-
-        description:
-            "IIT Kharagpur was the first Indian Institute of Technology established in India and has developed a broad multidisciplinary academic ecosystem.",
-
-        website:
-            "https://www.iitkgp.ac.in/"
-
-    },
-
-
-    roorkee: {
-
-        title:
-            "IIT Roorkee",
-
-        location:
-            "ROORKEE • UTTARAKHAND",
-
-        image:
-            "images/iit-roorkee.jpg",
-
-        description:
-            "IIT Roorkee traces its institutional history to the nineteenth century and today offers education and research across engineering, science and technology.",
-
-        website:
-            "https://www.iitr.ac.in/"
-
-    },
-
-
-    guwahati: {
-
-        title:
-            "IIT Guwahati",
-
-        location:
-            "GUWAHATI • ASSAM",
-
-        image:
-            "images/iit-guwahati.jpg",
-
-        description:
-            "IIT Guwahati is located in Assam beside the Brahmaputra and combines a scenic campus environment with engineering, science, design and research programmes.",
-
-        website:
-            "https://www.iitg.ac.in/"
-
-    },
-
-
-    hyderabad: {
-
-        title:
-            "IIT Hyderabad",
-
-        location:
-            "KANDI • TELANGANA",
-
-        image:
-            "images/iit-hyderabad.jpg",
-
-        description:
-            "IIT Hyderabad is a newer-generation IIT with a modern campus and research activity across engineering, science, design and emerging technologies.",
-
-        website:
-            "https://www.iith.ac.in/"
-
-    }
-
-};
-
-
-/* ================= MODAL ================= */
-
-const modal =
-    document.getElementById("campusModal");
-
-const modalBackground =
-    document.getElementById(
-        "modalBackground"
-    );
-
-const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
-
-const modalLocation =
-    document.getElementById(
-        "modalLocation"
-    );
-
-const modalDescription =
-    document.getElementById(
-        "modalDescription"
-    );
-
-const modalWebsite =
-    document.getElementById(
-        "modalWebsite"
-    );
-
-const closeModal =
-    document.getElementById(
-        "closeModal"
-    );
-
-
-document
-    .querySelectorAll(".explore-button")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const campusName =
-                    button.dataset.campus;
-
-
-                const data =
-                    campusData[campusName];
-
-
-                if (!data)
-                    return;
-
-
-                modalTitle.textContent =
-                    data.title;
-
-                modalLocation.textContent =
-                    data.location;
-
-                modalDescription.textContent =
-                    data.description;
-
-                modalWebsite.href =
-                    data.website;
-
-
-                modalBackground.style
-                    .backgroundImage =
-                    `url("${data.image}")`;
-
-
-                modal.classList.add(
-                    "active"
-                );
-
-
-                document.body.style
-                    .overflow =
-                    "hidden";
-
-            }
-        );
-
-    });
-
-
-function hideModal() {
-
-    modal.classList.remove(
-        "active"
-    );
-
-    document.body.style
-        .overflow =
-        "";
+  createPlaylist();
 
 }
 
 
-closeModal.addEventListener(
-    "click",
-    hideModal
-);
+// --------------------------------------
+// AUDIO ENGINE
+// --------------------------------------
+
+function initializeAudioEngine() {
+
+  if (audioConnected) {
+    return;
+  }
+
+  audioContext =
+    new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+  analyser =
+    audioContext.createAnalyser();
+
+  analyser.fftSize = 128;
+
+  analyser.smoothingTimeConstant =
+    0.85;
+
+  source =
+    audioContext.createMediaElementSource(
+      audio
+    );
+
+  source.connect(analyser);
+
+  analyser.connect(
+    audioContext.destination
+  );
+
+  dataArray =
+    new Uint8Array(
+      analyser.frequencyBinCount
+    );
+
+  audioConnected = true;
+
+}
 
 
-modal.addEventListener(
-    "click",
-    event => {
+// --------------------------------------
+// PLAY
+// --------------------------------------
 
-        if (
-            event.target === modal ||
-            event.target.classList
-                .contains("modal-overlay")
-        ) {
+async function playSong() {
 
-            hideModal();
+  initializeAudioEngine();
 
-        }
+  if (
+    audioContext.state === "suspended"
+  ) {
+
+    await audioContext.resume();
+
+  }
+
+  try {
+
+    await audio.play();
+
+    isPlaying = true;
+
+    playBtn.textContent =
+      "❚❚";
+
+    albumCube.classList.add(
+      "playing"
+    );
+
+    drawVisualizer();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Unable to play audio:",
+      error
+    );
+
+  }
+
+}
+
+
+// --------------------------------------
+// PAUSE
+// --------------------------------------
+
+function pauseSong() {
+
+  audio.pause();
+
+  isPlaying = false;
+
+  playBtn.textContent =
+    "▶";
+
+  albumCube.classList.remove(
+    "playing"
+  );
+
+}
+
+
+// --------------------------------------
+// PLAY BUTTON
+// --------------------------------------
+
+playBtn.addEventListener(
+  "click",
+  () => {
+
+    if (isPlaying) {
+
+      pauseSong();
 
     }
-);
 
+    else {
 
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key === "Escape") {
-
-            hideModal();
-
-        }
+      playSong();
 
     }
+
+  }
 );
 
 
-/* ================= COUNTER ================= */
+// --------------------------------------
+// NEXT
+// --------------------------------------
 
-const counters =
-    document.querySelectorAll(
-        "[data-count]"
+function nextSong() {
+
+  if (shuffle) {
+
+    let newSong;
+
+    do {
+
+      newSong =
+        Math.floor(
+          Math.random() *
+          songs.length
+        );
+
+    }
+
+    while (
+      newSong === currentSong &&
+      songs.length > 1
+    );
+
+    currentSong =
+      newSong;
+
+  }
+
+  else {
+
+    currentSong =
+      (
+        currentSong + 1
+      ) %
+      songs.length;
+
+  }
+
+  loadSong();
+
+  playSong();
+
+}
+
+
+nextBtn.addEventListener(
+  "click",
+  nextSong
+);
+
+
+// --------------------------------------
+// PREVIOUS
+// --------------------------------------
+
+function previousSong() {
+
+  currentSong--;
+
+  if (
+    currentSong < 0
+  ) {
+
+    currentSong =
+      songs.length - 1;
+
+  }
+
+  loadSong();
+
+  playSong();
+
+}
+
+
+prevBtn.addEventListener(
+  "click",
+  previousSong
+);
+
+
+// --------------------------------------
+// SHUFFLE
+// --------------------------------------
+
+shuffleBtn.addEventListener(
+  "click",
+  () => {
+
+    shuffle =
+      !shuffle;
+
+    shuffleBtn.classList.toggle(
+      "active",
+      shuffle
+    );
+
+  }
+);
+
+
+// --------------------------------------
+// REPEAT
+// --------------------------------------
+
+repeatBtn.addEventListener(
+  "click",
+  () => {
+
+    repeat =
+      !repeat;
+
+    repeatBtn.classList.toggle(
+      "active",
+      repeat
+    );
+
+  }
+);
+
+
+// --------------------------------------
+// FORMAT TIME
+// --------------------------------------
+
+function formatTime(seconds) {
+
+  if (
+    !Number.isFinite(seconds)
+  ) {
+
+    return "0:00";
+
+  }
+
+  const minutes =
+    Math.floor(
+      seconds / 60
+    );
+
+  const secs =
+    Math.floor(
+      seconds % 60
+    );
+
+  return (
+    minutes +
+    ":" +
+    String(secs).padStart(
+      2,
+      "0"
+    )
+  );
+
+}
+
+
+// --------------------------------------
+// UPDATE TIME
+// --------------------------------------
+
+audio.addEventListener(
+  "timeupdate",
+  () => {
+
+    if (
+      !audio.duration
+    ) {
+      return;
+    }
+
+    progress.value =
+      (
+        audio.currentTime /
+        audio.duration
+      ) * 100;
+
+    currentTimeText.textContent =
+      formatTime(
+        audio.currentTime
+      );
+
+    durationText.textContent =
+      formatTime(
+        audio.duration
+      );
+
+  }
+);
+
+
+// --------------------------------------
+// SEEK
+// --------------------------------------
+
+progress.addEventListener(
+  "input",
+  () => {
+
+    if (
+      !audio.duration
+    ) {
+      return;
+    }
+
+    audio.currentTime =
+      (
+        progress.value /
+        100
+      ) *
+      audio.duration;
+
+  }
+);
+
+
+// --------------------------------------
+// VOLUME
+// --------------------------------------
+
+audio.volume =
+  Number(volume.value);
+
+
+volume.addEventListener(
+  "input",
+  () => {
+
+    audio.volume =
+      Number(volume.value);
+
+    volumeValue.textContent =
+      Math.round(
+        audio.volume * 100
+      ) + "%";
+
+  }
+);
+
+
+// --------------------------------------
+// SONG END
+// --------------------------------------
+
+audio.addEventListener(
+  "ended",
+  () => {
+
+    if (repeat) {
+
+      audio.currentTime = 0;
+
+      playSong();
+
+    }
+
+    else {
+
+      nextSong();
+
+    }
+
+  }
+);
+
+
+// ======================================
+// REAL AUDIO VISUALIZER
+// ======================================
+
+function resizeCanvas() {
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const ratio =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    rect.width * ratio;
+
+  canvas.height =
+    rect.height * ratio;
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+}
+
+
+function drawVisualizer() {
+
+  cancelAnimationFrame(
+    animationId
+  );
+
+  function render() {
+
+    animationId =
+      requestAnimationFrame(
+        render
+      );
+
+    if (!analyser) {
+      return;
+    }
+
+    analyser.getByteFrequencyData(
+      dataArray
+    );
+
+    const width =
+      canvas.clientWidth;
+
+    const height =
+      canvas.clientHeight;
+
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
     );
 
 
-counters.forEach(counter => {
+    const barCount = 45;
 
-    const target =
-        Number(
-            counter.dataset.count
+    const gap = 4;
+
+    const barWidth =
+      (
+        width -
+        gap *
+        (barCount - 1)
+      ) /
+      barCount;
+
+
+    const gradient =
+      ctx.createLinearGradient(
+        0,
+        height,
+        0,
+        0
+      );
+
+    gradient.addColorStop(
+      0,
+      "#5b7cff"
+    );
+
+    gradient.addColorStop(
+      1,
+      "#b76cff"
+    );
+
+
+    for (
+      let i = 0;
+      i < barCount;
+      i++
+    ) {
+
+      const index =
+        Math.floor(
+          i *
+          dataArray.length /
+          barCount
         );
 
+      const value =
+        dataArray[index];
 
-    let value = 0;
-
-
-    const timer =
-        setInterval(() => {
-
-            value++;
-
-            counter.textContent =
-                value;
-
-
-            if (value >= target) {
-
-                clearInterval(timer);
-
-            }
-
-        }, 120);
-
-});
-
-
-/* ================= SMOOTH LINKS ================= */
-
-document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                const id =
-                    link.getAttribute(
-                        "href"
-                    );
-
-
-                if (id === "#")
-                    return;
-
-
-                const target =
-                    document.querySelector(id);
-
-
-                if (!target)
-                    return;
-
-
-                event.preventDefault();
-
-
-                const position =
-                    target
-                        .getBoundingClientRect()
-                        .top
-                    +
-                    window.scrollY
-                    -
-                    100;
-
-
-                window.scrollTo({
-
-                    top: position,
-
-                    behavior: "smooth"
-
-                });
-
-            }
+      const barHeight =
+        Math.max(
+          3,
+          value / 255 *
+          height *
+          0.85
         );
 
-    });
+      const x =
+        i *
+        (
+          barWidth +
+          gap
+        );
+
+      const y =
+        (
+          height -
+          barHeight
+        ) /
+        2;
+
+
+      ctx.fillStyle =
+        gradient;
+
+      ctx.beginPath();
+
+      ctx.roundRect(
+        x,
+        y,
+        barWidth,
+        barHeight,
+        5
+      );
+
+      ctx.fill();
+
+    }
+
+  }
+
+  render();
+
+}
+
+
+// --------------------------------------
+// 3D MOUSE PARALLAX
+// --------------------------------------
+
+visualStage.addEventListener(
+  "mousemove",
+  event => {
+
+    const rect =
+      visualStage.getBoundingClientRect();
+
+    const x =
+      (
+        event.clientX -
+        rect.left
+      ) /
+      rect.width;
+
+    const y =
+      (
+        event.clientY -
+        rect.top
+      ) /
+      rect.height;
+
+    const rotateY =
+      (x - 0.5) * 28;
+
+    const rotateX =
+      (0.5 - y) * 20;
+
+    albumCube.style.transform =
+      `
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      `;
+
+  }
+);
+
+
+visualStage.addEventListener(
+  "mouseleave",
+  () => {
+
+    albumCube.style.transform =
+      `
+      rotateX(-8deg)
+      rotateY(-15deg)
+      `;
+
+  }
+);
+
+
+// ======================================
+// PARTICLES
+// ======================================
+
+const particles =
+  document.getElementById(
+    "particles"
+  );
+
+
+function createParticles() {
+
+  for (
+    let i = 0;
+    i < 28;
+    i++
+  ) {
+
+    const particle =
+      document.createElement(
+        "span"
+      );
+
+    particle.className =
+      "particle";
+
+    particle.style.left =
+      Math.random() *
+      100 +
+      "%";
+
+    particle.style.top =
+      Math.random() *
+      100 +
+      "%";
+
+    particle.style.animationDelay =
+      Math.random() *
+      5 +
+      "s";
+
+    particle.style.animationDuration =
+      (
+        3 +
+        Math.random() *
+        5
+      ) +
+      "s";
+
+    particles.appendChild(
+      particle
+    );
+
+  }
+
+}
+
+
+// --------------------------------------
+// KEYBOARD CONTROLS
+// --------------------------------------
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    const tag =
+      event.target.tagName;
+
+    if (
+      tag === "INPUT" ||
+      tag === "TEXTAREA"
+    ) {
+      return;
+    }
+
+
+    if (
+      event.code === "Space"
+    ) {
+
+      event.preventDefault();
+
+      isPlaying
+        ? pauseSong()
+        : playSong();
+
+    }
+
+
+    if (
+      event.code ===
+      "ArrowRight"
+    ) {
+
+      nextSong();
+
+    }
+
+
+    if (
+      event.code ===
+      "ArrowLeft"
+    ) {
+
+      previousSong();
+
+    }
+
+  }
+);
+
+
+// --------------------------------------
+// WINDOW RESIZE
+// --------------------------------------
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+// --------------------------------------
+// INITIALIZE
+// --------------------------------------
+
+trackCount.textContent =
+  songs.length +
+  " TRACKS";
+
+resizeCanvas();
+
+createParticles();
+
+loadSong();
