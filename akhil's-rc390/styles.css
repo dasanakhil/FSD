@@ -1,0 +1,997 @@
+/* ==========================================
+   RC390 ORANGE RACING WEBSITE
+========================================== */
+
+:root {
+    --orange: #ff5a00;
+    --orange2: #ff7a00;
+    --orange-dark: #a83200;
+
+    --black: #050505;
+    --black2: #0b0b0b;
+    --black3: #121212;
+
+    --white: #ffffff;
+    --grey: #999999;
+}
+
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+
+    font-family: "Poppins", sans-serif;
+
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+img {
+    display: block;
+}
+
+::selection {
+    background: var(--orange);
+    color: white;
+}
+
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--orange);
+}
+
+
+/* ==========================================
+   LOADER
+========================================== */
+
+#loader {
+    position: fixed;
+    inset: 0;
+
+    background: #030303;
+
+    z-index: 99999;
+
+    display: grid;
+    place-items: center;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    width: min(420px, 80%);
+    text-align: center;
+}
+
+.loader-logo {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(50px, 9vw, 100px);
+    font-weight: 900;
+
+    letter-spacing: -7px;
+}
+
+.loader-logo span {
+    color: var(--orange);
+}
+
+.loader-line {
+    height: 3px;
+
+    margin-top: 30px;
+
+    background: #222;
+
+    overflow: hidden;
+}
+
+.loader-progress {
+    height: 100%;
+    width: 0;
+
+    background: var(--orange);
+
+    box-shadow:
+        0 0 20px var(--orange);
+
+    animation: loader 1.7s ease forwards;
+}
+
+.loader-content p {
+    margin-top: 15px;
+
+    color: #777;
+
+    font-family: "Orbitron";
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+@keyframes loader {
+    to {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================
+   CURSOR
+========================================== */
+
+.cursor,
+.cursor-ring {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
+}
+
+.cursor {
+    width: 7px;
+    height: 7px;
+
+    background: var(--orange);
+}
+
+.cursor-ring {
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid rgba(255, 90, 0, .8);
+
+    transition:
+        width .2s,
+        height .2s,
+        background .2s;
+}
+
+.cursor-ring.active {
+    width: 55px;
+    height: 55px;
+
+    background:
+        rgba(255, 90, 0, .12);
+}
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+#particles {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 23px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 1000;
+
+    transition: .4s;
+}
+
+.navbar.scrolled {
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    background:
+        rgba(5, 5, 5, .92);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom:
+        1px solid rgba(255, 90, 0, .15);
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+
+    font-family: "Orbitron";
+}
+
+.brand-small {
+    color: #777;
+
+    font-size: 7px;
+
+    letter-spacing: 6px;
+}
+
+.brand-main {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.brand-main span {
+    color: var(--orange);
+}
+
+nav {
+    display: flex;
+
+    gap: 35px;
+}
+
+nav a {
+    position: relative;
+
+    color: #aaa;
+
+    font-family: "Orbitron";
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--orange);
+
+    transition: .3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.menu-btn {
+    display: none;
+
+    width: 40px;
+
+    border: 0;
+    background: transparent;
+}
+
+.menu-btn span {
+    display: block;
+
+    width: 100%;
+    height: 2px;
+
+    margin: 7px 0;
+
+    background: white;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #241007 0%,
+            #0a0705 32%,
+            #050505 70%
+        );
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #050505 0%,
+            rgba(5,5,5,.96) 32%,
+            rgba(5,5,5,.35) 65%,
+            #050505 100%
+        );
+
+    z-index: 1;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: -50%;
+
+    z-index: 0;
+
+    opacity: .18;
+
+    background-image:
+        linear-gradient(
+            rgba(255,90,0,.18) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,90,0,.18) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    transform:
+        perspective(500px)
+        rotateX(60deg);
+
+    animation:
+        gridMove 12s linear infinite;
+}
+
+@keyframes gridMove {
+    to {
+        background-position:
+            0 140px,
+            140px 0;
+    }
+}
+
+.hero-glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    pointer-events: none;
+}
+
+.glow-one {
+    width: 500px;
+    height: 500px;
+
+    right: 5%;
+    top: 15%;
+
+    background:
+        rgba(255, 90, 0, .17);
+
+    animation:
+        glowMove 5s ease-in-out infinite alternate;
+}
+
+.glow-two {
+    width: 300px;
+    height: 300px;
+
+    left: 20%;
+    bottom: 0;
+
+    background:
+        rgba(255, 90, 0, .08);
+}
+
+@keyframes glowMove {
+    to {
+        transform:
+            translate(-60px, 50px)
+            scale(1.2);
+    }
+}
+
+
+/* SPEED LINES */
+
+.speed-lines {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+.speed-lines span {
+    position: absolute;
+
+    width: 160px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--orange),
+            transparent
+        );
+
+    opacity: .4;
+
+    animation:
+        speedLine 3s linear infinite;
+}
+
+.speed-lines span:nth-child(1) {
+    top: 20%;
+    left: 15%;
+}
+
+.speed-lines span:nth-child(2) {
+    top: 35%;
+    left: 65%;
+    animation-delay: .5s;
+}
+
+.speed-lines span:nth-child(3) {
+    top: 60%;
+    left: 30%;
+    animation-delay: 1s;
+}
+
+.speed-lines span:nth-child(4) {
+    top: 75%;
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.speed-lines span:nth-child(5) {
+    top: 45%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.speed-lines span:nth-child(6) {
+    top: 85%;
+    left: 50%;
+    animation-delay: 2.5s;
+}
+
+@keyframes speedLine {
+    from {
+        transform: translateX(-500px);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .5;
+    }
+
+    to {
+        transform: translateX(800px);
+        opacity: 0;
+    }
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+    position: relative;
+
+    width: 45%;
+
+    margin-left: 6%;
+
+    z-index: 10;
+
+    animation:
+        heroText 1.2s ease both;
+}
+
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    color: #aaa;
+
+    font-family: "Orbitron";
+    font-size: 10px;
+
+    letter-spacing: 5px;
+}
+
+.eyebrow span {
+    width: 45px;
+    height: 2px;
+
+    background: var(--orange);
+}
+
+.hero h1 {
+    margin-top: 20px;
+
+    font-family: "Orbitron";
+
+    font-size:
+        clamp(50px, 7vw, 115px);
+
+    line-height: .87;
+
+    letter-spacing: -5px;
+
+    font-weight: 900;
+}
+
+.hero h1 strong {
+    display: block;
+
+    color: var(--orange);
+
+    text-shadow:
+        0 0 35px
+        rgba(255,90,0,.25);
+}
+
+.hero-description {
+    max-width: 530px;
+
+    margin-top: 30px;
+
+    color: #aaa;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+.btn-primary,
+.btn-outline {
+    padding: 16px 25px;
+
+    font-family: "Orbitron";
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--orange);
+
+    color: white;
+}
+
+.btn-primary span {
+    margin-left: 15px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255,90,0,.3);
+}
+
+.btn-outline {
+    border:
+        1px solid #555;
+}
+
+.btn-outline:hover {
+    border-color: var(--orange);
+
+    color: var(--orange);
+}
+
+
+/* HERO PHOTO */
+
+.hero-photo {
+    position: absolute;
+
+    right: 5%;
+    bottom: 0;
+
+    width: 45%;
+    height: 86%;
+
+    z-index: 5;
+
+    animation:
+        photoEnter 1.5s ease both;
+}
+
+@keyframes photoEnter {
+    from {
+        opacity: 0;
+        transform:
+            translateX(100px)
+            scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 60%;
+
+    filter:
+        contrast(1.08)
+        saturate(1.08);
+
+    clip-path:
+        polygon(
+            12% 0,
+            100% 0,
+            100% 100%,
+            0 100%,
+            0 15%
+        );
+
+    transition:
+        transform .2s ease-out;
+}
+
+.hero-photo::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            #050505 0%,
+            transparent 28%,
+            transparent 80%,
+            rgba(5,5,5,.5) 100%
+        ),
+        linear-gradient(
+            0deg,
+            #050505 0%,
+            transparent 35%
+        );
+}
+
+.photo-frame {
+    position: absolute;
+
+    top: 8%;
+    right: -12px;
+
+    width: 40%;
+    height: 45%;
+
+    border-top:
+        2px solid var(--orange);
+
+    border-right:
+        2px solid var(--orange);
+
+    opacity: .5;
+}
+
+.photo-glow {
+    position: absolute;
+
+    width: 70%;
+    height: 70%;
+
+    left: 10%;
+    top: 10%;
+
+    background:
+        var(--orange);
+
+    filter: blur(130px);
+
+    opacity: .13;
+}
+
+.hero-bike-name {
+    position: absolute;
+
+    right: -15px;
+    bottom: 80px;
+
+    z-index: 5;
+
+    text-align: right;
+
+    font-family: "Orbitron";
+}
+
+.hero-bike-name small {
+    display: block;
+
+    color: #888;
+
+    font-size: 8px;
+
+    letter-spacing: 6px;
+}
+
+.hero-bike-name strong {
+    display: block;
+
+    color: var(--orange);
+
+    font-size: 40px;
+}
+
+
+/* HUD */
+
+.hud {
+    position: absolute;
+
+    z-index: 20;
+
+    padding-left: 12px;
+
+    border-left:
+        2px solid var(--orange);
+
+    font-family: "Orbitron";
+}
+
+.hud span {
+    display: block;
+
+    color: #555;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+}
+
+.hud strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 11px;
+}
+
+.hud-one {
+    right: 4%;
+    top: 25%;
+}
+
+.hud-two {
+    right: 4%;
+    top: 35%;
+}
+
+.hud-three {
+    right: 4%;
+    top: 45%;
+}
+
+
+/* SCROLL */
+
+.scroll-indicator {
+    position: absolute;
+
+    left: 6%;
+    bottom: 25px;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    color: #555;
+
+    font-family: "Orbitron";
+    font-size: 7px;
+
+    letter-spacing: 3px;
+}
+
+.scroll-line {
+    position: relative;
+
+    width: 100px;
+    height: 1px;
+
+    background: #333;
+
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: "";
+
+    position: absolute;
+
+    width: 40px;
+    height: 100%;
+
+    background: var(--orange);
+
+    animation:
+        scrollLine 2s linear infinite;
+}
+
+@keyframes scrollLine {
+    from {
+        left: -40px;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+
+/* ==========================================
+   GENERAL SECTION
+========================================== */
+
+.section {
+    position: relative;
+
+    padding:
+        130px 7%;
+
+    overflow: hidden;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 70px;
+}
+
+.section-number {
+    color: transparent;
+
+    font-family: "Orbitron";
+    font-size: 55px;
+    font-weight: 900;
+
+    -webkit-text-stroke:
+        1px #333;
+}
+
+.section-tag {
+    color: #666;
+
+    font-family: "Orbitron";
+    font-size: 8px;
+
+    letter-spacing: 5px;
+}
+
+.section-heading h2 {
+    margin-top: 8px;
+
+    font-family: "Orbitron";
+
+    font-size:
+        clamp(35px, 5vw, 65px);
+
+    line-height: 1;
+}
+
+.section-heading h2 span {
+    color: var(--orange);
+}
+
+
+/*
