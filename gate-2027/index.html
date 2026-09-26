@@ -1,40 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>GATEHUB | GATE CSE 2027</title>
 
-    <meta name="description"
-          content="Explore leading IIT campuses across India through an interactive animated website.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <title>IIT Explorer | Indian Institutes of Technology</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
-    <!-- IMPORTANT: Your file is styles.css -->
-    <link rel="stylesheet"
-          href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 
 <body>
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
+<!-- Background -->
 <div class="background">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -42,1034 +25,786 @@
 </div>
 
 
-<!-- Cursor Glow -->
+<!-- ================= NAVBAR ================= -->
 
-<div class="cursor-glow"
-     id="cursorGlow">
-</div>
+<header class="navbar">
 
-
-<!-- Scroll Progress -->
-
-<div class="scroll-progress"
-     id="scrollProgress">
-</div>
-
-
-
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
-
-<header class="navbar"
-        id="navbar">
-
-    <a href="#home"
-       class="logo">
-
-        IIT<span>EXPLORE</span>
-
+    <a href="#home" class="logo">
+        <span class="logo-icon">◆</span>
+        DASAN'S  <span>GATE</span>
     </a>
-
 
     <nav id="navMenu">
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
-        <a href="#campuses">
-            Campuses
-        </a>
-
+        <a href="#home">Home</a>
+        <a href="#syllabus">Syllabus</a>
+        <a href="#books">Books</a>
+        <a href="#roadmap">Study Plan</a>
+        <a href="#weightage">Weightage</a>
     </nav>
 
-
-    <a href="#campuses"
-       class="nav-button">
-
-        Explore IITs →
-
-    </a>
-
-
-    <button class="menu-button"
-            id="menuButton"
-            aria-label="Open navigation">
-
-        ☰
-
-    </button>
+    <button class="menu-btn" id="menuBtn">☰</button>
 
 </header>
 
 
+<!-- ================= HERO ================= -->
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero"
-         id="home">
-
-
-    <div class="hero-image"></div>
-
-
-    <div class="hero-overlay"></div>
-
+<section class="hero" id="home">
 
     <div class="hero-content reveal">
 
-
-        <p class="eyebrow">
-
-            INDIAN INSTITUTES OF TECHNOLOGY
-
+        <p class="small-title">
+            GRADUATE APTITUDE TEST IN ENGINEERING
         </p>
-
 
         <h1>
-
-            Explore India's
-
-            <span>
-                IIT Campuses
-            </span>
-
+            GATE <span>2027</span>
         </h1>
 
+        <h3>
+            PLAN • STUDY • PRACTICE • SUCCEED
+        </h3>
 
         <p class="hero-description">
-
-            Discover leading IIT campuses through a cinematic
-            interactive experience celebrating engineering,
-            research, technology, innovation and academic excellence.
-
+            A complete preparation dashboard for GATE Computer Science.
+            Explore the syllabus, important subjects, recommended books
+            and a structured four-month preparation roadmap.
         </p>
-
 
         <div class="hero-buttons">
 
-
-            <a href="#campuses"
-               class="primary-button">
-
-                Explore Campuses
-                <span>→</span>
-
+            <a href="#syllabus" class="primary-btn">
+                Explore Syllabus →
             </a>
 
-
-            <a href="#about"
-               class="secondary-button">
-
-                Discover More
-
+            <a href="#books" class="secondary-btn">
+                View Books
             </a>
-
 
         </div>
 
 
-        <div class="hero-stats">
+        <div class="stats">
 
-
-            <div class="stat">
-
-                <strong data-count="8">
-                    0
-                </strong>
-
-                <span>
-                    Featured IITs
-                </span>
-
+            <div>
+                <strong>10+</strong>
+                <span>Core Subjects</span>
             </div>
 
-
-            <div class="stat">
-
-                <strong>
-                    23
-                </strong>
-
-                <span>
-                    IITs Across India
-                </span>
-
+            <div>
+                <strong>4</strong>
+                <span>Study Months</span>
             </div>
 
-
-            <div class="stat">
-
-                <strong>
-                    ∞
-                </strong>
-
-                <span>
-                    Possibilities
-                </span>
-
+            <div>
+                <strong>17+</strong>
+                <span>Years PYQs</span>
             </div>
 
+        </div>
+
+    </div>
+
+
+    <!-- Floating 3D books -->
+
+    <div class="hero-books reveal">
+
+        <div class="floating-book book-a">
+            <div class="book-cover green">
+                <small>GATE 2027</small>
+                <h3>THEORY OF<br>COMPUTATION</h3>
+                <p>Automata • CFG • PDA</p>
+            </div>
+        </div>
+
+        <div class="floating-book main-book">
+            <div class="book-cover gate">
+                <small>GATE CSE</small>
+                <h2>17 YEARS'</h2>
+                <h3>SOLVED PAPERS</h3>
+                <div class="brain">◉</div>
+                <p>2010 — 2026</p>
+            </div>
+        </div>
+
+        <div class="floating-book book-b">
+            <div class="book-cover red">
+                <small>GATE CSE</small>
+                <h3>OPERATING<br>SYSTEMS</h3>
+                <p>Processes • Memory</p>
+            </div>
+        </div>
+
+        <div class="platform"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SYLLABUS ================= -->
+
+<section class="section" id="syllabus">
+
+    <div class="section-heading reveal">
+
+        <p>EXPLORE</p>
+
+        <h2>
+            GATE CSE <span>Syllabus</span>
+        </h2>
+
+        <p class="section-description">
+            Study subject-wise instead of jumping randomly between topics.
+        </p>
+
+    </div>
+
+
+    <div class="syllabus-grid">
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">01</div>
+
+            <h3>Engineering Mathematics</h3>
+
+            <ul>
+                <li>Linear Algebra</li>
+                <li>Calculus</li>
+                <li>Probability</li>
+                <li>Statistics</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">02</div>
+
+            <h3>Data Structures</h3>
+
+            <ul>
+                <li>Arrays</li>
+                <li>Linked Lists</li>
+                <li>Stacks & Queues</li>
+                <li>Trees</li>
+                <li>Graphs</li>
+                <li>Heaps</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">03</div>
+
+            <h3>Algorithms</h3>
+
+            <ul>
+                <li>Sorting</li>
+                <li>Searching</li>
+                <li>Divide & Conquer</li>
+                <li>Dynamic Programming</li>
+                <li>Greedy Algorithms</li>
+                <li>Graph Algorithms</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">04</div>
+
+            <h3>Operating Systems</h3>
+
+            <ul>
+                <li>Processes</li>
+                <li>CPU Scheduling</li>
+                <li>Deadlocks</li>
+                <li>Memory Management</li>
+                <li>Virtual Memory</li>
+                <li>File Systems</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">05</div>
+
+            <h3>Computer Networks</h3>
+
+            <ul>
+                <li>TCP/IP Model</li>
+                <li>Transport Layer</li>
+                <li>Network Layer</li>
+                <li>Routing Protocols</li>
+                <li>Congestion Control</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">06</div>
+
+            <h3>DBMS</h3>
+
+            <ul>
+                <li>SQL</li>
+                <li>ER Model</li>
+                <li>Normalization</li>
+                <li>Transactions</li>
+                <li>Relational Model</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">07</div>
+
+            <h3>Computer Organisation</h3>
+
+            <ul>
+                <li>Cache Memory</li>
+                <li>Pipeline Hazards</li>
+                <li>Instruction Formats</li>
+                <li>Memory Hierarchy</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">08</div>
+
+            <h3>Theory of Computation</h3>
+
+            <ul>
+                <li>Finite Automata</li>
+                <li>CFGs</li>
+                <li>Pushdown Automata</li>
+                <li>Regular Languages</li>
+            </ul>
+
+        </article>
+
+
+        <article class="subject-card reveal">
+
+            <div class="subject-number">09</div>
+
+            <h3>Compiler Design</h3>
+
+            <ul>
+                <li>Lexical Analysis</li>
+                <li>Parsing Techniques</li>
+                <li>Syntax Directed Translation</li>
+            </ul>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKS ================= -->
+
+<section class="section books-section" id="books">
+
+    <div class="section-heading reveal">
+
+        <p>RECOMMENDED RESOURCES</p>
+
+        <h2>
+            Books That <span>Actually Work</span>
+        </h2>
+
+        <p class="section-description">
+            Move your mouse over the books to experience the 3D effect.
+        </p>
+
+    </div>
+
+
+    <div class="books-grid">
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-green">
+                <span>THEORY OF COMPUTATION</span>
+
+                <h3>
+                    Introduction to<br>
+                    Automata Theory
+                </h3>
+
+                <div class="book-symbol">Σ</div>
+
+                <p>Hopcroft • Motwani • Ullman</p>
+            </div>
 
         </div>
 
 
+        <div class="book3d reveal">
+
+            <div class="book-face book-black">
+
+                <span>DATABASE SYSTEMS</span>
+
+                <h3>
+                    Database<br>
+                    Management<br>
+                    Systems
+                </h3>
+
+                <div class="book-symbol">DB</div>
+
+                <p>Ramakrishnan • Gehrke</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-purple">
+
+                <span>COMPUTER NETWORKS</span>
+
+                <h3>
+                    TCP/IP<br>
+                    Protocol Suite
+                </h3>
+
+                <div class="book-symbol">◎</div>
+
+                <p>Behrouz A. Forouzan</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-red">
+
+                <span>OPERATING SYSTEMS</span>
+
+                <h3>
+                    Operating<br>
+                    System Concepts
+                </h3>
+
+                <div class="book-symbol">OS</div>
+
+                <p>Silberschatz • Galvin</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-orange">
+
+                <span>ENGINEERING MATHEMATICS</span>
+
+                <h3>
+                    Advanced<br>
+                    Engineering<br>
+                    Mathematics
+                </h3>
+
+                <div class="book-symbol">π</div>
+
+                <p>Erwin Kreyszig</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-white">
+
+                <span>DATA STRUCTURES</span>
+
+                <h3>
+                    Data Structures<br>
+                    & Algorithms
+                </h3>
+
+                <div class="book-symbol">⌘</div>
+
+                <p>Narasimha Karumanchi</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face book-blue">
+
+                <span>DISCRETE MATHEMATICS</span>
+
+                <h3>
+                    Discrete Mathematics<br>
+                    and Its Applications
+                </h3>
+
+                <div class="book-symbol">∞</div>
+
+                <p>Kenneth Rosen</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="book3d reveal">
+
+            <div class="book-face gate-book">
+
+                <span>GATE CSE 2027</span>
+
+                <h3>
+                    Previous Year<br>
+                    Solved Papers
+                </h3>
+
+                <div class="book-symbol">17+</div>
+
+                <p>Topic-wise Practice</p>
+
+            </div>
+
+        </div>
+
     </div>
-
-
-    <div class="scroll-indicator">
-
-        <span>
-            SCROLL TO EXPLORE
-        </span>
-
-        <div class="scroll-line"></div>
-
-    </div>
-
 
 </section>
 
 
+<!-- ================= ROADMAP ================= -->
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section class="section"
-         id="about">
-
+<section class="section" id="roadmap">
 
     <div class="section-heading reveal">
 
-
-        <p class="section-label">
-
-            DISCOVER INDIA'S IITs
-
-        </p>
-
+        <p>STUDY STRATEGY</p>
 
         <h2>
-
-            Where Ideas Become
-
-            <span>
-                Innovation.
-            </span>
-
+            4 Month <span>Roadmap</span>
         </h2>
 
-
-        <p class="section-description">
-
-            Indian Institutes of Technology are institutions
-            focused on engineering, science, technology,
-            research and innovation. Explore eight campuses
-            presented in this interactive showcase.
-
-        </p>
-
-
     </div>
 
 
+    <div class="timeline">
 
-    <div class="feature-grid">
 
+        <div class="month reveal">
 
-        <article class="feature-card reveal">
+            <div class="month-number">01</div>
 
-            <div class="feature-number">
-                01
+            <div>
+
+                <h3>Month One — Foundation</h3>
+
+                <p>
+                    <strong>Week 1 & 2:</strong>
+                    Engineering Mathematics + General Aptitude
+                </p>
+
+                <p>
+                    <strong>Week 3 & 4:</strong>
+                    Data Structures
+                </p>
+
             </div>
 
-            <div class="feature-icon">
-                ⚙
+        </div>
+
+
+        <div class="month reveal">
+
+            <div class="month-number">02</div>
+
+            <div>
+
+                <h3>Month Two — Core Subjects</h3>
+
+                <p>
+                    <strong>Week 1:</strong>
+                    Algorithms
+                </p>
+
+                <p>
+                    <strong>Week 2:</strong>
+                    Operating Systems
+                </p>
+
+                <p>
+                    <strong>Week 3:</strong>
+                    Computer Networks
+                </p>
+
+                <p>
+                    <strong>Week 4:</strong>
+                    DBMS
+                </p>
+
             </div>
 
-            <h3>
-                Engineering
-            </h3>
-
-            <p>
-
-                Explore institutions with strong programmes
-                across computer science, electrical,
-                mechanical, civil and other engineering fields.
-
-            </p>
-
-        </article>
+        </div>
 
 
+        <div class="month reveal">
 
-        <article class="feature-card reveal">
+            <div class="month-number">03</div>
 
-            <div class="feature-number">
-                02
+            <div>
+
+                <h3>Month Three — Advanced Core</h3>
+
+                <p>
+                    <strong>Week 1:</strong>
+                    Computer Organisation
+                </p>
+
+                <p>
+                    <strong>Week 2 & 3:</strong>
+                    Theory of Computation + Compiler Design
+                </p>
+
+                <p>
+                    <strong>Week 4:</strong>
+                    Mock Test
+                </p>
+
             </div>
 
-            <div class="feature-icon">
-                ◉
+        </div>
+
+
+        <div class="month reveal">
+
+            <div class="month-number">04</div>
+
+            <div>
+
+                <h3>Month Four — Revision</h3>
+
+                <p>
+                    Revision • PYQs • Mock Tests • Weak Topic Analysis
+                </p>
+
             </div>
 
-            <h3>
-                Research
-            </h3>
-
-            <p>
-
-                Discover research environments spanning
-                science, technology and interdisciplinary
-                fields.
-
-            </p>
-
-        </article>
-
-
-
-        <article class="feature-card reveal">
-
-            <div class="feature-number">
-                03
-            </div>
-
-            <div class="feature-icon">
-                ✦
-            </div>
-
-            <h3>
-                Innovation
-            </h3>
-
-            <p>
-
-                Student projects, entrepreneurship,
-                laboratories and collaboration help create
-                active innovation ecosystems.
-
-            </p>
-
-        </article>
-
+        </div>
 
     </div>
-
 
 </section>
 
 
+<!-- ================= WEIGHTAGE ================= -->
 
-<!-- =====================================================
-     CAMPUSES
-===================================================== -->
-
-<section class="section campus-section"
-         id="campuses">
-
+<section class="section" id="weightage">
 
     <div class="section-heading reveal">
 
-
-        <p class="section-label">
-
-            CAMPUS EXPLORER
-
-        </p>
-
+        <p>PRIORITY</p>
 
         <h2>
-
-            Explore the
-
-            <span>
-                IIT Campuses
-            </span>
-
+            Subject <span>Weightage</span>
         </h2>
 
-
-        <p class="section-description">
-
-            Move your mouse across each campus card for a
-            cinematic 3D experience. Select Explore Campus
-            to open the full-screen campus view.
-
-        </p>
-
-
     </div>
 
 
-
-    <div class="campus-grid">
-
-
-        <!-- =========================================
-             IIT MADRAS
-        ========================================== -->
-
-        <article class="campus-card reveal">
+    <div class="weightage-grid">
 
 
-            <img src="iit-madras.jpg"
-                 alt="IIT Madras campus">
+        <div class="weight-card reveal">
 
+            <span>TIER 1</span>
 
-            <div class="card-overlay"></div>
+            <h3>Algorithms & Data Structures</h3>
 
+            <strong>13–15 Marks</strong>
 
-            <div class="campus-number">
-                01
+            <div class="progress">
+                <div style="width:95%"></div>
             </div>
 
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    CHENNAI • TAMIL NADU
-
-                </span>
+        </div>
 
 
-                <h3>
+        <div class="weight-card reveal">
 
-                    IIT Madras
+            <span>TIER 1</span>
 
-                </h3>
+            <h3>Engineering Mathematics</h3>
 
+            <strong>~13 Marks</strong>
 
-                <p>
-
-                    Known for its research ecosystem,
-                    green campus environment and strong
-                    connections with technology and industry.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="madras">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
+            <div class="progress">
+                <div style="width:88%"></div>
             </div>
 
-
-        </article>
-
+        </div>
 
 
-        <!-- =========================================
-             IIT DELHI
-        ========================================== -->
+        <div class="weight-card reveal">
 
-        <article class="campus-card reveal">
+            <span>TIER 1</span>
 
+            <h3>Operating Systems</h3>
 
-            <img src="iit-delhi.jpg"
-                 alt="IIT Delhi campus">
+            <strong>8–10 Marks</strong>
 
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                02
+            <div class="progress">
+                <div style="width:75%"></div>
             </div>
 
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    NEW DELHI
-
-                </span>
+        </div>
 
 
-                <h3>
+        <div class="weight-card reveal">
 
-                    IIT Delhi
+            <span>TIER 2</span>
 
-                </h3>
+            <h3>Computer Networks</h3>
 
+            <strong>7–8 Marks</strong>
 
-                <p>
-
-                    A major technology and research
-                    institution located in India's
-                    national capital.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="delhi">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
+            <div class="progress">
+                <div style="width:65%"></div>
             </div>
 
-
-        </article>
-
+        </div>
 
 
-        <!-- =========================================
-             IIT BOMBAY
-        ========================================== -->
+        <div class="weight-card reveal">
 
-        <article class="campus-card reveal">
+            <span>TIER 2</span>
 
+            <h3>DBMS</h3>
 
-            <img src="iit-bombay.jpg"
-                 alt="IIT Bombay campus">
+            <strong>7–8 Marks</strong>
 
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                03
+            <div class="progress">
+                <div style="width:65%"></div>
             </div>
 
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    MUMBAI • MAHARASHTRA
-
-                </span>
+        </div>
 
 
-                <h3>
+        <div class="weight-card reveal">
 
-                    IIT Bombay
+            <span>TIER 2</span>
 
-                </h3>
+            <h3>Computer Organisation</h3>
 
+            <strong>7–8 Marks</strong>
 
-                <p>
-
-                    Known for engineering, computing,
-                    entrepreneurship and a vibrant
-                    technology ecosystem.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="bombay">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
+            <div class="progress">
+                <div style="width:65%"></div>
             </div>
 
-
-        </article>
-
+        </div>
 
 
-        <!-- =========================================
-             IIT KANPUR
-        ========================================== -->
+        <div class="weight-card reveal">
 
-        <article class="campus-card reveal">
+            <span>TIER 3</span>
 
+            <h3>Theory of Computation</h3>
 
-            <img src="iit-kanpur.jpg"
-                 alt="IIT Kanpur campus">
+            <strong>5–7 Marks</strong>
 
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                04
+            <div class="progress">
+                <div style="width:55%"></div>
             </div>
 
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    KANPUR • UTTAR PRADESH
-
-                </span>
+        </div>
 
 
-                <h3>
+        <div class="weight-card reveal">
 
-                    IIT Kanpur
+            <span>TIER 3</span>
 
-                </h3>
+            <h3>Compiler Design</h3>
 
+            <strong>4–6 Marks</strong>
 
-                <p>
-
-                    Recognised for rigorous engineering
-                    education, scientific research and
-                    technology development.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="kanpur">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
+            <div class="progress">
+                <div style="width:48%"></div>
             </div>
 
-
-        </article>
-
-
-
-        <!-- =========================================
-             IIT KHARAGPUR
-        ========================================== -->
-
-        <article class="campus-card reveal">
-
-
-            <img src="iit-kharagpur.jpg"
-                 alt="IIT Kharagpur campus">
-
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                05
-            </div>
-
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    KHARAGPUR • WEST BENGAL
-
-                </span>
-
-
-                <h3>
-
-                    IIT Kharagpur
-
-                </h3>
-
-
-                <p>
-
-                    The first IIT established in India,
-                    with a broad academic ecosystem and
-                    expansive campus.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="kharagpur">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
-            </div>
-
-
-        </article>
-
-
-
-        <!-- =========================================
-             IIT ROORKEE
-        ========================================== -->
-
-        <article class="campus-card reveal">
-
-
-            <img src="iit-roorkee.jpg"
-                 alt="IIT Roorkee campus">
-
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                06
-            </div>
-
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    ROORKEE • UTTARAKHAND
-
-                </span>
-
-
-                <h3>
-
-                    IIT Roorkee
-
-                </h3>
-
-
-                <p>
-
-                    A historic engineering institution
-                    with long-standing strengths in
-                    technical education and research.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="roorkee">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
-            </div>
-
-
-        </article>
-
-
-
-        <!-- =========================================
-             IIT GUWAHATI
-        ========================================== -->
-
-        <article class="campus-card reveal">
-
-
-            <img src="iit-guwahati.jpg"
-                 alt="IIT Guwahati campus">
-
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                07
-            </div>
-
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    GUWAHATI • ASSAM
-
-                </span>
-
-
-                <h3>
-
-                    IIT Guwahati
-
-                </h3>
-
-
-                <p>
-
-                    A scenic campus beside the
-                    Brahmaputra with engineering,
-                    science, design and research programmes.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="guwahati">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
-            </div>
-
-
-        </article>
-
-
-
-        <!-- =========================================
-             IIT HYDERABAD
-        ========================================== -->
-
-        <article class="campus-card reveal">
-
-
-            <img src="iit-hyderabad.jpg"
-                 alt="IIT Hyderabad campus">
-
-
-            <div class="card-overlay"></div>
-
-
-            <div class="campus-number">
-                08
-            </div>
-
-
-            <div class="campus-content">
-
-
-                <span class="location">
-
-                    KANDI • TELANGANA
-
-                </span>
-
-
-                <h3>
-
-                    IIT Hyderabad
-
-                </h3>
-
-
-                <p>
-
-                    A newer-generation IIT with modern
-                    infrastructure and expanding research
-                    activity across emerging technologies.
-
-                </p>
-
-
-                <button class="explore-button"
-                        data-campus="hyderabad">
-
-                    Explore Campus
-                    <span>↗</span>
-
-                </button>
-
-
-            </div>
-
-
-        </article>
-
+        </div>
 
     </div>
-
 
 </section>
 
 
+<!-- ================= QUOTE ================= -->
 
-<!-- =====================================================
-     QUOTE
-===================================================== -->
+<section class="quote-section reveal">
 
-<section class="quote-section">
+    <p>“</p>
 
-
-    <div class="quote-light"></div>
-
-
-    <div class="quote-content reveal">
-
-
-        <p class="quote-symbol">
-            ◆
-        </p>
-
-
-        <h2>
-
-            Dream.
-
-            <span>
-                Learn.
-            </span>
-
-            Build.
-
-        </h2>
-
-
-        <p>
-
-            Great engineering begins with curiosity.
-
-        </p>
-
-
-        <a href="#campuses"
-           class="primary-button">
-
-            Explore Again →
-
-        </a>
-
-
-    </div>
-
+    <h2>
+        Discipline today builds the
+        <span>engineer of tomorrow.</span>
+    </h2>
 
 </section>
 
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-
-    <div>
-
-
-        <a href="#home"
-           class="logo">
-
-            IIT<span>EXPLORE</span>
-
-        </a>
-
-
-        <p>
-
-            Interactive IIT Campus Explorer
-
-        </p>
-
-
+    <div class="logo">
+        GATE<span>HUB</span>
     </div>
 
-
-    <p class="footer-text">
-
-        HTML • CSS • JavaScript
-
+    <p>
+        GATE CSE 2027 Preparation Dashboard
     </p>
 
+    <p>
+        Learn • Practice • Revise • Succeed
+    </p>
 
 </footer>
 
 
-
-<!-- =====================================================
-     CAMPUS MODAL
-===================================================== -->
-
-<div class="campus-modal"
-     id="campusModal">
-
-
-    <div class="modal-background"
-         id="modalBackground">
-    </div>
-
-
-    <div class="modal-overlay"></div>
-
-
-    <button class="close-modal"
-            id="closeModal"
-            aria-label="Close">
-
-        ×
-
-    </button>
-
-
-    <div class="modal-content">
-
-
-        <span id="modalLocation">
-
-            INDIA
-
-        </span>
-
-
-        <h2 id="modalTitle">
-
-            IIT Campus
-
-        </h2>
-
-
-        <p id="modalDescription">
-
-            Discover the campus.
-
-        </p>
-
-
-        <a id="modalWebsite"
-           href="#"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            Visit Official Website ↗
-
-        </a>
-
-
-    </div>
-
-
-</div>
-
-
-
-<!-- JavaScript -->
-
 <script src="script.js"></script>
 
 </body>
-
 </html>

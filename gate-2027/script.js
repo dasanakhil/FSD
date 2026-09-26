@@ -1,57 +1,22 @@
-/* =========================================================
-   IIT EXPLORE
-   PREMIUM ANIMATION ENGINE
-========================================================= */
+/* =====================================================
+   GATE 2027 — PREMIUM ANIMATION ENGINE
+   ===================================================== */
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+/* =========================
+   MOBILE MENU
+   ========================= */
 
-const navbar =
-    document.getElementById("navbar");
-
-const menuButton =
-    document.getElementById("menuButton");
+const menuBtn =
+    document.getElementById("menuBtn");
 
 const navMenu =
     document.getElementById("navMenu");
 
-const scrollProgress =
-    document.getElementById("scrollProgress");
 
-const cursorGlow =
-    document.getElementById("cursorGlow");
+if(menuBtn && navMenu){
 
-
-
-/* =========================================================
-   NAVBAR SCROLL
-========================================================= */
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 40) {
-
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
-
-    }
-
-});
-
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-if (menuButton && navMenu) {
-
-    menuButton.addEventListener("click", () => {
+    menuBtn.addEventListener("click", () => {
 
         navMenu.classList.toggle("show");
 
@@ -59,7 +24,7 @@ if (menuButton && navMenu) {
 
 
     document
-        .querySelectorAll("#navMenu a")
+        .querySelectorAll("nav a")
         .forEach(link => {
 
             link.addEventListener("click", () => {
@@ -73,46 +38,37 @@ if (menuButton && navMenu) {
 }
 
 
+/* =========================
+   NAVBAR
+   ========================= */
 
-/* =========================================================
-   SCROLL PROGRESS
-========================================================= */
+const navbar =
+    document.querySelector(".navbar");
+
 
 window.addEventListener("scroll", () => {
 
-    const documentHeight =
-        document.documentElement.scrollHeight
-        -
-        window.innerHeight;
+    if(!navbar) return;
 
 
-    if (documentHeight <= 0) {
+    if(window.scrollY > 40){
 
-        scrollProgress.style.width =
-            "0%";
+        navbar.classList.add("scrolled");
 
-        return;
+    }else{
+
+        navbar.classList.remove("scrolled");
 
     }
-
-
-    const percentage =
-        (window.scrollY / documentHeight)
-        * 100;
-
-
-    scrollProgress.style.width =
-        `${percentage}%`;
 
 });
 
 
-
-/* =========================================================
+/* =========================
    SCROLL REVEAL
-========================================================= */
+   ========================= */
 
-const revealElements =
+const revealItems =
     document.querySelectorAll(".reveal");
 
 
@@ -123,17 +79,14 @@ const revealObserver =
 
             entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+                if(entry.isIntersecting){
 
                     entry.target
                         .classList
                         .add("active");
 
-
                     revealObserver
-                        .unobserve(
-                            entry.target
-                        );
+                        .unobserve(entry.target);
 
                 }
 
@@ -148,30 +101,277 @@ const revealObserver =
     );
 
 
-revealElements.forEach(
-    (element, index) => {
+revealItems.forEach((item,index) => {
 
-        element.style.transitionDelay =
-            `${(index % 4) * 70}ms`;
+    /*
+       Small stagger creates a much more
+       professional entrance animation.
+    */
 
-        revealObserver.observe(
-            element
-        );
+    item.style.transitionDelay =
+        `${Math.min(index % 4,3) * 80}ms`;
+
+    revealObserver.observe(item);
+
+});
+
+
+/* =========================
+   3D BOOK TILT
+   ========================= */
+
+const books =
+    document.querySelectorAll(".book3d");
+
+
+books.forEach(book => {
+
+    const face =
+        book.querySelector(".book-face");
+
+
+    if(!face) return;
+
+
+    book.addEventListener(
+        "mousemove",
+        event => {
+
+            if(window.innerWidth < 800)
+                return;
+
+
+            const rect =
+                book.getBoundingClientRect();
+
+
+            const mouseX =
+                event.clientX - rect.left;
+
+            const mouseY =
+                event.clientY - rect.top;
+
+
+            const percentX =
+                mouseX / rect.width;
+
+            const percentY =
+                mouseY / rect.height;
+
+
+            const rotateY =
+                (percentX - 0.5) * 28;
+
+            const rotateX =
+                (0.5 - percentY) * 20;
+
+
+            face.style.transform = `
+
+                rotateX(${rotateX}deg)
+
+                rotateY(${rotateY}deg)
+
+                translateY(-16px)
+
+                scale(1.035)
+
+            `;
+
+        }
+    );
+
+
+    book.addEventListener(
+        "mouseleave",
+        () => {
+
+            face.style.transform = `
+
+                rotateX(0deg)
+
+                rotateY(0deg)
+
+                translateY(0)
+
+                scale(1)
+
+            `;
+
+        }
+    );
+
+});
+
+
+/* =========================
+   SYLLABUS CARD SPOTLIGHT
+   ========================= */
+
+const subjectCards =
+    document.querySelectorAll(
+        ".subject-card"
+    );
+
+
+subjectCards.forEach(card => {
+
+    card.addEventListener(
+        "mousemove",
+        event => {
+
+            if(window.innerWidth < 800)
+                return;
+
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+
+            /*
+               Update spotlight position
+            */
+
+            card.style.setProperty(
+                "--mouse-x",
+                `${x}px`
+            );
+
+            card.style.setProperty(
+                "--mouse-y",
+                `${y}px`
+            );
+
+
+            /*
+               3D movement
+            */
+
+            const rotateY =
+                ((x / rect.width) - .5) * 7;
+
+            const rotateX =
+                (.5 - (y / rect.height)) * 7;
+
+
+            card.style.transform = `
+
+                perspective(900px)
+
+                rotateX(${rotateX}deg)
+
+                rotateY(${rotateY}deg)
+
+                translateY(-7px)
+
+            `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform = `
+
+                perspective(900px)
+
+                rotateX(0)
+
+                rotateY(0)
+
+                translateY(0)
+
+            `;
+
+        }
+    );
+
+});
+
+
+/* =========================
+   HERO PARALLAX
+   ========================= */
+
+const heroBooks =
+    document.querySelector(
+        ".hero-books"
+    );
+
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        if(
+            !heroBooks ||
+            window.innerWidth < 1000
+        ){
+            return;
+        }
+
+
+        const x =
+            (event.clientX /
+            window.innerWidth - .5);
+
+        const y =
+            (event.clientY /
+            window.innerHeight - .5);
+
+
+        heroBooks.style.transform = `
+
+            perspective(1400px)
+
+            rotateY(${x * 5}deg)
+
+            rotateX(${-y * 4}deg)
+
+            translate3d(
+                ${x * 10}px,
+                ${y * 10}px,
+                0
+            )
+
+        `;
 
     }
 );
 
 
+/* =========================
+   CURSOR AMBIENT LIGHT
+   ========================= */
 
-/* =========================================================
-   CURSOR LIGHT
-========================================================= */
+const cursorLight =
+    document.createElement("div");
+
+
+cursorLight.className =
+    "cursor-light";
+
+
+document.body.appendChild(
+    cursorLight
+);
+
 
 let mouseX = 0;
 let mouseY = 0;
 
-let glowX = 0;
-let glowY = 0;
+let lightX = 0;
+let lightY = 0;
 
 
 document.addEventListener(
@@ -188,704 +388,157 @@ document.addEventListener(
 );
 
 
-function animateCursor() {
+function animateLight(){
 
-    glowX +=
-        (mouseX - glowX)
-        * 0.08;
+    lightX +=
+        (mouseX - lightX) * .08;
 
-    glowY +=
-        (mouseY - glowY)
-        * 0.08;
+    lightY +=
+        (mouseY - lightY) * .08;
 
 
-    if (cursorGlow) {
+    cursorLight.style.left =
+        `${lightX}px`;
 
-        cursorGlow.style.left =
-            `${glowX}px`;
-
-        cursorGlow.style.top =
-            `${glowY}px`;
-
-    }
+    cursorLight.style.top =
+        `${lightY}px`;
 
 
     requestAnimationFrame(
-        animateCursor
+        animateLight
     );
 
 }
 
 
-animateCursor();
+animateLight();
 
 
-
-/* =========================================================
-   3D CAMPUS CARD EFFECT
-========================================================= */
-
-const campusCards =
-    document.querySelectorAll(
-        ".campus-card"
-    );
-
-
-campusCards.forEach(card => {
-
-
-    card.addEventListener(
-        "mousemove",
-        event => {
-
-
-            if (window.innerWidth < 900) {
-
-                return;
-
-            }
-
-
-            const rectangle =
-                card.getBoundingClientRect();
-
-
-            const x =
-                event.clientX
-                -
-                rectangle.left;
-
-
-            const y =
-                event.clientY
-                -
-                rectangle.top;
-
-
-            card.style.setProperty(
-                "--mouse-x",
-                `${x}px`
-            );
-
-
-            card.style.setProperty(
-                "--mouse-y",
-                `${y}px`
-            );
-
-
-            const rotateY =
-                (
-                    x /
-                    rectangle.width
-                    -
-                    0.5
-                )
-                * 8;
-
-
-            const rotateX =
-                (
-                    0.5
-                    -
-                    y /
-                    rectangle.height
-                )
-                * 7;
-
-
-            card.style.transform = `
-
-                perspective(1400px)
-
-                rotateX(${rotateX}deg)
-
-                rotateY(${rotateY}deg)
-
-                translateY(-8px)
-
-            `;
-
-        }
-
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform = `
-
-                perspective(1400px)
-
-                rotateX(0deg)
-
-                rotateY(0deg)
-
-                translateY(0)
-
-            `;
-
-        }
-
-    );
-
-
-});
-
-
-
-/* =========================================================
-   CAMPUS INFORMATION
-   IMPORTANT:
-   Images are in SAME folder as HTML.
-========================================================= */
-
-const campusData = {
-
-
-    madras: {
-
-        title:
-            "IIT Madras",
-
-        location:
-            "CHENNAI • TAMIL NADU",
-
-        image:
-            "iit-madras.jpg",
-
-        description:
-            "IIT Madras is located in Chennai and combines engineering education, research facilities, technology development and a distinctive green campus environment.",
-
-        website:
-            "https://www.iitm.ac.in/"
-
-    },
-
-
-    delhi: {
-
-        title:
-            "IIT Delhi",
-
-        location:
-            "NEW DELHI",
-
-        image:
-            "iit-delhi.jpg",
-
-        description:
-            "IIT Delhi is a major engineering and research institution in New Delhi with programmes spanning engineering, technology, science and interdisciplinary fields.",
-
-        website:
-            "https://home.iitd.ac.in/"
-
-    },
-
-
-    bombay: {
-
-        title:
-            "IIT Bombay",
-
-        location:
-            "MUMBAI • MAHARASHTRA",
-
-        image:
-            "iit-bombay.jpg",
-
-        description:
-            "IIT Bombay is located in Powai, Mumbai and is known for engineering education, research, computing, student technical activity and entrepreneurship.",
-
-        website:
-            "https://www.iitb.ac.in/"
-
-    },
-
-
-    kanpur: {
-
-        title:
-            "IIT Kanpur",
-
-        location:
-            "KANPUR • UTTAR PRADESH",
-
-        image:
-            "iit-kanpur.jpg",
-
-        description:
-            "IIT Kanpur is an engineering and research institution offering education across engineering, science and interdisciplinary disciplines.",
-
-        website:
-            "https://www.iitk.ac.in/"
-
-    },
-
-
-    kharagpur: {
-
-        title:
-            "IIT Kharagpur",
-
-        location:
-            "KHARAGPUR • WEST BENGAL",
-
-        image:
-            "iit-kharagpur.jpg",
-
-        description:
-            "IIT Kharagpur was the first Indian Institute of Technology established in India and has developed a broad multidisciplinary academic ecosystem.",
-
-        website:
-            "https://www.iitkgp.ac.in/"
-
-    },
-
-
-    roorkee: {
-
-        title:
-            "IIT Roorkee",
-
-        location:
-            "ROORKEE • UTTARAKHAND",
-
-        image:
-            "iit-roorkee.jpg",
-
-        description:
-            "IIT Roorkee has a long institutional history and today offers education and research across engineering, science and technology.",
-
-        website:
-            "https://www.iitr.ac.in/"
-
-    },
-
-
-    guwahati: {
-
-        title:
-            "IIT Guwahati",
-
-        location:
-            "GUWAHATI • ASSAM",
-
-        image:
-            "iit-guwahati.jpg",
-
-        description:
-            "IIT Guwahati is located in Assam and combines a scenic campus environment with engineering, science, design and research programmes.",
-
-        website:
-            "https://www.iitg.ac.in/"
-
-    },
-
-
-    hyderabad: {
-
-        title:
-            "IIT Hyderabad",
-
-        location:
-            "KANDI • TELANGANA",
-
-        image:
-            "iit-hyderabad.jpg",
-
-        description:
-            "IIT Hyderabad is a newer-generation IIT with modern infrastructure and research activity across engineering, science, design and emerging technologies.",
-
-        website:
-            "https://www.iith.ac.in/"
-
-    }
-
-};
-
-
-
-/* =========================================================
-   CAMPUS MODAL
-========================================================= */
-
-const modal =
-    document.getElementById(
-        "campusModal"
-    );
-
-
-const modalBackground =
-    document.getElementById(
-        "modalBackground"
-    );
-
-
-const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
-
-
-const modalLocation =
-    document.getElementById(
-        "modalLocation"
-    );
-
-
-const modalDescription =
-    document.getElementById(
-        "modalDescription"
-    );
-
-
-const modalWebsite =
-    document.getElementById(
-        "modalWebsite"
-    );
-
-
-const closeModal =
-    document.getElementById(
-        "closeModal"
-    );
-
-
-
-/* OPEN MODAL */
-
-document
-    .querySelectorAll(
-        ".explore-button"
-    )
-    .forEach(button => {
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-
-                const campusKey =
-                    button.dataset.campus;
-
-
-                const data =
-                    campusData[campusKey];
-
-
-                if (!data) {
-
-                    return;
-
-                }
-
-
-                modalTitle.textContent =
-                    data.title;
-
-
-                modalLocation.textContent =
-                    data.location;
-
-
-                modalDescription.textContent =
-                    data.description;
-
-
-                modalWebsite.href =
-                    data.website;
-
-
-                modalBackground
-                    .style
-                    .backgroundImage =
-                    `url("${data.image}")`;
-
-
-                modal.classList.add(
-                    "active"
-                );
-
-
-                document.body.style.overflow =
-                    "hidden";
-
-            }
-
-        );
-
-
-    });
-
-
-
-/* CLOSE MODAL */
-
-function hideModal() {
-
-    modal.classList.remove(
-        "active"
-    );
-
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-
-if (closeModal) {
-
-    closeModal.addEventListener(
-        "click",
-        hideModal
-    );
-
-}
-
-
-
-/* CLICK OUTSIDE */
-
-if (modal) {
-
-    modal.addEventListener(
-        "click",
-        event => {
-
-
-            if (
-                event.target === modal
-                ||
-                event.target
-                    .classList
-                    .contains(
-                        "modal-overlay"
-                    )
-            ) {
-
-                hideModal();
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-/* ESC KEY */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-
-        if (
-            event.key === "Escape"
-            &&
-            modal.classList
-                .contains("active")
-        ) {
-
-            hideModal();
-
-        }
-
-    }
-);
-
-
-
-/* =========================================================
-   ANIMATED COUNTER
-========================================================= */
-
-const counters =
-    document.querySelectorAll(
-        "[data-count]"
-    );
-
-
-counters.forEach(counter => {
-
-
-    const target =
-        Number(
-            counter.dataset.count
-        );
-
-
-    let current = 0;
-
-
-    const interval =
-        setInterval(
-            () => {
-
-
-                current++;
-
-
-                counter.textContent =
-                    current;
-
-
-                if (
-                    current >= target
-                ) {
-
-                    counter.textContent =
-                        target;
-
-                    clearInterval(
-                        interval
-                    );
-
-                }
-
-
-            },
-
-            120
-
-        );
-
-
-});
-
-
-
-/* =========================================================
+/* =========================
    SMOOTH NAVIGATION
-========================================================= */
+   ========================= */
 
 document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(link => {
+    .querySelectorAll('a[href^="#"]')
+    .forEach(anchor => {
 
-
-        link.addEventListener(
+        anchor.addEventListener(
             "click",
-            event => {
-
+            function(event){
 
                 const id =
-                    link.getAttribute(
-                        "href"
-                    );
+                    this.getAttribute("href");
 
 
-                if (
-                    !id
-                    ||
-                    id === "#"
-                ) {
-
+                if(id === "#")
                     return;
-
-                }
 
 
                 const target =
-                    document.querySelector(
-                        id
-                    );
+                    document.querySelector(id);
 
 
-                if (!target) {
+                if(target){
 
-                    return;
+                    event.preventDefault();
+
+
+                    const navbarHeight =
+                        100;
+
+
+                    const top =
+                        target
+                            .getBoundingClientRect()
+                            .top
+                        +
+                        window.pageYOffset
+                        -
+                        navbarHeight;
+
+
+                    window.scrollTo({
+
+                        top: top,
+
+                        behavior: "smooth"
+
+                    });
 
                 }
 
-
-                event.preventDefault();
-
-
-                const navbarOffset =
-                    100;
-
-
-                const position =
-
-                    target
-                        .getBoundingClientRect()
-                        .top
-
-                    +
-
-                    window.scrollY
-
-                    -
-
-                    navbarOffset;
-
-
-                window.scrollTo({
-
-                    top:
-                        position,
-
-                    behavior:
-                        "smooth"
-
-                });
-
-
             }
-
         );
-
 
     });
 
 
+/* =========================
+   ROADMAP HOVER
+   ========================= */
 
-/* =========================================================
-   HERO IMAGE PARALLAX
-========================================================= */
+document
+    .querySelectorAll(".month")
+    .forEach(month => {
 
-const heroImage =
-    document.querySelector(
-        ".hero-image"
-    );
+        month.addEventListener(
+            "mouseenter",
+            () => {
 
+                const number =
+                    month.querySelector(
+                        ".month-number"
+                    );
+
+
+                if(number){
+
+                    number.style.transform =
+                        "scale(1.12) rotate(8deg)";
+
+                    number.style.transition =
+                        ".3s";
+
+                }
+
+            }
+        );
+
+
+        month.addEventListener(
+            "mouseleave",
+            () => {
+
+                const number =
+                    month.querySelector(
+                        ".month-number"
+                    );
+
+
+                if(number){
+
+                    number.style.transform =
+                        "scale(1) rotate(0)";
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   HERO ENTRANCE
+   ========================= */
 
 window.addEventListener(
-    "scroll",
+    "load",
     () => {
 
-
-        if (!heroImage) {
-
-            return;
-
-        }
-
-
-        const scroll =
-            window.scrollY;
-
-
-        if (scroll < window.innerHeight) {
-
-            heroImage.style
-                .backgroundPosition =
-                `center calc(50% + ${scroll * 0.08}px)`;
-
-        }
-
+        document.body
+            .classList
+            .add("loaded");
 
     }
-
 );
